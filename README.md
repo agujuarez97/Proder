@@ -1,7 +1,9 @@
-# Proder
+# Prode
 Proyecto de analisis y diseño de sistemas
 
-conflicto generado
+Nombre : Agustin
+Apellido : Juarez
+DNI : 40297526
 
 
 
