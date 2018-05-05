@@ -1,0 +1,22 @@
+* Ficture -> fechas -> partidos -> equipos
+* Users
+
+
+Requerimientos(MVP): 
+
+Peso-Estado-1- Como user admin quiero cargar Team para armar Team.
+Peso-Estado-2-							   Games 
+Peso-Estado-3-							   Schedule
+Peso-Estado-4-							   Fixture
+Peso-Estado-5-							   Users
+Peso-Estado-6- Como ghest quiero registrarme en el sistema para incribirme en fixture.
+Peso-Estado-7- Como usuario quiero subscribirme en fixture para jugar.
+Peso-Estado-8- Como usuario quiero predecir un schedule.
+Peso-Estado-9- Como Admin quiero cargar los resultados de un match.
+Peso-Estado-10 Como Admin quiero calcular el ganador del fixture.
+Peso-Estado-11-Como usuario ver la tabla del fixture(no esta en el modelo).
+Peso-Estado-12-Salir del sistema.
+
+*** Debemos darle precedencia(Ord).
+
+*Tres tipos usuario: admin(identificado, subscripto, privilegios), ghest(no identificado, no subscripto).
