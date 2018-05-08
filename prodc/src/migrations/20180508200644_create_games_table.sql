@@ -4,7 +4,8 @@ CREATE TABLE games(
 	hour         DATETIME,
 	golLocal     int check (golLocal>=0),
 	golVisitante int check (golVisitante>=0),
-	team_id      int(11), --  FK hace referencia a eElocal -- FK hace referencia a Evisitante
+	team_local_id      int(11), --  FK hace referencia a eElocal -- FK hace referencia a Evisitante
+	team_visitante_id	   int(11),
 	schedure_id  int(10), -- FK hace referencia a Fecha
 	created_at   DATETIME,
 	updated_at   DATETIME
