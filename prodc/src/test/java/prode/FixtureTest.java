@@ -1,6 +1,6 @@
 package prode;
 
-import prode.Predict;
+import prode.Fixture;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;
@@ -9,26 +9,20 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class PredictTest{
+public class FixtureTest{
   @Before
   public void before(){
     Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://127.0.0.1/prode_test?nullNamePatternMatchesAll=true", "root", "root");
-    System.out.println("PredictTest setup");
+    System.out.println("FixtureTest setup");
     Base.openTransaction();
   }
 
   @After
   public void after(){
-      System.out.println("PredictTest tearDown");
+      System.out.println("FixtureTest tearDown");
       Base.rollbackTransaction();
       Base.close();
   }
 
-  /* @Test
-  public void validatePrecenseOfUsernames(){
-      User user = new User();
-      user.set("username", "");
-
-      assertEquals(user.isValid(), false);
-  }*/
+  /* @Test*/
 }

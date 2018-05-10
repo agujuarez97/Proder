@@ -24,11 +24,5 @@ public class PredictionTest{
       Base.close();
   }
 
-  /*@Test
-  public void validatePrecenseOfUsernames(){
-      User user = new User();
-      user.set("username", "");
-
-      assertEquals(user.isValid(), false);
-  }*/
+  /*@Test*/
 }

@@ -1,0 +1,6 @@
+CREATE TABLE fixtures(
+	id 		   int(10) auto_increment PRIMARY KEY, /*ATRIBUTO EL CUAL PERMITE IDENTIFICAR UNIVOCAMENTE UN FIXTURE*/
+	name	   VARCHAR(50),
+	created_at DATETIME,
+	updated_at DATETIME
+)ENGINE=InnoDB;
