@@ -14,9 +14,9 @@ public class Team extends Model{
   	}
 
   	/*Constructor*/
- 	public Team(){
+ 	  public Team(){
 
-  	}
+    }
 
   	/*Constructor*/
   	public Team(String nom){
