@@ -3,7 +3,7 @@ package prode;
 import org.javalite.activejdbc.Base;
 
 import prode.User;
-
+import static spark.Spark.*;
 
 
 /**
