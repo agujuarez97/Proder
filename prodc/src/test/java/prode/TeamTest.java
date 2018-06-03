@@ -27,7 +27,7 @@ public class TeamTest {
   @Test
   public void validatePrecenseOfTestnames(){
       Team team = new Team();
-      team.set("teamname", "");
+      team.set("name", "");
 
       assertEquals(team.isValid(), false);
   }
