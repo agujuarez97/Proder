@@ -11,8 +11,9 @@
   <properties>
     <activejdbc.version>2.0</activejdbc.version>
     <environments>development.test,development</environments>
-    <project.basedir>/Users/franco/unrc/Materias/Disenio/2018/prode-app</project.basedir>
-
+    <project.basedir>/home/agustin/Escritorio/Prode</project.basedir>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -33,6 +34,24 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>6.0.6</version>
+    </dependency>
+
+    <dependency>
+       <groupId>com.sparkjava</groupId>
+       <artifactId>spark-core</artifactId>
+       <version>2.6.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.21</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sparkjava</groupId>
+      <artifactId>spark-template-mustache</artifactId>
+      <version>2.5.5</version>
     </dependency>
 
   </dependencies>
