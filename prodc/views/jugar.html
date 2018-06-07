@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prode</title>
+	<link rel="stylesheet" type="text/css" href="css/fondo.css"> </link>
+	<style type="text/css">
+		#titulo{
+			margin-top: 4%;
+			margin-left: 10%;
+		}
+		#scoreUser{
+			margin-left: 25%;
+			margin-top: -2.6%;
+		}
+		#predictions{
+			margin-left: 15%;
+			margin-top: 10%;
+		}
+		#predictions2{
+			margin-left: 65%;
+			margin-top: -20%;
+		}
+		#game{
+			margin-left: -8%;
+			margin-top: 2%;
+		}
+		#gameIn{
+			margin-left: 2.85%;
+		}
+		#resultGame{
+			margin-left: -8%;
+		}
+		#botonRecord{
+			margin-left: 25%;
+			margin-top: 25%;
+		}
+		#botonPredecir{
+			margin-left: 0%;
+			margin-top: 3%;
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<!-- Mostrar el username del usuario -->
+		<h3 id="titulo"> 'Usuario' </h3>
+		
+		<!-- Mostrar score del usuario -->
+		<div id="scoreUser">
+			<label for="scoreUser"> Score: <output id="score" for="scoreOut"/> </label>
+		</div>
+		
+		<!-- Seccion donde el usuario puede crear sus predicciones -->
+		<div id="predictions">
+			<label for="predictions"> Predecir: </label>
+			<!-- El usuario selecciona el partido que quiere predecir -->
+			<div id="game">
+				<label for="predictions"> Juego: <input id="gameIn" for="games"/> </label>
+			</div>
+			<!-- El usuario ingresa su prediccion -->
+			<div id="resultGame">
+				<label for="predictions"> Resultado: <input id="resultIn" for="results"/> </label>
+			</div>
+			
+			<a href="guardar la prediccion"><input type="button" value="Predecir" title="Pred" id="botonPredecir"></a>
+		</div>
+		
+		<!-- Seccion donde se muestran todas las predicciones realizadas por el usuario -->
+		<div id="predictions2">
+			<label for="predictions2"> Predicciones realizadas: </label>
+		</div>
+		
+		<!-- Direccionar a la página donde se pueden ver los usuarios con los scores más altos -->
+		<a href="records.html"><input type="button" value="Records mundiales" title="Record" id="botonRecord"></a>
+	</form>
+</body>
+</html>
