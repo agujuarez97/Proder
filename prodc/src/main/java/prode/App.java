@@ -5,6 +5,7 @@ import org.javalite.activejdbc.Base;
 import prode.User;
 
 import static spark.Spark.*;
+import static spark.Spark.staticFileLocation;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,9 @@ public class App
 {
     public static void main( String[] args ){
 
+    	//Permite levantar CSS, JS e IMAGENES
+    	
+    	staticFiles.location("/public");
         //Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://127.0.0.1/prode?nullNamePatternMatchesAll=true", "root", "root");
 
         /*User u = new User("Agustin", "chqq2018", 1);
@@ -25,7 +29,7 @@ public class App
 
 /*--------------------------------------------------------------------------------------------*/
         Map map = new HashMap();
-        map.put("hola", "<li><a href='/registrarse'>Jugar</a></li>");
+
       	get("/inicio", (req, res) -> {
            return new ModelAndView(map, "./views/inicio.html");
         }, new MustacheTemplateEngine()

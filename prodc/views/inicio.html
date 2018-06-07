@@ -2,27 +2,36 @@
 <html>
 <head>
 	<title>Bienvenidos Al Prode</title>
-	<link rel="stylesheet" type="text/css" href="css/fondo.css"> </link>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
 		#name{
 			margin-left: 5%;
-			margin-top: 5%;
+			margin-top: 7%;
 		}
 		#password{
 			margin-left: 5%;
-			margin-top: 1%;
+			margin-top: 3%;
 		}
 		#nam{
 			margin-left: 2.5%;
 		}
 		#boton{
-			margin-left: 13%;
-			margin-top: 1%;
+			margin-left: 12%;
+			margin-top: 3%;
+		}
+		#comen{
+			margin-top: 5%;
 		}
 	</style>
 </head>
 <body>
 	<form>
+		<h1 align="center"> BIENVENIDOS A NUESTRO PRODE </h1>
+
+		<h4 id="comen"> Por favor si usted ya es usuario ingrese los datos y acceda, <br>
+		sino registrese como nuevo usuario precionando el boton Sing in.</h4>
+
 		<div id="name">
 			<label for="username"> Name: </label>
 			<input type="text" name="username" id="nam">
@@ -34,7 +43,7 @@
 		</div>
 
 		<input type="submit" value="Get in" title="Entrar" id="boton">
-		<a href="registrarse.html"><input type="button" value="Sing in" title="Registrarse"></a>
+		<a href="/registrarse"><input type="button" value="Sing in" title="Registrarse"></a>
 	</form>
 </body>
 </html>
