@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bienvenidos Al Prode</title>
-	<link rel="stylesheet" type="text/css" href="css/fondo.css"> </link>
+	<title>Bienvenido Al Area De Registro</title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
 		#titulo{
 			margin-top: 7%;
@@ -19,13 +20,15 @@
 			margin-left: 2.5%;
 		}
 		#boton{
-			margin-left: 17%;
+			margin-left: 15%;
 			margin-top: 3%;
 		}
 	</style>
 </head>
 <body>
-	<form>
+	<form method="post" action="/registrar">
+	<h1 align="center"> AREA PARA REGISTRARSE COMO NUEVO USUARIO </h1>
+
 		<h4 id="titulo"> POR FAVOR INGRESE SUS DATOS PARA REGISTRARSE</h4>
 
 		<div id="name">
@@ -38,7 +41,7 @@
 			<input type="password" name="pas">
 		</div>
 
-		<input type="submit" value="Save" title="Guardar" id="boton">
+		<a href="/inicio"><input type="submit" value="Save" title="Guardar" id="boton"></a>
 	</form>
 </body>
 </html>
