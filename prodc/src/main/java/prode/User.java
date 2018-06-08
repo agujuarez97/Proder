@@ -60,12 +60,12 @@ public class User extends Model {
 	Map questt = new HashMap();
 
 	List<User> unico = User.where("username = ? and password = ?", result[0], result[1]);
-	Boolean resu2 = unico.size()==0;
+	Boolean resu2 = unico.size()!=0;
 	if(resu2){
-		questt.put("error", "<div class='alert alert-danger' id='alert-danger'><strong>Error!</strong> Usuario no registrado.</div>");
+		questt.put("user", result[0]);
 		return questt;
 	}
-	questt.put("error", null);
+	questt.put("user", null);
 	return questt;
   }
 
