@@ -28,8 +28,6 @@ public class App
         after((req,res) ->{
         	Base.close();
         });
-        /*User u = new User("Agustin", "chqq2018", 1);
-        u.saveIt();*/
 
 /*--------------------------------------------------------------------------------------------*/
         Map map = new HashMap();
@@ -63,10 +61,12 @@ public class App
 	  	User user = new User();
 	  	Map logresul = user.checkUser(req, res);
 
-	  	if((String)logresul.get("error") != null){
-	  		return new ModelAndView(logresul,"./views/inicio.html");
+	  	if((String)logresul.get("user") != null){
+	  		req.session().attribute("user", user.get("id"));
+			return new ModelAndView(logresul, "./views/jugar.html");
 	  	}
-		return new ModelAndView(logresul, "./views/registrarse.html");
+
+	  	return new ModelAndView(logresul,"./views/inicio.html");
 	  	}, new MustacheTemplateEngine()
 	  	);
     }
