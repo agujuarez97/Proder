@@ -26,7 +26,7 @@
 	</style>
 </head>
 <body>
-	<form>
+	<form method="get" action="/login">
 		<h1 align="center"> BIENVENIDOS A NUESTRO PRODE </h1>
 
 		<h4 id="comen"> Por favor si usted ya es usuario ingrese los datos y acceda, <br>
@@ -42,7 +42,7 @@
 			<input type="password" name="password">
 		</div>
 
-		<input type="submit" value="Get in" title="Entrar" id="boton">
+		<a href="/login"><input type="submit" value="Get in" title="Entrar" id="boton"></a>
 		<a href="/registrarse"><input type="button" value="Sing in" title="Registrarse"></a>
 	</form>
 </body>
