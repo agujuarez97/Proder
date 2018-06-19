@@ -69,5 +69,38 @@ public class App
 	  	return new ModelAndView(logresul,"./views/inicio.html");
 	  	}, new MustacheTemplateEngine()
 	  	);
-    }
+
+/*----------------------------------------------------------------------------------------------*/
+		Map fecha1 = new HashMap();
+
+      	get("/schedule1", (req, res) -> {
+           return new ModelAndView(fecha1, "./views/schedule1.html");
+        }, new MustacheTemplateEngine()
+      	);
+
+/*----------------------------------------------------------------------------------------------*/
+		Map fecha2 = new HashMap();
+
+      	get("/schedule2", (req, res) -> {
+           return new ModelAndView(fecha2, "./views/schedule2.html");
+        }, new MustacheTemplateEngine()
+      	);
+
+/*----------------------------------------------------------------------------------------------*/
+		Map fecha3 = new HashMap();
+
+      	get("/schedule3", (req, res) -> {
+           return new ModelAndView(fecha3, "./views/schedule3.html");
+        }, new MustacheTemplateEngine()
+      	);
+
+/*----------------------------------------------------------------------------------------------*/
+		Map fecha4 = new HashMap();
+
+      	get("/schedule4", (req, res) -> {
+           return new ModelAndView(fecha4, "./views/schedule4.html");
+        }, new MustacheTemplateEngine()
+      	);
+	}
+
 }

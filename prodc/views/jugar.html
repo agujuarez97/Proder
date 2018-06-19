@@ -1,77 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Prode</title>
-	<link rel="stylesheet" type="text/css" href="css/fondo.css"> </link>
+	<title>Area Para Jugar</title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
-		#titulo{
-			margin-top: 4%;
-			margin-left: 10%;
+		#com{
+			margin-top: 5%;
 		}
-		#scoreUser{
-			margin-left: 25%;
-			margin-top: -2.6%;
+		#predecir{
+			margin-left: 5%;
+			margin-top: 5%;
 		}
-		#predictions{
-			margin-left: 15%;
-			margin-top: 10%;
+		#boton1{
+			margin-left: 5%;
+			margin-top: 3%;
 		}
-		#predictions2{
-			margin-left: 65%;
-			margin-top: -20%;
-		}
-		#game{
-			margin-left: -8%;
-			margin-top: 2%;
-		}
-		#gameIn{
-			margin-left: 2.85%;
-		}
-		#resultGame{
-			margin-left: -8%;
-		}
-		#botonRecord{
-			margin-left: 25%;
-			margin-top: 25%;
-		}
-		#botonPredecir{
-			margin-left: 0%;
+		#boton{
+			margin-left: 4%;
 			margin-top: 3%;
 		}
 	</style>
 </head>
 <body>
-	<form>
-		<!-- Mostrar el username del usuario -->
-		<h3 id="titulo"> 'Usuario' </h3>
+	<form method="get" action="/jugar">
+
+		<h1 align="center"> BIENVENIDO AL AREA DE JUGAR </h1>
 		
-		<!-- Mostrar score del usuario -->
-		<div id="scoreUser">
-			<label for="scoreUser"> Score: <output id="score" for="scoreOut"/> </label>
+		<h4 id="com"> Por favor carge su prediccion, marque izquiero si piensa que gana el local, <br>
+		derecho si gana el visitante, o en el medio si es empate. </h4>
+
+		<div id="predecir">
+
+			<label for="predecir"> Seleccione la fecha que desea predecir: <br><br> </label>
+
 		</div>
-		
-		<!-- Seccion donde el usuario puede crear sus predicciones -->
-		<div id="predictions">
-			<label for="predictions"> Predecir: </label>
-			<!-- El usuario selecciona el partido que quiere predecir -->
-			<div id="game">
-				<label for="predictions"> Juego: <input id="gameIn" for="games"/> </label>
-			</div>
-			<!-- El usuario ingresa su prediccion -->
-			<div id="resultGame">
-				<label for="predictions"> Resultado: <input id="resultIn" for="results"/> </label>
-			</div>
+
+		<a href="/schedule1"><input type="button" value="Schedule 1" title="Fecha 1" id="boton1"></a>
+
+		<a href="/schedule2"><input type="button" value="Schedule 2" title="Fecha 2" id="boton"></a>
+
+		<a href="/schedule3"><input type="button" value="Schedule 3" title="Fecha 3" id="boton"></a>
 			
-			<a href="guardar la prediccion"><input type="button" value="Predecir" title="Pred" id="botonPredecir"></a>
-		</div>
+		<a href="/schedule4"><input type="button" value="Schedule 4" title="Fecha 4" id="boton"></a>
 		
-		<!-- Seccion donde se muestran todas las predicciones realizadas por el usuario -->
-		<div id="predictions2">
-			<label for="predictions2"> Predicciones realizadas: </label>
-		</div>
-		
-		<!-- Direccionar a la página donde se pueden ver los usuarios con los scores más altos -->
-		<a href="records.html"><input type="button" value="Records mundiales" title="Record" id="botonRecord"></a>
 	</form>
 </body>
 </html>
