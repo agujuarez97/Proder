@@ -3,6 +3,7 @@ package prode;
 import org.javalite.activejdbc.Base;
 
 import prode.User;
+import prode.Prediction;
 
 import static spark.Spark.*;
 import static spark.Spark.staticFileLocation;
@@ -61,9 +62,9 @@ public class App
 	  	User user = new User();
 	  	Map logresul = user.checkUser(req, res);
 
-	  	if((String)logresul.get("user") != null){
-	  		req.session().attribute("user", user.get("id"));
-			return new ModelAndView(logresul, "./views/jugar.html");
+	  	if((Integer)logresul.get("user") != 0){
+	  		req.session().attribute("user", (Integer)logresul.get("user"));
+			return new ModelAndView(logresul, "./views/play.html");
 	  	}
 
 	  	return new ModelAndView(logresul,"./views/inicio.html");
@@ -101,6 +102,21 @@ public class App
            return new ModelAndView(fecha4, "./views/schedule4.html");
         }, new MustacheTemplateEngine()
       	);
+
+/*----------------------------------------------------------------------------------------------*/
+      	Map f = new HashMap();
+
+      	post("/loadPredictions", (req, res) -> {
+      	   Prediction pre = new Prediction();
+      	   pre.registerPrediction(req, res);
+
+           return new ModelAndView(f, "./views/play.html");
+        }, new MustacheTemplateEngine()
+      	);
+
+/*----------------------------------------------------------------------------------------------*/
+
+
 	}
 
 }

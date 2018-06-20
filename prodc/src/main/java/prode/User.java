@@ -7,6 +7,7 @@ import spark.Response;
 import spark.QueryParamsMap;
 import java.util.HashMap;
 import java.util.Map;
+import prode.Score;
 
 public class User extends Model {
 
@@ -62,10 +63,10 @@ public class User extends Model {
 	List<User> unico = User.where("username = ? and password = ?", result[0], result[1]);
 	Boolean resu2 = unico.size()!=0;
 	if(resu2){
-		questt.put("user", result[0]);
+		questt.put("user", unico.get(0).get("id"));
 		return questt;
 	}
-	questt.put("user", null);
+	questt.put("user", 0);
 	return questt;
   }
 
