@@ -41,12 +41,16 @@ public class Prediction extends Model{
 
 		int id_u = (Integer)req.session().attribute("user");
 
-		for (int i = 0; i < result.length; i++) {
-			Prediction p = new Prediction(Integer.parseInt(result[i]), id_u, Integer.parseInt(id[i]), fecha);
-			p.saveIt();
-		}
+		List<Prediction> prediction = Prediction.findBySQL("select * from predictions where user_id = ? and schedure_id = ?;", id_u, fecha);
 
-		Score s = new Score();
-		s.calculateScore(id_u, fecha);
+		if (prediction.size() == 0){
+			for (int i = 0; i < result.length; i++) {
+				Prediction p = new Prediction(Integer.parseInt(result[i]), id_u, Integer.parseInt(id[i]), fecha);
+				p.saveIt();
+			}
+
+			Score s = new Score();
+			s.calculateScore(id_u, fecha);
+		}
 	}
 }

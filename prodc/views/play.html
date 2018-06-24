@@ -19,24 +19,37 @@
 			margin-top: 3%;
 		}
 		#boton{
-			margin-left: 4%;
-			margin-top: 3%;
+			margin-left: 8%;
+			margin-top: 1%;
 		}
 		#cerrarsesion{
-			margin-left: 8%;
+			margin-left: 15%;
+		}
+		#ranking{
+			margin-left: 3%;
+			margin-top: 0%;
+		}
+		#puntuacion{
+			margin-left: 30%;
+			margin-top: 3%;
+		}
+		#sesion{
+			margin-left: 10%;
 		}
 	</style>
 </head>
 <body>
+
+	<font face="Comic Sans MS,Calibri">
 	<form method="get">
 
-		<h1 align="center"> <font face="Comic Sans MS,Calibri"> BIENVENIDO AL AREA DE JUGAR </font></h1>
+		<h1 align="center"> BIENVENIDO AL AREA DE JUGAR </h1>
 		
-		<font face="Comic Sans MS,Calibri"> <h4 id="com"> Por favor seleccione la fecha que desea predecir. </h4></font>
+		<h4 id="com"> Por favor seleccione la fecha que desea predecir. </h4>
 
 		<div id="labels">
 
-			<label for="predecir"> <font face="Comic Sans MS,Calibri"> Seleccione la fecha que desea predecir: </font><br><br> </label>
+			<label for="predecir"> Seleccione la fecha que desea predecir: <br><br> </label>
 
 		</div>
 
@@ -46,26 +59,25 @@
 
 		<a href="/schedule3"><input type="button" value="Schedule 3" title="Fecha 3" id="boton"></a>
 			
-		<a href="/schedule4"><input type="button" value="Schedule 4" title="Fecha 4" id="boton"></a>
+		<a href="/schedule4"><input type="button" value="Schedule 4" title="Fecha 4" id="boton"></a><br>
+
+		<a href="/punctuation"><input type="button" value="Punctuation" title="Puntuacion" id="puntuacion"></a>
 		
 		<div id="labels">
 
-			<label for="predecir"> <font face="Comic Sans MS,Calibri"> Seleccione el ranking que desea ver: </font><br><br> </label>
+			<label for="predecir" id="ranking"> Ver ranking: <br><br> </label>
+
+			<label for="predecir" id="sesion">  Desea cerrar su sesion?: <br><br> </label>
 
 		</div>
 
-		<a href=""><input type="button" value="For Schedule" title="Por Fecha" id="boton1"></a>
 		<a href="/global"><input type="button" value="Global" title="Global" id="boton"></a>
-
-		<div id="labels">
-
-			<label for="predecir"> <font face="Comic Sans MS,Calibri"> Desea cerrar su sesion?: </font><br><br> </label>
-
-		</div>
 
 		<a href="/singoff"><input type="button" value="Sing Off" title="Cerrar Sesion" id="cerrarsesion"></a>
 
 
 	</form>
+	</font>
+
 </body>
 </html>
