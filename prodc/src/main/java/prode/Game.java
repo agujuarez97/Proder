@@ -1,3 +1,9 @@
+/**
+ * Title: Game.
+ * This class extend Model.
+ * @author. Agustin Juarez, Gaston Plisga, Matias Suarez . 
+ */
+
 package prode;
 
 import org.javalite.activejdbc.Model;
@@ -32,7 +38,7 @@ public class Game extends Model{
 		validateNumericalityOf("schedure_id").allowNull(false);
 
 		/**
-		 * Evaluate the validity of the result
+		 * Evaluate the validity of the result.
 		 */
 		validateNumericalityOf("result_id").allowNull(false);
 	}

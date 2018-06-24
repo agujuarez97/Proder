@@ -1,3 +1,10 @@
+
+/**
+ * Title: App.
+ * Main class.
+ * @author. Agustin Juarez, Gaston Plisga, Matias Suarez . 
+ */
+
 package prode;
 
 import org.javalite.activejdbc.Base;
@@ -20,19 +27,10 @@ import java.util.Map;
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
 
+
 public class App {
 
-	private static Map getSession(Request req, Response res){
-		Map a = new HashMap();
-		if(req.session().attribute("user")!=null){
-			a.put("user_id", (Integer)req.session().attribute("user"));
-		}
-		return a;
-	}
-
-    public static void main( String[] args ){
-
-    	//Permite levantar CSS, JS e IMAGENES
+	    public static void main( String[] args ){
     	
     	staticFiles.location("/public");
 

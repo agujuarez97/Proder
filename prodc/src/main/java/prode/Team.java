@@ -1,3 +1,8 @@
+/**
+ * Title: Team.
+ * This class extend Model.
+ * @author. Agustin Juarez, Gaston Plisga, Matias Suarez . 
+ */
 package prode;
 
 import org.javalite.activejdbc.Model;
