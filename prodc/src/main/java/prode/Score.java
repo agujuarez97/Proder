@@ -32,8 +32,7 @@ public class Score extends Model{
 		set("schedure_id", id_sch);
 	}
 
-
- 	/*CALCULA LOS PUNTOS EN TOTAL QUE OBTUVO UN DETERMINADO USUARIO*/
+	
 	/*public void calculateScore(int id_usu){
 
 		List<Prediction> predicciones = Prediction.where("user_id = ? ", id_usu);
