@@ -16,12 +16,14 @@
 	</style>
 </head>
 <body>
+
+	<font face="Comic Sans MS,Calibri">
 	<form method="post" action="/loadPredictions">
-		<h1 align="center"> BIENVENIDO A LA FECHA NUMERO <input type="number" name="f" value="1" size="1" style="border:none" readonly></h1>
+		<h1 align="center"> BIENVENIDO A LA FECHA NUMERO <input type="number" name="f" value="1" size="1" style="border:none" readonly style="border:none"></h1>
 
 		<div id="partidos">
 			
-			<input type="text" name="id1" value="1" size="1" style="border:none" readonly> <label for="primerpartido"> ARGENTINA VS ALEMANIA </label> <br>
+			<input type="text" name="id1" value="1" size="1" style="border:none" readonly> <label for="primerpartido">  ARGENTINA VS ALEMANIA </label> <br>
 			<input type="radio" name="partido1" value="1"> GANA ARGENTINA <br>
 			<input type="radio" name="partido1" value="2"> GANA ALEMANIA <br>
 			<input type="radio" name="partido1" value="0" checked> EMPATAN <br><br>
@@ -51,5 +53,6 @@
 		<a href="/loadPredictions"><input type="submit" value="Predictions" title="Prediccionar" id="boton"></a>
 
 	</form>
+	</font>
 </body>
 </html>

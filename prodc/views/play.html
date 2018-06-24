@@ -10,7 +10,7 @@
 		#com{
 			margin-top: 5%;
 		}
-		#predecir{
+		#labels{
 			margin-left: 5%;
 			margin-top: 5%;
 		}
@@ -22,19 +22,21 @@
 			margin-left: 4%;
 			margin-top: 3%;
 		}
+		#cerrarsesion{
+			margin-left: 8%;
+		}
 	</style>
 </head>
 <body>
-	<form method="get" action="/jugar">
+	<form method="get">
 
-		<h1 align="center"> BIENVENIDO AL AREA DE JUGAR </h1>
+		<h1 align="center"> <font face="Comic Sans MS,Calibri"> BIENVENIDO AL AREA DE JUGAR </font></h1>
 		
-		<h4 id="com"> Por favor carge su prediccion, marque izquiero si piensa que gana el local, <br>
-		derecho si gana el visitante, o en el medio si es empate. </h4>
+		<font face="Comic Sans MS,Calibri"> <h4 id="com"> Por favor seleccione la fecha que desea predecir. </h4></font>
 
-		<div id="predecir">
+		<div id="labels">
 
-			<label for="predecir"> Seleccione la fecha que desea predecir: <br><br> </label>
+			<label for="predecir"> <font face="Comic Sans MS,Calibri"> Seleccione la fecha que desea predecir: </font><br><br> </label>
 
 		</div>
 
@@ -46,6 +48,24 @@
 			
 		<a href="/schedule4"><input type="button" value="Schedule 4" title="Fecha 4" id="boton"></a>
 		
+		<div id="labels">
+
+			<label for="predecir"> <font face="Comic Sans MS,Calibri"> Seleccione el ranking que desea ver: </font><br><br> </label>
+
+		</div>
+
+		<a href=""><input type="button" value="For Schedule" title="Por Fecha" id="boton1"></a>
+		<a href="/global"><input type="button" value="Global" title="Global" id="boton"></a>
+
+		<div id="labels">
+
+			<label for="predecir"> <font face="Comic Sans MS,Calibri"> Desea cerrar su sesion?: </font><br><br> </label>
+
+		</div>
+
+		<a href="/singoff"><input type="button" value="Sing Off" title="Cerrar Sesion" id="cerrarsesion"></a>
+
+
 	</form>
 </body>
 </html>

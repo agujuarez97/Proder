@@ -47,6 +47,6 @@ public class Prediction extends Model{
 		}
 
 		Score s = new Score();
-		s.calculateScore(id_u, fecha);
+		s.calculateScore(id_u);
 	}
 }

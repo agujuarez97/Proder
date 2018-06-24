@@ -1,9 +1,11 @@
 package prode;
 
 import org.javalite.activejdbc.Base;
+import java.util.List;
 
 import prode.User;
 import prode.Prediction;
+import prode.Score;
 
 import static spark.Spark.*;
 import static spark.Spark.staticFileLocation;
@@ -116,7 +118,26 @@ public class App
 
 /*----------------------------------------------------------------------------------------------*/
 
+		get("/global", (req, res) -> {
+			Map rG = new HashMap();
+		   List<Score> top = Score.findBySQL("select * from scores order by points desc");
+		   rG.put("ranking", top);
 
+           return new ModelAndView(rG, "./views/global.html");
+        }, new MustacheTemplateEngine()
+      	);
+
+/*----------------------------------------------------------------------------------------------*/
+
+		Map cs = new HashMap();
+
+		get("/singoff", (req, res) -> {
+		   if(req.session().attribute("user") != null){
+		   		req.session().removeAttribute("user");
+		   }
+           return new ModelAndView(cs, "./views/inicio.html");
+        }, new MustacheTemplateEngine()
+      	);	
 	}
 
 }
