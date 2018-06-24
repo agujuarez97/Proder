@@ -33,7 +33,12 @@ public class Score extends Model{
 	}
 
 
- 	/*CALCULA LOS PUNTOS EN TOTAL QUE OBTUVO UN DETERMINADO USUARIO*/
+	/**
+	 * 
+	 * @param. integer, id de usuario unico.
+	 * calcula los puntos en total que obtuvo el usuario.
+	 */
+	
 	public void calculateScore(int id_usu){
 
 		List<Prediction> predicciones = Prediction.where("user_id = ? ", id_usu);
