@@ -10,22 +10,36 @@ public class Prediction extends Model{
 	
 	static{
 
-		/*Evalua que el valor que hay en la columna se valido es decir sea un entero, y no permite que tengo valor nulo*/
+		/**
+		 * Evaluate the validity of the result.
+		 */
 		validateNumericalityOf("result").allowNull(false);
 
-		/*Evalua que el valor que hay en la columna se valido es decir sea un entero, y no permite que tengo valor nulo*/
+		/**
+		 * Evaluate the validity of the user.
+		 */
 		validateNumericalityOf("user_id").allowNull(false);
 
-		/*Evalua que el valor que hay en la columna se valido es decir sea un entero, y no permite que tengo valor nulo*/
+		/**
+		 *  Evaluate the validity of the game.
+		 */
 		validateNumericalityOf("game_id").allowNull(false);
 	}
 
-	/*Constructor*/
+	/**
+	 *  Builder.
+	 */
 	public Prediction(){
 
 	}
 
-	/*Constructor*/
+	/**
+	 * Builder.
+	 * @param re
+	 * @param id_u
+	 * @param id_g
+	 * @param id_s
+	 */
 	public Prediction(int re, int id_u, int id_g, int id_s){
 		set("result", re);
 		set("user_id", id_u);
@@ -33,6 +47,11 @@ public class Prediction extends Model{
 		set("schedure_id", id_s);
 	}
 
+	/**
+	 * Register a prediction.
+	 * @param req
+	 * @param res
+	 */
 	public void registerPrediction(Request req, Response res){
 
 		String[] id = {req.queryParams("id1"), req.queryParams("id2"), req.queryParams("id3"), req.queryParams("id4"), req.queryParams("id5")};

@@ -6,16 +6,23 @@ public class Team extends Model{
 
 	static{
 
-		/*Evalua que el nombre que tengo en la columna sea valido(no vacio) en caso contrario tira un mensaje avisando*/
+		/**
+		 * Evaluate the validity of the team name.
+		 */
     	validatePresenceOf("name").message("Please, provide the name of the team");
   	}
 
-  	/*Constructor*/
+  	/**
+  	 * Builder.
+  	 */
  	  public Team(){
 
     }
 
-  	/*Constructor*/
+  	/**
+  	 * Builder.
+  	 * @param nom
+  	 */
   	public Team(String nom){
   		set("name", nom);
   	}

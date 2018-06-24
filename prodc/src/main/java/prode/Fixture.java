@@ -5,17 +5,25 @@ import org.javalite.activejdbc.Model;
 public class Fixture extends Model{
 
 	static{
-
-		/*Evalua que el nombre que tengo en la columna sea valido(no vacio)*/
+		
+		
+		/**
+		 * Evaluate the validity of the name.
+		 */
 		validatePresenceOf("name");
 	}
 
-	/*Contructor*/
+	/**
+	 * Builder.
+	 */	
 	public Fixture(){
 
 	}
 
-	/*Constructor*/
+	/**
+	 * Buildera
+	 * @param name.
+	 */
 	public Fixture(String name){
 		set("name", name);
 	}

@@ -12,27 +12,46 @@ import prode.Score;
 public class User extends Model {
 
 	static{
-		/*Evalua que el nombre que tengo en la columna sea valido(no vacio) en caso contrario tira un mensaje avisando*/
+		
+		/**
+		 * Evaluate the validity of the name.
+		 */
 		validatePresenceOf("username").message("Please, provide your username");
 
-		/*Evalua que la contraseña que tengo en la columna sea valida(no vacia) en caso contrario tira un mensaje avisando*/
+		/**
+		 * Evaluate the validity of the password.
+		 */
 	    validatePresenceOf("password").message("Please, provide your password ");
 
-	    /*Evalua que el valor que hay en la columna se valido es decir sea un entero, y no permite que tengo valor nulo*/
+	    /**
+		 * Evaluate the validity of the fixture.
+		 */
 		validateNumericalityOf("fixture_id").allowNull(true);
 	}
 
-	/*Constructor sin parametros*/
+	/**
+	 * Builder.
+	 */
 	public User(){
 
 	}
 
-	/*Constructor con parametros*/
+	/**
+	 * Builder.
+	 * @param name
+	 * @param pas
+	 */
 	public User(String name, String pas){
 		set("username", name);
 		set("password", pas);
 	}
 
+	/**
+	 * User register.
+	 * @param req
+	 * @param res
+	 * @return
+	 */
 	public Map registerUser(Request req, Response res){
 	    String[] result = {req.queryParams("username"),(String)req.queryParams("pas")};
 	    String body = req.body();
@@ -55,6 +74,12 @@ public class User extends Model {
 	    return questt;
   }
 
+	/**
+	 * User check.
+	 * @param req
+	 * @param res
+	 * @return
+	 */
   public Map checkUser(Request req, Response res){
   	String[] result = {req.queryParams("username"),(String)req.queryParams("password")};
 	String body = req.body();

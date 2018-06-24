@@ -6,16 +6,23 @@ public class Result extends Model{
 	
 	static{
 
-		/*Evalua que el valor que hay en la columna se valido es decir sea un entero, y no permite que tengo valor nulo*/
+		/**
+		 * Evaluate the validity of the result.
+		 */
 		validateNumericalityOf("result").allowNull(false);
 	}
 
-	/*Constructor*/
+	/**
+	 * Builder.
+	 */
 	public Result(){
 
 	}
 
-	/*Constructor*/
+	/**
+	 * Builder.
+	 * @param res
+	 */
 	public Result(int res){
 		set("result", res);
 	}

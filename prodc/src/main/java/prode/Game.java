@@ -6,30 +6,53 @@ public class Game extends Model{
 	
 	static{
 
-		/*Evalua que la cantidad de goles del equipo local sea valida es decir un entero, y no permite que sea nulo*/
+		/**
+		 * Evaluate the validity of the goals.
+		 */
 		validateNumericalityOf("goalLocal").allowNull(false);
 
-		/*Evalua que la cantidad de goles del equipo visitante sea valida es decir un entero, y no permite que sea nulo*/
+		/**
+		 * Evaluate the validity of the goals.
+		 */
 		validateNumericalityOf("goalVisitor").allowNull(false);
 
-		/*Evalua que el valor que hay en la columna se valido es decir sea un entero, y no permite que tengo valor nulo*/
+		/**
+		 * Evaluate the validity of the local team.
+		 */
 		validateNumericalityOf("team_local_id").allowNull(false);
 
+		/**
+		 * Evaluate the validity of the visiting team.
+		 */
 		validateNumericalityOf("team_visitante_id").allowNull(false);
 
-		/*Evalua que el valor que hay en la columna se valido es decir sea un entero, y no permite que tengo valor nulo*/
+		/**
+		 * Evaluate the validity of the schedure.
+		 */
 		validateNumericalityOf("schedure_id").allowNull(false);
 
-		/*Evalua que el valor que hay en la columna se valido es decir sea un entero, y no permite que tengo valor nulo*/
+		/**
+		 * Evaluate the validity of the result
+		 */
 		validateNumericalityOf("result_id").allowNull(false);
 	}
 
-	/*Constructor*/
+	/**
+	 * Builder
+	 */
 	public Game(){
 
 	}
 
-	/*Constructor*/
+	/**
+	 * Builder
+	 * @param gl
+	 * @param gv
+	 * @param id_tl
+	 * @param id_tv
+	 * @param id_f
+	 * @param id_r
+	 */
 	public Game(int gl, int gv, int id_tl, int id_tv, int id_f, int id_r){
 		set("golLocal", gl);
 		set("golVisitante", gv);
