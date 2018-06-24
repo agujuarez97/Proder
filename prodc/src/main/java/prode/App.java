@@ -2,7 +2,11 @@ package prode;
 
 import org.javalite.activejdbc.Base;
 import java.util.List;
+import java.util.ArrayList;
 
+
+import spark.Request;
+import spark.Response;
 import prode.User;
 import prode.Prediction;
 import prode.Score;
@@ -16,8 +20,16 @@ import java.util.Map;
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
 
-public class App
-{
+public class App {
+
+	private static Map getSession(Request req, Response res){
+		Map a = new HashMap();
+		if(req.session().attribute("user")!=null){
+			a.put("user_id", (Integer)req.session().attribute("user"));
+		}
+		return a;
+	}
+
     public static void main( String[] args ){
 
     	//Permite levantar CSS, JS e IMAGENES
@@ -119,9 +131,18 @@ public class App
 /*----------------------------------------------------------------------------------------------*/
 
 		get("/global", (req, res) -> {
-			Map rG = new HashMap();
-		   List<Score> top = Score.findBySQL("select * from scores order by points desc");
-		   rG.put("ranking", top);
+		   Map rG = new HashMap();
+		   List<Score> top = Score.findBySQL("select user_id, sum(points) as points from scores group by user_id order by points desc;");
+		   List<Map> p = new ArrayList<Map>();
+		   for(int i = 0; i < top.size(); i++){
+		   		List<User> u = User.where("id = ?", top.get(i).get("user_id"));
+		   		Map a = new HashMap();
+		   		a.put("username", u.get(0).get("username"));
+		   		a.put("points", top.get(i).get("points"));
+		   		p.add(a);
+		   }
+
+		   rG.put("ranking", p);
 
            return new ModelAndView(rG, "./views/global.html");
         }, new MustacheTemplateEngine()

@@ -17,7 +17,7 @@ public class Score extends Model{
 		validateNumericalityOf("points").allowNull(false);
 
 		/*Evalua que el valor que hay en la columna se valido es decir sea un entero, y no permite que tengo valor nulo*/
-		validateNumericalityOf("schedure_id").allowNull(true);
+		validateNumericalityOf("schedure_id").allowNull(false);
 	}
 
 	/*Constructor*/
@@ -26,15 +26,15 @@ public class Score extends Model{
 	}
 
 	/*Constructor*/
-	public Score(int id_user, int pun){
+	public Score(int id_user, int pun, int id_sch){
 		set("user_id", id_user);
-	//	set("schedure_id", id_sch);
 		set("points",  pun);
+		set("schedure_id", id_sch);
 	}
 
 
  	/*CALCULA LOS PUNTOS EN TOTAL QUE OBTUVO UN DETERMINADO USUARIO*/
-	public void calculateScore(int id_usu){
+	/*public void calculateScore(int id_usu){
 
 		List<Prediction> predicciones = Prediction.where("user_id = ? ", id_usu);
 
@@ -77,12 +77,12 @@ public class Score extends Model{
 			nuevoscore.set("points", aux);
 			nuevoscore.saveIt();
 		}
-	}
+	}*/
 
-	/*public void calculateScore(int id_usu, int fecha){
+	public void calculateScore(int id_usu, int fecha){
 		List<Prediction> predicciones = Prediction.where("user_id = ? and schedure_id = ?", id_usu, fecha);
 
-		Score s = new Score(id_usu, fecha, 0);
+		Score s = new Score(id_usu, 0, fecha);
 	   	int aux = 0;
 
 		for (int i = 0; i < predicciones.size(); i++) {
@@ -98,5 +98,6 @@ public class Score extends Model{
 			}
 		}
 		s.set("points", aux);
-		s.saveIt();*/
+		s.saveIt();
+	}
 }
