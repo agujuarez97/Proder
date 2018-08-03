@@ -60,23 +60,30 @@ public class User extends Model {
 	 */
 	public Map registerUser(Request req, Response res){
 	    String[] result = {req.queryParams("username"),(String)req.queryParams("pas")};
+	    System.out.println(" Hola " + result[0].equals(""));
 	    String body = req.body();
 	    Map questt = new HashMap();
 
 	    List<User> unico = User.where("username = ?", result[0]);
 	    Boolean result2 = unico.size()==0;
-	    if(result2){
-	      User u = new User(result[0], (String)req.queryParams("pas"));
-	      u.saveIt();
+	    if(result[0].equals("") || result[1].equals("")){
+	    	questt.put("error","<div class='alert alert-danger' id='alert-danger'><strong>Error!</strong> Ese nombre de usuario ya existe, pruebe con uno diferente.</div>");
+	        return questt;
 	    }
 	    else{
-	      User u = unico.get(0);
-	      String e = (String)u.get("username");
-	      if(e.equals(result[0])){
-	      	questt.put("error","<div class='alert alert-danger' id='alert-danger'><strong>Error!</strong> Ese nombre de usuario ya existe, pruebe con uno diferente.</div>");
-	        return questt;
-	      }
-	    }
+		    if(result2){
+		      User u = new User(result[0], (String)req.queryParams("pas"));
+		      u.saveIt();
+		    }
+		    else{
+		      User u = unico.get(0);
+		      String e = (String)u.get("username");
+		      if(e.equals(result[0])){
+		      	questt.put("error","<div class='alert alert-danger' id='alert-danger'><strong>Error!</strong> Ese nombre de usuario ya existe, pruebe con uno diferente.</div>");
+		        return questt;
+		      }
+		    }
+		}
 	    return questt;
   }
 

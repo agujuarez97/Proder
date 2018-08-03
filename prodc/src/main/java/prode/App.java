@@ -31,7 +31,7 @@ import spark.template.mustache.MustacheTemplateEngine;
 public class App {
 
 	    public static void main( String[] args ){
-    	
+
     	staticFiles.location("/public");
 
     	before((req, res) ->{
@@ -43,9 +43,13 @@ public class App {
         });
 
 /*--------------------------------------------------------------------------------------------*/
-        Map map = new HashMap();
 
       	get("/inicio", (req, res) -> {
+
+	       Map map = new HashMap();
+		   map.put("title", "BIENVENIDOS A NUESTRO PRODE");
+	       map.put("comment", "Por favor si usted ya es usuario ingrese los datos y acceda, sino registrese como nuevo usuario precionando el boton Sing in.");
+
            return new ModelAndView(map, "./views/inicio.html");
         }, new MustacheTemplateEngine()
       	);

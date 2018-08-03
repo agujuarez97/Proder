@@ -1,0 +1,39 @@
+body {
+  padding-bottom: 40px;
+  background-color: #eee;
+  height: 100%;
+  font-family:Verdana,sans-serif;
+  font-size:20px;
+  line-height:1.5;
+}
+
+
+#com{
+	margin-top: 5%;
+}
+#labels{
+	margin-left: 5%;
+	margin-top: 5%;
+}
+#boton1{
+	margin-left: 5%;
+	margin-top: 3%;
+}
+#boton{
+	margin-left: 8%;
+	margin-top: 1%;
+}
+#cerrarsesion{
+	margin-left: 15%;
+}
+#ranking{
+	margin-left: 3%;
+	margin-top: 0%;
+}
+#puntuacion{
+	margin-left: 30%;
+	margin-top: 3%;
+}
+#sesion{
+	margin-left: 10%;
+}

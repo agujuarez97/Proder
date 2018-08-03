@@ -1,38 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>Bienvenidos Al Prode</title>
 	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/inicio.css'>
 	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style type="text/css">
-		#name{
-			margin-left: 5%;
-			margin-top: 7%;
-		}
-		#password{
-			margin-left: 5%;
-			margin-top: 3%;
-		}
-		#nam{
-			margin-left: 2.5%;
-		}
-		#boton{
-			margin-left: 12%;
-			margin-top: 3%;
-		}
-		#comen{
-			margin-top: 5%;
-		}
-	</style>
+
 </head>
 <body>
 
 	<font face="Comic Sans MS,Calibri">
 	<form method="get" action="/login">
-		<h1 align="center"> BIENVENIDOS A NUESTRO PRODE </h1>
+		<h1 align="center"> {{title}} </h1>
 
-		<h4 id="comen"> Por favor si usted ya es usuario ingrese los datos y acceda, <br>
-		sino registrese como nuevo usuario precionando el boton Sing in.</h4>
+		<h4 id="comen"> {{comment}} </h4>
 
 		<div id="name">
 			<label for="username"> Name: </label>

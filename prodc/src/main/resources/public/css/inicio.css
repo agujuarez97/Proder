@@ -1,0 +1,28 @@
+body {
+  padding-bottom: 40px;
+  background-color: #eee;
+  height: 100%;
+  font-family:Verdana,sans-serif;
+  font-size:20px;
+  line-height:1.5;
+}
+
+#name{
+	margin-left: 5%;
+	margin-top: 7%;
+}
+
+#password{
+	margin-left: 5%;
+	margin-top: 3%;
+}
+#nam{
+	margin-left: 2.5%;
+		}
+#boton{
+	margin-left: 12%;
+	margin-top: 3%;
+}
+#comen{
+	margin-top: 5%;
+}

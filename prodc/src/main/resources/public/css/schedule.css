@@ -1,0 +1,17 @@
+body {
+  padding-bottom: 40px;
+  background-color: #eee;
+  height: 100%;
+  font-family:Verdana,sans-serif;
+  font-size:15px;
+  line-height:1.5;
+}
+
+#partidos{
+	margin-left: 20%;
+	margin-top: 5%;
+}
+#boton{
+	margin-left: 21%;
+	margin-top: 2%;
+}
