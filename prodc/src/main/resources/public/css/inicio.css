@@ -1,10 +1,10 @@
 body {
-  padding-bottom: 40px;
-  background-color: #eee;
-  height: 100%;
-  font-family:Verdana,sans-serif;
-  font-size:20px;
-  line-height:1.5;
+  font-style: italic;
+  font-size:20%;
+}
+
+h1{
+  text-align: center;
 }
 
 #name{

@@ -1,12 +1,11 @@
 body {
-  padding-bottom: 40px;
-  background-color: #eee;
-  height: 100%;
-  font-family:Verdana,sans-serif;
+  font-style: italic;
   font-size:20px;
-  line-height:1.5;
 }
 
+h1{
+	text-align: center;
+}
 
 #com{
 	margin-top: 5%;

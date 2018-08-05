@@ -1,10 +1,21 @@
 body {
-  padding-bottom: 40px;
-  background-color: #eee;
-  height: 100%;
-  font-family:Verdana,sans-serif;
-  font-size:15px;
-  line-height:1.5;
+  font-style: italic;
+  font-size:20%;
+}
+
+h1{
+	text-align: center;
+}
+
+td, th {
+    border: 1px solid black;
+}
+
+table{
+	width: 25%;
+	border: 1px solid black;
+	border-collapse: collapse;
+	border-spacing: 10px;
 }
 
 #tabla{
