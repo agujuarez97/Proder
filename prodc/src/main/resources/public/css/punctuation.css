@@ -7,6 +7,16 @@ h1{
 	text-align: center;
 }
 
+h4{
+	padding-top: 5%;
+	text-align: center;;
+}
+
+div.Tabla{
+	padding-top: 5%;
+	margin-left: 42%;
+}
+
 td, th {
     border: 1px solid black;
 }
@@ -18,10 +28,3 @@ table{
 	border-spacing: 10px; 
 }
 
-#tabla{
-	margin-left: 10%;
-	margin-top: 5%;
-}
-#descrip{
-	margin-top: 5%;
-}

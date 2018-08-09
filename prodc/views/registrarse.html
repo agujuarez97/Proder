@@ -13,20 +13,23 @@
 	<form method="post" action="/registrar">
 		<h1> AREA PARA REGISTRARSE COMO NUEVO USUARIO </h1>
 
-		<h4 id="titulo"> Por favor ingrese sus datos para registrarse: </h4>
+		<h4> Por favor ingrese su Name y Password para poder registrarse: </h4>
 
-		<div id="name">
+		<div class="Name">
 			<label for="name"> Name: </label>
-			<input type="text" name="username" id="nam" placeholder="Name">
+			<input class="name" type="text" name="username" placeholder="Name">
 		</div>
 
-		<div id="password">
+		<div class="Password">
 			<label for="password"> Password: </label>
 			<input type="password" name="pas" placeholder="Password">
 		</div>
 
-		<a href="/inicio"><input type="submit" value="Save" title="Guardar" id="boton"></a>
+		<a href="/inicio"><input class="Guardar" type="submit" value="Save" title="Guardar"></a>
 	</form>
 
+	{{{error}}}
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

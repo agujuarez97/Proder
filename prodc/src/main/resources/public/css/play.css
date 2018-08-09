@@ -7,32 +7,33 @@ h1{
 	text-align: center;
 }
 
-#com{
-	margin-top: 5%;
+h4{
+	padding-top: 5%;
+	text-align: center;
 }
-#labels{
-	margin-left: 5%;
-	margin-top: 5%;
-}
-#boton1{
-	margin-left: 5%;
+
+input.Boton{
+	margin-left: 25%;
 	margin-top: 3%;
 }
-#boton{
+
+input.Boton1{
 	margin-left: 8%;
 	margin-top: 1%;
 }
-#cerrarsesion{
-	margin-left: 15%;
-}
-#ranking{
-	margin-left: 3%;
-	margin-top: 0%;
-}
-#puntuacion{
-	margin-left: 30%;
+
+input.Puntuacion{
+	margin-left: 47%;
 	margin-top: 3%;
 }
-#sesion{
-	margin-left: 10%;
+
+input.Global{
+	margin-left: 48%;
+	margin-top: 3%;
 }
+
+input.CerrarSesion{
+	margin-left: 48%;
+	margin-top: 3%;
+}
+

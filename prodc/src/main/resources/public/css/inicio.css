@@ -1,28 +1,36 @@
 body {
-  font-style: italic;
-  font-size:20%;
+  	font-style: italic;
+  	font-size:20%;
 }
 
 h1{
-  text-align: center;
+  	text-align: center;
 }
 
-#name{
-	margin-left: 5%;
+h4{
+	padding-top: 5%;
+	text-align: center;
+}
+
+div.Name{
+	text-align: center;
 	margin-top: 7%;
 }
 
-#password{
-	margin-left: 5%;
+div.Password{
+	text-align: center;
 	margin-top: 3%;
 }
-#nam{
-	margin-left: 2.5%;
-		}
-#boton{
-	margin-left: 12%;
+
+input.Entrar{
+	margin-left: 45%;
 	margin-top: 3%;
 }
-#comen{
-	margin-top: 5%;
+
+input.Registrarse{
+	margin-left: 2%;
+}
+
+input.name{
+	margin-left: 2%;
 }

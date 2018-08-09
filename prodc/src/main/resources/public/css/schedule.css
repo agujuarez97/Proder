@@ -7,11 +7,13 @@ h1{
 	text-align: center;
 }
 
-#partidos{
+div.Partidos{
+	padding-top: 3%;
 	margin-left: 20%;
-	margin-top: 5%;
 }
-#boton{
-	margin-left: 21%;
+
+input.Boton{
 	margin-top: 2%;
+	margin-left: 21%;
 }
+

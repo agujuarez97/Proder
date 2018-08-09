@@ -60,14 +60,13 @@ public class User extends Model {
 	 */
 	public Map registerUser(Request req, Response res){
 	    String[] result = {req.queryParams("username"),(String)req.queryParams("pas")};
-	    System.out.println(" Hola " + result[0].equals(""));
 	    String body = req.body();
 	    Map questt = new HashMap();
 
 	    List<User> unico = User.where("username = ?", result[0]);
 	    Boolean result2 = unico.size()==0;
 	    if(result[0].equals("") || result[1].equals("")){
-	    	questt.put("error","<div class='alert alert-danger' id='alert-danger'><strong>Error!</strong> Ese nombre de usuario ya existe, pruebe con uno diferente.</div>");
+	    	questt.put("error","<div class='alert alert-danger'><strong>Error!</strong> No se puede registrar nombre o contraseña vacia.</div>");
 	        return questt;
 	    }
 	    else{
@@ -79,7 +78,7 @@ public class User extends Model {
 		      User u = unico.get(0);
 		      String e = (String)u.get("username");
 		      if(e.equals(result[0])){
-		      	questt.put("error","<div class='alert alert-danger' id='alert-danger'><strong>Error!</strong> Ese nombre de usuario ya existe, pruebe con uno diferente.</div>");
+		      	questt.put("error","<div class='alert alert-danger'><strong>Error!</strong> Nombre de usuario existente.</div>");
 		        return questt;
 		      }
 		    }
@@ -105,6 +104,7 @@ public class User extends Model {
 		return questt;
 	}
 	questt.put("user", 0);
+	questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario no existente.</div>");
 	return questt;
   }
 
