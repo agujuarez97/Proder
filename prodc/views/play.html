@@ -10,32 +10,39 @@
 </head>
 <body>
 
-	<form method="get">
-
+	<div class="container">
+		
 		<h1> BIENVENIDO AL AREA DE JUGAR </h1>
-		
-		<h4> Por favor seleccione la fecha que desea predecir. </h4>
 
-		<a href="/schedule1"><input class="Boton" type="button" value="Schedule 1" title="Fecha 1"></a>
+		<h4> SELECCIONE LA FECHA QUE DESEA PREDECIR: </h4>
 
-		<a href="/schedule2"><input class="Boton1" type="button" value="Schedule 2" title="Fecha 2"></a>
-
-		<a href="/schedule3"><input class="Boton1" type="button" value="Schedule 3" title="Fecha 3"></a>
+		<div class="card card-container">
 			
-		<a href="/schedule4"><input class="Boton1" type="button" value="Schedule 4" title="Fecha 4"></a><br>
+			<img class="profile-img-card" src="/imagenes/prode.png">
 
-		<a href="/punctuation"><input class="Puntuacion" type="button" value="Punctuation" title="Puntuacion"></a>
-		
-		<h4> Ver Ranking: </h4>
+			<form class="form-play" method="get" >
+				
+				<a href="/schedule1"><input class="btn btn-primary" type="button" value="Schedule 1"></a>
 
-		<a href="/global"><input class="Global" type="button" value="Global" title="Global"></a>
+				<a href="/schedule2"><input class="btn btn-primary" type="button" value="Schedule 2"></a>
 
-		<h4> Cerrar Sesion: </h4>
+				<a href="/schedule3"><input class="btn btn-primary" type="button" value="Schedule 3"></a>
+					
+				<a href="/schedule4"><input class="btn btn-primary" type="button" value="Schedule 4"></a><br>
 
-		<a href="/singoff"><input class="CerrarSesion" type="button" value="Sing Off" title="Cerrar Sesion"></a>
+				<a href="/punctuation"><input class="btn btn-primary" type="button" value="Punctuation"></a>
 
+				<a href="/global"><input class="btn btn-primary" type="button" value="Ranking"></a>
 
-	</form>
+				<a href="/singoff"><input class="btn btn-primary" type="button" id="idCS" value="Sing Off"></a>
+
+			</form>
+
+		</div>
+
+	</div>
+
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 </html>

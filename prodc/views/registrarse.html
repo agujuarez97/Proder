@@ -10,26 +10,34 @@
 </head>
 <body>
 
-	<form method="post" action="/registrar">
+	<div class="container">
+
 		<h1> AREA PARA REGISTRARSE COMO NUEVO USUARIO </h1>
 
-		<h4> Por favor ingrese su Name y Password para poder registrarse: </h4>
+		<h4> POR FAVOR INGRESE SU NAME Y PASSWORD PARA PODER REGISTRARSE: </h4>
 
-		<div class="Name">
-			<label for="name"> Name: </label>
-			<input class="name" type="text" name="username" placeholder="Name">
-		</div>
+        <div class="card card-container">
 
-		<div class="Password">
-			<label for="password"> Password: </label>
-			<input type="password" name="pas" placeholder="Password">
-		</div>
+            <img id="profile-img" class="profile-img-card" src="imagenes/user.png" />
 
-		<a href="/inicio"><input class="Guardar" type="submit" value="Save" title="Guardar"></a>
-	</form>
+            <form class="form-signin" method="post" action="/registrar">
 
-	{{{error}}}
+                <input type="text" id="inputName" class="form-control" name="username" placeholder="Username" required autofocus>
+
+                <input type="password" id="inputPassword" class="form-control" name="pas" placeholder="Password" required>
+                  
+                <a href="/registrar"><input type="submit" class="btn btn-primary" value="Save"></a>
+
+                <input type="reset" class="btn btn-primary" value="Reset">
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+    </div>
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>

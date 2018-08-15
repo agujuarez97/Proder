@@ -10,26 +10,34 @@
 </head>
 <body>
 
-	<h1> SU PUNTUACION POR FECHA: </h1>
+	<div class="container">
 
-	<h4> En esta seccion se muestra su puntuacion lograda por fecha. </h4>
-	
-	<div class="Tabla">
-		<table>
-			<tr>
-				<th> Fecha </th>
-				<th> Puntos </th>
-			</tr>
+		<h1> BIENVENIDO AL AREA DE PUNTAJE POR FECHA </h1>
+
+		<h4> EN ESTA SECCION SE MUESTRA SU PUNTUACION LOGRADA POR FECHA: </h4>
+
+		<div class="card card-container">
+			
+			<img class="profile-img-card" src="imagenes/puntos.png">
+
+			<table class="idTable">
+				<tr>
+					<th class="columna"> Fecha </th>
+					<th class="columna"> Puntos </th>
+				</tr>
 		
-			{{#punctuation}}
-			<tr>          
-				<td> {{schedure_id}} </td>
-				<td> {{points}} </td>
-			</tr>
-			{{/punctuation}}
+				{{#punctuation}}
+				<tr>          
+					<td class="fila"> {{schedure_id}} </td>
+					<td class="fila"> {{points}} </td>
+				</tr>
+				{{/punctuation}}
 
-		</table>
+			</table>
+		</div>
 	</div>
+
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 </body>
 </html>

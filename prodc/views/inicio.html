@@ -10,28 +10,37 @@
 </head>
 <body>
 
-	<form method="get" action="/login">
+	<div class="container">
+
 		<h1> BIENVENIDOS A NUESTRO PRODE </h1>
 
-		<h4> Por favor si usted ya es usuario ingrese los datos y acceda,
-		sino registrese como nuevo usuario precionando el boton Sing in. </h4>
+		<h4> POR FAVOR SI USTED YA ES USUARIO INGRESE LOS DATOS Y ACCEDA,
+		SINO REGISTRESE COMO NUEVO USUARIO PRESIONANDO EL BOTON Sing in. </h4>
 
-		<div class="Name">
-			<label for="username"> Name: </label>
-			<input class="name" type="text" name="username" placeholder="Name">
-		</div>
+        <div class="card card-container">
 
-		<div class="Password">
-			<label for="password"> Password: </label>
-			<input type="password" name="password" placeholder="Password">
-		</div>
+            <img class="profile-img-card" src="imagenes/user.png" />
 
-		<a href="/login"><input class="Entrar" type="submit" value="Get in" title="Entrar"></a>
-		<a href="/registrarse"><input class="Registrarse" type="button" value="Sing in" title="Registrarse"></a>
-	</form>
+            <form class="form-signin" method="get" action="/login">
 
-	{{{error}}}
+                <input type="text" id="inputName" class="form-control" name="username" placeholder="Username" required autofocus>
 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                  
+                <a href="/login"><input type="submit" class="btn btn-primary" value="Get in"></a>
+
+                <input type="reset" class="btn btn-primary" value="Reset">
+
+                <a href="/registrarse"><input type="button" class="btn btn-primary" value="Sing in"></a>
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+    </div>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>

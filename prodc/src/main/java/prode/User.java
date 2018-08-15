@@ -63,27 +63,33 @@ public class User extends Model {
 	    String body = req.body();
 	    Map questt = new HashMap();
 
-	    List<User> unico = User.where("username = ?", result[0]);
+	    List<User> unico = User.where("username = ? or password = ?", result[0], result[1]);
 	    Boolean result2 = unico.size()==0;
-	    if(result[0].equals("") || result[1].equals("")){
-	    	questt.put("error","<div class='alert alert-danger'><strong>Error!</strong> No se puede registrar nombre o contraseña vacia.</div>");
-	        return questt;
-	    }
-	    else{
-		    if(result2){
-		      User u = new User(result[0], (String)req.queryParams("pas"));
-		      u.saveIt();
+
+		if(result2){
+			User u = new User(result[0], (String)req.queryParams("pas"));
+		    u.saveIt();
+		    return questt;
+		}
+		else{
+			User u = unico.get(0);
+		    String e = (String)u.get("username");
+		    String p = (String)u.get("password");
+		    if(e.equals(result[0]) && !(p.equals(result[1]))){
+		    	questt.put("error","<div class='alert alert-danger'><strong>Error!</strong> Nombre de usuario existente.</div>");
+		        return questt;
 		    }
 		    else{
-		      User u = unico.get(0);
-		      String e = (String)u.get("username");
-		      if(e.equals(result[0])){
-		      	questt.put("error","<div class='alert alert-danger'><strong>Error!</strong> Nombre de usuario existente.</div>");
-		        return questt;
-		      }
+		    	if(!(e.equals(result[0])) && p.equals(result[1])){
+		      		questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Contraseña existente.</div>");
+		      		return questt;
+		      	}
+		      	else{
+		      		questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario existente.</div>");
+		      		return questt;
+		      	}
 		    }
 		}
-	    return questt;
   }
 
 	/**
@@ -97,15 +103,35 @@ public class User extends Model {
 	String body = req.body();
 	Map questt = new HashMap();
 
-	List<User> unico = User.where("username = ? and password = ?", result[0], result[1]);
+	List<User> unico = User.where("username = ? or password = ?", result[0], result[1]);
 	Boolean resu2 = unico.size()!=0;
 	if(resu2){
-		questt.put("user", unico.get(0).get("id"));
+		User u = unico.get(0);
+		String e = (String)u.get("username");
+		String p = (String)u.get("password");
+		if(e.equals(result[0]) && p.equals(result[1])){
+			questt.put("user", unico.get(0).get("id"));
+			return questt;
+		}
+		else{
+			if(!(e.equals(result[0])) && p.equals(result[1])){
+				questt.put("user", 0);
+				questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario incorrecto.</div>");
+				return questt;
+			}
+			else{
+				questt.put("user", 0);
+				questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Contraseña incorrecta.</div>");
+				return questt;
+			}
+		}
+		
+	}
+	else{
+		questt.put("user", 0);
+		questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario no existente.</div>");
 		return questt;
 	}
-	questt.put("user", 0);
-	questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario no existente.</div>");
-	return questt;
   }
 
 }

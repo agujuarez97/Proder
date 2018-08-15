@@ -10,41 +10,50 @@
 </head>
 <body>
 
-	<form method="post" action="/loadPredictions">
-		<h1> BIENVENIDO A LA FECHA <input type="number" name="f" value="4" size="1" style="background-color:transparent; border:none" readonly> </h1>
+	<div class="container">
 
-		<div class="Partidos">
+		<h1> BIENVENIDO A LA CUARTA FECHA </h1>
 
-			<input type="text" name="id1" value="16" size="1" style="background-color:transparent; border:none" readonly><label for="primerpartido"> ARGENTINA VS FRANCIA </label> <br>
-			<input type="radio" name="partido1" value="1"> GANA ARGENTINA <br>
-			<input type="radio" name="partido1" value="2"> GANA FRANCIA <br>
-			<input type="radio" name="partido1" value="0" checked> EMPATAN <br><br>
+		<div class="card card-container">
 
-			<input type="text" name="id2" value="17" size="1" style="background-color:transparent; border:none" readonly><label for="segundopartido"> ALEMANIA VS URUGUAY </label> <br>
-			<input type="radio" name="partido2" value="1"> GANA ALEMANIA <br>
-			<input type="radio" name="partido2" value="2"> GANA URUGUAY <br>
-			<input type="radio" name="partido2" value="0" checked> EMPATAN <br><br>
+			<form class="form-prediction" method="post" action="/loadPredictions">
 
-			<input type="text" name="id3" value="18" size="1" style="background-color:transparent; border:none" readonly><label for="tercerpartido"> BRASIL VS PORTUGAL </label> <br>
-			<input type="radio" name="partido3" value="1"> GANA BRASIL <br>
-			<input type="radio" name="partido3" value="2"> GANA PORTUGAL <br>
-			<input type="radio" name="partido3" value="0" checked> EMPATAN <br><br>
+				<h1> FECHA <input id="idFecha" type="number" name="f" value="4" size="1" readonly></h1>
 
-			<input type="text" name="id4" value="19" size="1" style="background-color:transparent; border:none" readonly><label for="cuartopartido"> ESPAÑA VS BELGICA </label> <br>
-			<input type="radio" name="partido4" value="1"> GANA ESPAÑA <br>
-			<input type="radio" name="partido4" value="2"> GANA BELGICA <br>
-			<input type="radio" name="partido4" value="0" checked> EMPATAN <br><br>
+				<input id="idPartido" type="text" name="id1" value="16" size="1" readonly> <label> ARGENTINA VS FRANCIA </label> <br>
+				<input type="radio" name="partido1" value="1"> GANA ARGENTINA <br>
+				<input type="radio" name="partido1" value="2"> GANA FRANCIA <br>
+				<input type="radio" name="partido1" value="0" checked> EMPATAN <br><br>
 
-			<input type="text" name="id5" value="20" size="1" style="background-color:transparent; border:none" readonly><label for="quintopartido"> COLOMBIA VS RUSIA </label> <br>
-			<input type="radio" name="partido5" value="1"> GANA COLOMBIA <br>
-			<input type="radio" name="partido5" value="2"> GANA RUSIA <br>
-			<input type="radio" name="partido5" value="0" checked> EMPATAN <br><br>
+				<input id="idPartido" type="text" name="id2" value="17" size="1" readonly> <label> ALEMANIA VS URUGUAY </label> <br>
+				<input type="radio" name="partido2" value="1"> GANA ALEMANIA <br>
+				<input type="radio" name="partido2" value="2"> GANA URUGUAY <br>
+				<input type="radio" name="partido2" value="0" checked> EMPATAN <br><br>
 
+				<input id="idPartido" type="text" name="id3" value="18" size="1" readonly> <label> BRASIL VS PORTUGAL </label> <br>
+				<input type="radio" name="partido3" value="1"> GANA BRASIL <br>
+				<input type="radio" name="partido3" value="2"> GANA PORTUGAL <br>
+				<input type="radio" name="partido3" value="0" checked> EMPATAN <br><br>
+
+				<input id="idPartido" type="text" name="id4" value="19" size="1" readonly> <label> ESPAÑA VS BELGICA </label> <br>
+				<input type="radio" name="partido4" value="1"> GANA ESPAÑA <br>
+				<input type="radio" name="partido4" value="2"> GANA BELGICA <br>
+				<input type="radio" name="partido4" value="0" checked> EMPATAN <br><br>
+
+				<input id="idPartido" type="text" name="id5" value="20" size="1" readonly> <label> COLOMBIA VS RUSIA </label> <br>
+				<input type="radio" name="partido5" value="1"> GANA COLOMBIA <br>
+				<input type="radio" name="partido5" value="2"> GANA RUSIA <br>
+				<input type="radio" name="partido5" value="0" checked> EMPATAN <br><br>
+
+				<a href="/loadPredictions"><input class="btn btn-primary" type="submit" value="Predictions"></a>
+
+			</form>
+			
 		</div>
+	
+	</div>
 
-		<a href="/loadPredictions"><input class="Boton" type="submit" value="Predictions" title="Prediccionar"></a>
-
-	</form>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 </html>

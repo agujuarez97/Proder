@@ -11,29 +11,36 @@
 
 <body>
 
-	<h1> RANKING GLOBAL </h1>
+	<div class="container">
 
-	<h4>En esta seccion se muestra el ranking global del juego, es decir<br>
-	el usuario que mas puntos tuvo en total va a estar en primer lugar, <br>
-	el segundo con mas puntaje segundo y asi sucesivamente.
-	</h4>
-	
-	<div class="Tabla">
-		<table>
-			<tr>
-				<th> Usuario </th>
-				<th> Puntos </th>
-			</tr>
+		<h1> BIENVENIDO AL AREA DE RANKING</h1>
+
+		<h4> EN ESTA SECCION SE MUESTRA EL RANKING GLOBAL DEL JUEGO, ES DECIR<br>
+		EL USUARIO QUE MAS PUNTOS TUVO EN TOTAL VA A ESTAR EN PRIMER LUGAR, <br>
+		EL SEGUNDO CON MAS PUNTAJE SEGUNDO Y ASI SECESIVAMENTE: </h4>
+
+		<div class="card card-container">
+			
+			<img class="profile-img-card" src="imagenes/ranking.png">
+
+			<table class="idTable">
+				<tr>
+					<th class="columna"> Usuario </th>
+					<th class="columna"> Puntos </th>
+				</tr>
 		
-			{{#ranking}}
-			<tr>          
-				<td> {{username}} </td>
-				<td> {{points}} </td>
-			</tr>
-			{{/ranking}}
+				{{#ranking}}
+				<tr>          
+					<td class="fila"> {{username}} </td>
+					<td class="fila"> {{points}} </td>
+				</tr>
+				{{/ranking}}
 
-		</table>
+			</table>
+		</div>
 	</div>
+
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 </html>
