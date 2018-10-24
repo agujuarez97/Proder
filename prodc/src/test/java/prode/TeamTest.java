@@ -1,6 +1,6 @@
   package prode;
 
-import prode.Team;
+import models.Team;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;
