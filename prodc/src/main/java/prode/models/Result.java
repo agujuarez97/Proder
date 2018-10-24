@@ -4,7 +4,7 @@
  * @author. Agustin Juarez, Gaston Plisga, Matias Suarez . 
  */
 
-package prode;
+package models;
 
 import org.javalite.activejdbc.Model;
 

@@ -3,13 +3,13 @@
  * This class extend Model.
  * @author. Agustin Juarez, Gaston Plisga, Matias Suarez . 
  */
-package prode;
+package models;
 
 import java.util.*;
 import org.javalite.activejdbc.Model;
-import prode.Prediction;
-import prode.Result;
-import prode.Game;
+import models.Prediction;
+import models.Result;
+import models.Game;
 
 public class Score extends Model{
 

@@ -4,13 +4,13 @@
  * @author. Agustin Juarez, Gaston Plisga, Matias Suarez . 
  */
 
-package prode;
+package models;
 
 import java.util.*;
 import org.javalite.activejdbc.Model;
 import spark.Request;
 import spark.Response;
-import prode.Score;
+import models.Score;
 
 public class Prediction extends Model{
 	

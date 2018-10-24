@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 import spark.Request;
 import spark.Response;
-import prode.User;
-import prode.Prediction;
-import prode.Score;
+import models.User;
+import models.Prediction;
+import models.Score;
 
 import static spark.Spark.*;
 import static spark.Spark.staticFileLocation;
