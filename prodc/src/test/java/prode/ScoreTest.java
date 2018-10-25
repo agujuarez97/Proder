@@ -1,6 +1,6 @@
 package prode;
 
-import prode.Score;
+import models.Score;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;

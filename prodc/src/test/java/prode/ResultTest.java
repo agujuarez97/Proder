@@ -1,6 +1,6 @@
 package prode;
 
-import prode.Result;
+import models.Result;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;

@@ -1,6 +1,6 @@
 package prode;
 
-import prode.Prediction;
+import models.Prediction;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;

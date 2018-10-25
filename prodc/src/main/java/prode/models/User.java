@@ -4,7 +4,7 @@
  * @author. Agustin Juarez, Gaston Plisga, Matias Suarez . 
  */
 
-package prode;
+package models;
 
 import org.javalite.activejdbc.Model;
 import java.util.List;
@@ -13,7 +13,7 @@ import spark.Response;
 import spark.QueryParamsMap;
 import java.util.HashMap;
 import java.util.Map;
-import prode.Score;
+import models.Score;
 
 public class User extends Model {
 

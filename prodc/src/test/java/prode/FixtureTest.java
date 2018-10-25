@@ -1,6 +1,6 @@
 package prode;
 
-import prode.Fixture;
+import models.Fixture;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;

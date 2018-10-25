@@ -1,6 +1,6 @@
 package prode;
 
-import prode.User;
+import models.User;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;
