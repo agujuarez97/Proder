@@ -71,25 +71,12 @@ public class App {
 
 	get("/inicio", startControllers::start, new MustacheTemplateEngine());
 
-	Map map2 = new HashMap();
+	
 
-	get("/registrarse", (req, res) -> {
-		return new ModelAndView(map2, "./views/registrarse.html");
-	},  new MustacheTemplateEngine()
-	);
+	get("/registrarse", userControllers::registrarse, new MustacheTemplateEngine());
 /*--------------------------------------------------------------------------------------------*/
 
-	post("/registrar", (req, res) -> {       
-		User newUser = new User();
-		Map result = newUser.registerUser(req,res);
-
-		if((String)result.get("error") != null){
-			return new ModelAndView(result,"./views/registrarse.html"); 
-		}
-		requestsSignIn.mark();
-		return new ModelAndView(result, "./views/inicio.html");
-	},  new MustacheTemplateEngine()
-	);
+	post("/registrar", userControllers::registrar, new MustacheTemplateEngine());
 /*---------------------------------------------------------------------------------------------*/
 
 	get("/login", (req, res) -> {
