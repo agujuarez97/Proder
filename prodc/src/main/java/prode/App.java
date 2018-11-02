@@ -107,9 +107,8 @@ public class App {
 	);
 
 /*----------------------------------------------------------------------------------------------*/
-	Map fecha1 = new HashMap();
-
 	get("/schedule1", (req, res) -> {
+		Map fecha1 = new HashMap();
 		return new ModelAndView(fecha1, "./views/schedule1.html");
 	},  new MustacheTemplateEngine()
 	);
@@ -139,15 +138,8 @@ public class App {
 	);
 
 /*----------------------------------------------------------------------------------------------*/
-	Map f = new HashMap();
 
-	post("/loadPredictions", (req, res) -> {
-		Prediction pre = new Prediction();
-		pre.registerPrediction(req, res);
-
-		return new ModelAndView(f, "./views/play.html");
-	},  new MustacheTemplateEngine()
-	);
+	post("/loadPredictions", predictionControllers::loadPrediction, new MustacheTemplateEngine());
 
 /*----------------------------------------------------------------------------------------------*/
 
