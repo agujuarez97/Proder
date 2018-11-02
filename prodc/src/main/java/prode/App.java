@@ -67,14 +67,9 @@ public class App {
 		Base.close();
 	});
 
-/*--------------------------------------------------------------------------------------------*/
-
 	get("/inicio", startControllers::start, new MustacheTemplateEngine());
 
-	
-
 	get("/registrarse", userControllers::registrarse, new MustacheTemplateEngine());
-/*--------------------------------------------------------------------------------------------*/
 
 	post("/registrar", userControllers::registrar, new MustacheTemplateEngine());
 /*---------------------------------------------------------------------------------------------*/
@@ -93,42 +88,15 @@ public class App {
 	},  new MustacheTemplateEngine()
 	);
 
-/*----------------------------------------------------------------------------------------------*/
-	get("/schedule1", (req, res) -> {
-		Map fecha1 = new HashMap();
-		return new ModelAndView(fecha1, "./views/schedule1.html");
-	},  new MustacheTemplateEngine()
-	);
+	get("/schedule1", predictionControllers::scheduleOne, new MustacheTemplateEngine());
 
-/*----------------------------------------------------------------------------------------------*/
-	Map fecha2 = new HashMap();
+	get("/schedule2", predictionControllers::scheduleTwo, new MustacheTemplateEngine());
 
-	get("/schedule2", (req, res) -> {
-		return new ModelAndView(fecha2, "./views/schedule2.html");
-	},  new MustacheTemplateEngine()
-	);
+	get("/schedule3", predictionControllers::scheduleThree, new MustacheTemplateEngine());
 
-/*----------------------------------------------------------------------------------------------*/
-	Map fecha3 = new HashMap();
-
-	get("/schedule3", (req, res) -> {
-		return new ModelAndView(fecha3, "./views/schedule3.html");
-	},  new MustacheTemplateEngine()
-	);
-
-/*----------------------------------------------------------------------------------------------*/
-	Map fecha4 = new HashMap();
-
-	get("/schedule4", (req, res) -> {
-		return new ModelAndView(fecha4, "./views/schedule4.html");
-	},  new MustacheTemplateEngine()
-	);
-
-/*----------------------------------------------------------------------------------------------*/
+	get("/schedule4", predictionControllers::scheduleFour, new MustacheTemplateEngine());
 
 	post("/loadPredictions", predictionControllers::loadPrediction, new MustacheTemplateEngine());
-
-/*----------------------------------------------------------------------------------------------*/
 
 	get("/global", (req, res) -> {
 		requestsRanking.mark();

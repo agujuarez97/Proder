@@ -17,6 +17,26 @@ public class predictionControllers{
 		return new ModelAndView(f, "./views/play.html");
 	}
 
+	public static ModelAndView scheduleOne(Request request, Response response){
+		Map fecha1 = new HashMap();
+		return new ModelAndView(fecha1, "./views/schedule1.html");
+	}
+
+	public static ModelAndView scheduleTwo(Request request, Response response){
+		Map fecha2 = new HashMap();
+		return new ModelAndView(fecha2, "./views/schedule2.html");
+	}
+
+	public static ModelAndView scheduleThree(Request request, Response response){
+		Map fecha3 = new HashMap();
+		return new ModelAndView(fecha3, "./views/schedule3.html");
+	}
+
+	public static ModelAndView scheduleFour(Request request, Response response){
+		Map fecha4 = new HashMap();
+		return new ModelAndView(fecha4, "./views/schedule4.html");
+	}
+
 	private static void registerPrediction(Request request, Response response){
 
 		String[] id = {request.queryParams("id1"), request.queryParams("id2"), request.queryParams("id3"), request.queryParams("id4"), request.queryParams("id5")};
