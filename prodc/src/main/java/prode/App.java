@@ -11,6 +11,7 @@ import org.javalite.activejdbc.Base;
 import java.util.List;
 import java.util.ArrayList;
 
+import controllers.*;
 
 import spark.Request;
 import spark.Response;
@@ -68,12 +69,7 @@ public class App {
 
 /*--------------------------------------------------------------------------------------------*/
 
-	get("/inicio", (req, res) -> {
-		Map map = new HashMap();
-
-		return new ModelAndView(map, "./views/inicio.html");
-	},  new MustacheTemplateEngine()
-	);
+	get("/inicio", startControllers::start, new MustacheTemplateEngine());
 
 	Map map2 = new HashMap();
 
