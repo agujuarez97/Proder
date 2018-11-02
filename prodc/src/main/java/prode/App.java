@@ -74,19 +74,7 @@ public class App {
 	post("/registrar", userControllers::registrar, new MustacheTemplateEngine());
 /*---------------------------------------------------------------------------------------------*/
 
-	get("/login", (req, res) -> {
-		User user = new User();
-		Map logresul = user.checkUser(req, res);
-
-		if((Integer)logresul.get("user") != 0){
-			numPeoplePlaying.inc();
-			req.session().attribute("user", (Integer)logresul.get("user"));
-			return new ModelAndView(logresul, "./views/play.html");
-		}
-
-		return new ModelAndView(logresul,"./views/inicio.html");
-	},  new MustacheTemplateEngine()
-	);
+	get("/login", userControllers::login, new MustacheTemplateEngine());
 
 	get("/schedule1", predictionControllers::scheduleOne, new MustacheTemplateEngine());
 
