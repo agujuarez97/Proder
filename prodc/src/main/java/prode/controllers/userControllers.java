@@ -25,6 +25,18 @@ public class userControllers{
 		return new ModelAndView(result, "./views/inicio.html");
 	}
 
+	public static ModelAndView login(Request request, Response response){
+		User user = new User();
+		Map loginResult = userControllers.checkUser(request, response);
+
+		if((Integer)loginResult.get("user") != 0){
+			request.session().attribute("user", (Integer)loginResult.get("user"));
+			return new ModelAndView(loginResult, "./views/play.html");
+		}
+
+		return new ModelAndView(loginResult,"./views/inicio.html");
+	}
+
 	/**
 	 * User register.
 	 * @param req
@@ -64,4 +76,47 @@ public class userControllers{
 		    }
 		}
     }
+
+    /**
+	 * User check.
+	 * @param req
+	 * @param res
+	 * @return
+	*/
+	private static Map checkUser(Request req, Response res){
+	  	String[] result = {req.queryParams("username"),(String)req.queryParams("password")};
+		String body = req.body();
+		Map questt = new HashMap();
+
+		List<User> unico = User.where("username = ? or password = ?", result[0], result[1]);
+		Boolean resu2 = unico.size()!=0;
+		if(resu2){
+			User u = unico.get(0);
+			String e = (String)u.get("username");
+			String p = (String)u.get("password");
+			if(e.equals(result[0]) && p.equals(result[1])){
+				questt.put("user", unico.get(0).get("id"));
+				return questt;
+			}
+			else{
+				if(!(e.equals(result[0])) && p.equals(result[1])){
+					questt.put("user", 0);
+					questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario incorrecto.</div>");
+					return questt;
+				}
+				else{
+					questt.put("user", 0);
+					questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Contraseña incorrecta.</div>");
+					return questt;
+				}
+			}
+			
+		}
+		else{
+			questt.put("user", 0);
+			questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario no existente.</div>");
+			return questt;
+		}
+	}
+
 }
