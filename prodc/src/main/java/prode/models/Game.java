@@ -6,6 +6,7 @@
 
 package models;
 
+import java.util.*;
 import org.javalite.activejdbc.Model;
 
 public class Game extends Model{
@@ -66,5 +67,61 @@ public class Game extends Model{
 		set("team_visitante_id", id_tv);
 		set("schedure_id", id_f);
 		set("result_id", id_r);
+	}
+
+	/**
+	* @return the goals converted by the local team
+	*/
+	public Integer getGoalLocal(){
+		return this.getInteger("goalLocal");
+	}
+
+	/**
+	* @return the goals converted by the visiting team
+	*/
+	public Integer getGoalVisitor(){
+		return this.getInteger("goalVisitor");
+	}
+
+	/**
+	* @return the shcedure of the match
+	*/
+	public Schedure getSchedure(){
+		return Schedure.findById(this.get("schedure_id"));
+	}
+
+	/**
+	* @return all the information of the visiting team
+	*/
+	public Team getTeamVisit(){
+		return Team.findById(this.get("team_visitor_id"));
+	}
+
+	/**
+	* @return all the information of the local team
+	*/
+	public Team getTeamLocal(){
+		return Team.findById(this.get("team_local_id"));
+	}
+
+	/**
+	* @return result of the game
+	*/
+	public Result getResult(){
+		return Result.findById(this.get("result_id"));
+	}
+
+	/**
+	* @return all the information of the game
+	*/
+	public Map getCompleteGame(){
+		Map m = new HashMap();
+		m.put("id",this.getId());
+		m.put("golLocal",this.getGoalLocal());
+		m.put("golVisitante",this.getGoalVisitor());
+		m.put("local", this.getTeamLocal());
+		m.put("visitante",this.getTeamVisit());
+		m.put("result", this.getResult());
+		return m;
 	}
 }
