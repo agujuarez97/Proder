@@ -72,9 +72,10 @@ public class App {
 	get("/registrarse", userControllers::registrarse, new MustacheTemplateEngine());
 
 	post("/registrar", userControllers::registrar, new MustacheTemplateEngine());
-/*---------------------------------------------------------------------------------------------*/
 
 	get("/login", userControllers::login, new MustacheTemplateEngine());
+
+	get("/singoff", userControllers::singoff, new MustacheTemplateEngine());	
 
 	get("/schedule1", predictionControllers::scheduleOne, new MustacheTemplateEngine());
 
@@ -86,26 +87,9 @@ public class App {
 
 	post("/loadPredictions", predictionControllers::loadPrediction, new MustacheTemplateEngine());
 
-/*----------------------------------------------------------------------------------------------*/
-
 	get("/global", punctuationControllers::global, new MustacheTemplateEngine());
 
-/*---------------------------------------------------------------------------------------------*/
-
 	get("/punctuation", punctuationControllers::punctuation, new MustacheTemplateEngine());	
-
-/*----------------------------------------------------------------------------------------------*/
-
-	Map cs = new HashMap();
-
-	get("/singoff", (req, res) -> {
-		numPeoplePlaying.dec();
-		if(req.session().attribute("user") != null){
-			req.session().removeAttribute("user");
-		}
-		return new ModelAndView(cs, "./views/inicio.html");
-	},  new MustacheTemplateEngine()
-	);	
 
 	startReport();
 	
