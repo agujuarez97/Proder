@@ -37,6 +37,14 @@ public class userControllers{
 		return new ModelAndView(loginResult,"./views/inicio.html");
 	}
 
+	public static ModelAndView singoff(Request request, Response response){
+		Map cs = new HashMap();
+		if(request.session().attribute("user") != null){
+			request.session().removeAttribute("user");
+		}
+		return new ModelAndView(cs, "./views/inicio.html");
+	}
+
 	/**
 	 * User register.
 	 * @param req
