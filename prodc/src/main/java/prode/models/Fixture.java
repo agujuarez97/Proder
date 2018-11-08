@@ -33,4 +33,11 @@ public class Fixture extends Model{
 		set("name", name);
 	}
 
+	/**
+	* @return the name of the fixture
+	*/
+	public String getName(){
+		return this.getString("name");
+	}
+
 }
