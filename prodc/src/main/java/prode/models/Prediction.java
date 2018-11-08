@@ -52,4 +52,45 @@ public class Prediction extends Model{
 		set("game_id", id_g);
 		set("schedure_id", id_s);
 	}
+	
+	/**
+	* @return result of the prediction
+	*/
+	public Result getResult(){
+		return Result.findById(this.get("result"));
+	}
+	
+	/**
+	* @return the user who made the prediction
+	*/
+	public User getUser(){
+		return User.findById(this.get("user_id"));
+	}
+	
+	/**
+	* @return the game in which the prediction is made
+	*/
+	public Game getGame(){
+		return Game.findById(this.get("game_id"));
+	}
+	
+	/**
+	* @return the schedure corresponding to the prediction
+	*/
+	public Schedure getSchedure(){
+		return Schedure.findById(this.get("schedure_id"));
+	}
+	
+	/**
+	* @return all the information of the prediction
+	*/
+	public Map getCompletePrediction(){
+		Map m = new HashMap();
+		m.put("id",this.getId());
+		m.put("result",this.getResult());
+		m.put("user",this.getUser());
+		m.put("game",this.getGame());
+		m.put("schedure",this.getSchedure());
+		return m;
+	}
 }
