@@ -49,4 +49,37 @@ public class Score extends Model{
 		set("points",  pun);
 		set("schedure_id", id_sch);
 	}
+	
+	/**
+	* @return the user to whom the score belongs
+	*/
+	public User getUser(){
+		return User.findById(this.get("user_id"));
+	}
+	
+	/**
+	* @return the points obtained by the user
+	*/
+	public int getPoints(){
+		return this.getInteger("points");
+	}
+	
+	/**
+	* @return the schedure to which the points correspond
+	*/
+	public Schedure getSchedure(){
+		return Schedure.findById(this.get("schedure_id"));
+	}
+	
+	/**
+	* @return all the information of the prediction
+	*/
+	public Map getCompletePrediction(){
+		Map m = new HashMap();
+		m.put("id",this.getId());
+		m.put("user",this.getUser());
+		m.put("points",this.getPoints());
+		m.put("schedure",this.getSchedure());
+		return m;
+	}
 }
