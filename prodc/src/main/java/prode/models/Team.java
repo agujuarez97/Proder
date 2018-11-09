@@ -5,6 +5,7 @@
  */
 package models;
 
+import java.util.*;
 import org.javalite.activejdbc.Model;
 
 public class Team extends Model{
@@ -31,4 +32,18 @@ public class Team extends Model{
   	public Team(String nom){
   		set("name", nom);
   	}
+
+    /**
+  * @return the name of the team
+  */
+  public String getName(){
+    return this.getString("name");
+  }
+
+  public Map getCompleteTeam(){
+    Map m = new HashMap();
+    m.put("id", this.getId());
+    m.put("nombre", this.getName());
+    return m;
+  }
 }
