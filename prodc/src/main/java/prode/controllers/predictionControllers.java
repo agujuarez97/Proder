@@ -19,7 +19,7 @@ public class predictionControllers{
 	
 	public static ModelAndView schedule(Request request, Response response){
 		Map pred = new HashMap();
-		int fecha = 1;
+		int fecha = Integer.parseInt(request.queryParams("id").toString());
 		List<Game> games = Game.findBySQL("select * from games where schedure_id = ?;", fecha);
 		List<Map> p = new ArrayList<Map>();
 		for(int i=0; i<games.size(); i++){
