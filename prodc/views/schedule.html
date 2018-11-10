@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Bienvenido A La Fecha {{idFecha}} </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/schedule.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+
+	<div class="container">
+
+		<h1> BIENVENIDO A LA FECHA {{idFecha}} </h1>
+
+		<div class="card card-container">
+
+			<form class="form-prediction" method="post" action="/loadPredictions">
+
+				<h1> FECHA <input id="idFecha" type="number" name="f" value="{{idFecha}}" size="1" readonly></h1>
+		
+				{{#games}}
+				<tr>
+					<input id="{{idGame}}" type="text" name="id{{idGame}}" value="{{idGame}}" size="1" readonly><label> {{local}} vs {{visitante}} </label> <br>
+					<input type="radio" name="partido{{idGame}}" value="1"> Gana {{local}} <br>
+					<input type="radio" name="partido{{idGame}}" value="2"> Gana {{visitante}} <br>
+					<input type="radio" name="partido{{idGame}}" value="0" checked> Empate <br><br>
+				</tr>
+				{{/games}}
+
+				<a href="/loadPredictions"><input class="btn btn-primary" type="submit" value="Predictions"></a>
+
+			</form>
+			
+		</div>
+	
+	</div>
+
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

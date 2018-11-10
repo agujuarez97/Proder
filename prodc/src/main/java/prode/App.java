@@ -37,14 +37,8 @@ public class App {
 
 	get("/singoff", userControllers::singoff, new MustacheTemplateEngine());	
 
-	get("/schedule1", predictionControllers::scheduleOne, new MustacheTemplateEngine());
-
-	get("/schedule2", predictionControllers::scheduleTwo, new MustacheTemplateEngine());
-
-	get("/schedule3", predictionControllers::scheduleThree, new MustacheTemplateEngine());
-
-	get("/schedule4", predictionControllers::scheduleFour, new MustacheTemplateEngine());
-
+	get("/schedule", predictionControllers::schedule, new MustacheTemplateEngine());
+	
 	post("/loadPredictions", predictionControllers::loadPrediction, new MustacheTemplateEngine());
 
 	get("/global", punctuationControllers::global, new MustacheTemplateEngine());

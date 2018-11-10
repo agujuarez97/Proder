@@ -16,25 +16,24 @@ public class predictionControllers{
 		predictionControllers.registerPrediction(request, response);
 		return new ModelAndView(f, "./views/play.html");
 	}
-
-	public static ModelAndView scheduleOne(Request request, Response response){
-		Map fecha1 = new HashMap();
-		return new ModelAndView(fecha1, "./views/schedule1.html");
-	}
-
-	public static ModelAndView scheduleTwo(Request request, Response response){
-		Map fecha2 = new HashMap();
-		return new ModelAndView(fecha2, "./views/schedule2.html");
-	}
-
-	public static ModelAndView scheduleThree(Request request, Response response){
-		Map fecha3 = new HashMap();
-		return new ModelAndView(fecha3, "./views/schedule3.html");
-	}
-
-	public static ModelAndView scheduleFour(Request request, Response response){
-		Map fecha4 = new HashMap();
-		return new ModelAndView(fecha4, "./views/schedule4.html");
+	
+	public static ModelAndView schedule(Request request, Response response){
+		Map pred = new HashMap();
+		int fecha = 1;
+		List<Game> games = Game.findBySQL("select * from games where schedure_id = ?;", fecha);
+		List<Map> p = new ArrayList<Map>();
+		for(int i=0; i<games.size(); i++){
+			Map a = new HashMap();
+			Game g = games.get(i);
+			Map m = g.getCompleteGame();
+			a.put("idGame",m.get("id"));
+			a.put("local",((Team)m.get("local")).getName());
+			a.put("visitante",((Team)m.get("visitante")).getName());
+			p.add(a);
+		}
+		pred.put("idFecha", fecha);
+		pred.put("games", p);
+		return new ModelAndView(pred, "./views/schedule.html");
 	}
 
 	private static void registerPrediction(Request request, Response response){
