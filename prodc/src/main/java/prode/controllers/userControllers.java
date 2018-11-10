@@ -31,7 +31,14 @@ public class userControllers{
 
 		if((Integer)loginResult.get("user") != 0){
 			request.session().attribute("user", (Integer)loginResult.get("user"));
-			return new ModelAndView(loginResult, "./views/play.html");
+			Map completeschedule = new HashMap();
+			List <Schedure> schedules = Schedure.findBySQL("select * from schedures");
+			List <Map> mapschedule = new ArrayList <Map>();
+			for (Schedure s: schedules) {
+				mapschedule.add(s.getCompleteSchedule());
+			}
+			completeschedule.put("fechas", mapschedule);
+			return new ModelAndView(completeschedule, "./views/play.html");
 		}
 
 		return new ModelAndView(loginResult,"./views/inicio.html");
