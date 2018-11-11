@@ -23,13 +23,11 @@
 
 			<form class="form-play" method="get" >
 				
-				<a href="/schedule?id=1"><input class="btn btn-primary" type="button" value="Schedule 1"></a>
+				{{#fechas}}
 				
-				<a href="/schedule?id=2"><input class="btn btn-primary" type="button" value="Schedule 2"></a>
+					<a href="/schedule?id={{id}}"><input class="btn btn-primary" type="button" value="Schedule {{id}}"></a>
 				
-				<a href="/schedule?id=3"><input class="btn btn-primary" type="button" value="Schedule 3"></a>
-				
-				<a href="/schedule?id=4"><input class="btn btn-primary" type="button" value="Schedule 4"></a>
+				{{/fechas}}
 
 				<a href="/punctuation"><input class="btn btn-primary" type="button" value="Punctuation"></a>
 

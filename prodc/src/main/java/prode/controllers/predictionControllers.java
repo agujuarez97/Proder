@@ -12,9 +12,15 @@ import models.*;
 public class predictionControllers{
 
 	public static ModelAndView loadPrediction(Request request, Response response){
-		Map f = new HashMap();
 		predictionControllers.registerPrediction(request, response);
-		return new ModelAndView(f, "./views/play.html");
+		Map completeschedule = new HashMap();
+		List <Schedure> schedules = Schedure.findBySQL("select * from schedures");
+		List <Map> mapschedule = new ArrayList <Map>();
+		for (Schedure s: schedules) {
+			mapschedule.add(s.getCompleteSchedule());
+		}
+		completeschedule.put("fechas", mapschedule);
+		return new ModelAndView(completeschedule, "./views/play.html");
 	}
 	
 	public static ModelAndView schedule(Request request, Response response){
