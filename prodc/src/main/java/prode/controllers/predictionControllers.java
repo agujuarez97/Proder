@@ -44,9 +44,25 @@ public class predictionControllers{
 
 	private static void registerPrediction(Request request, Response response){
 
-		String[] id = {request.queryParams("id1"), request.queryParams("id2"), request.queryParams("id3"), request.queryParams("id4"), request.queryParams("id5")};
-		String[] result = {request.queryParams("partido1"), request.queryParams("partido2"), request.queryParams("partido3"), request.queryParams("partido4"), request.queryParams("partido5")};
+		int amount = request.queryParams().size() - 1;
+		
+		String[] id = new String[amount/2];
+		String[] result = new String[amount/2];
+		
+		int index = 1;
+		
 		int fecha = Integer.parseInt(request.queryParams("f").toString());
+		
+		List<Game> games = Game.findBySQL("select * from games where schedure_id = ?;", fecha);
+		Map g = games.get(0).getCompleteGame();
+		int idGame = (int)g.get("id");
+		
+		for(int i=0; i < amount; i+=2){
+			id[index-1] = request.queryParams("id"+idGame);
+			result[index-1] = request.queryParams("partido"+idGame);
+			index++;
+			idGame++;
+		}
 
 		int id_u = (Integer)request.session().attribute("user");
 
