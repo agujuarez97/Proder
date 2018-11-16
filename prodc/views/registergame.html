@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Cargar un nuevo partidp</title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/registrarse.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+
+	<div class="container">
+
+		<h4> POR FAVOR INGRESE LOS DATOS DEL PARTIDO: </h4>
+
+        <div class="card card-container">
+        
+            <form class="form-registergame" method="post" action="/registergame">
+
+                <label> Equipo local: </label><input type="text" id="inputTeam" class="form-control" name="local" placeholder="Team Local" required>
+
+                <label> Equipo vicitante: </label><input type="text" id="inputTeam" class="form-control" name="visitor" placeholder="Team Visitor" required>
+                
+                <label> Fecha: </label><input type="numeric" id="inputSchedule" class="form-control" name="schedule" placeholder="Schedule" required>
+                
+                <label> Fecha del partido: </label><input type="text" id="inputDate" class="form-control" name="date" placeholder="dd/mm/aaaa" required>
+                
+                <label> Hora del partido: </label><input type="text" id="inputHour" class="form-control" name="hour" placeholder="hh:mm" required>
+                
+                <a href="/registergame"><input type="submit" class="btn btn-primary" value="Save"></a>
+
+                <input type="reset" class="btn btn-primary" value="Reset">
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+    </div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
