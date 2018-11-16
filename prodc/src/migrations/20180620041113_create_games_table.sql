@@ -3,8 +3,8 @@
 
 CREATE TABLE games(
 	id           int(10) auto_increment PRIMARY KEY, /*ATRIBUTO EL CUAL PERMITE IDENTIFICAR UNIVOCAMENTE UN JUEGO*/
-	datee        date,
-	hour         DATETIME,
+	day_game     varchar(10),
+	hour_game    varchar(5),
 	goalLocal    int check (goalLocal>=0),
 	goalVisitor  int check (goalVisitor>=0),
 	team_local_id      int(11), 					/*ATRIBUTO EL CUAL HACE REFERENCIA A CUAL ES EL EQUIPO LOCAL QUE TIENE EL JUEGO, ES DECIR ES FOREIGN KEY DE LA TABLA TEAMS*/
