@@ -45,6 +45,9 @@ public class App {
 
 	get("/punctuation", punctuationControllers::punctuation, new MustacheTemplateEngine());	
 
+	get("/loadgame", administratorControllers::loadgame, new MustacheTemplateEngine());
+	
+	post("/registergame", administratorControllers::registergame, new MustacheTemplateEngine());
 	
 	}
 }
