@@ -30,15 +30,24 @@ public class userControllers{
 		Map loginResult = userControllers.checkUser(request, response);
 
 		if((Integer)loginResult.get("user") != 0){
-			request.session().attribute("user", (Integer)loginResult.get("user"));
-			Map completeschedule = new HashMap();
-			List <Schedure> schedules = Schedure.findBySQL("select * from schedures");
-			List <Map> mapschedule = new ArrayList <Map>();
-			for (Schedure s: schedules) {
-				mapschedule.add(s.getCompleteSchedule());
+			Integer idUser = (Integer)loginResult.get("user");
+			request.session().attribute("user", idUser);
+			List<User> uniqueUser = User.where("id = ?", idUser);
+			user = uniqueUser.get(0);
+			
+			if (user.getRange() == 0){
+				Map completeschedule = new HashMap();
+				List <Schedure> schedules = Schedure.findBySQL("select * from schedures");
+				List <Map> mapschedule = new ArrayList <Map>();
+				for (Schedure s: schedules) {
+					mapschedule.add(s.getCompleteSchedule());
+				}
+				completeschedule.put("fechas", mapschedule);
+				return new ModelAndView(completeschedule, "./views/play.html");
+			} else if (user.getRange() == 1){
+				Map adminConfig = new HashMap();
+				return new ModelAndView(adminConfig, "./views/administrator.html");
 			}
-			completeschedule.put("fechas", mapschedule);
-			return new ModelAndView(completeschedule, "./views/play.html");
 		}
 
 		return new ModelAndView(loginResult,"./views/inicio.html");

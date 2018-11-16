@@ -5,6 +5,7 @@ CREATE TABLE users (
   username   VARCHAR(128),
   password   VARCHAR(128),
   fixture_id int(10),							 /*ATRIBUTO EL CUAL HACE REFERENCIA AL FIXTURE QUE SE SUBSCRIBIO EL USURIO, ES DECIR ES FOREIGN KEY DE LA TABLA FIXTURES*/
+  range_user int(1),                             /*USUARIO = 0, ADMINISTRADOR = 1*/
   created_at DATETIME,
   updated_at DATETIME
 )ENGINE=InnoDB;

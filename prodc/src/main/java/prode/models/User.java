@@ -27,6 +27,11 @@ public class User extends Model {
 		 * Evaluate the validity of the fixture.
 		 */
 		validateNumericalityOf("fixture_id").allowNull(true);
+		
+		/**
+		 * Evaluate the validity of the range.
+		 */
+		validateNumericalityOf("range_user").allowNull(true);
 	}
 
 	/**
@@ -44,6 +49,7 @@ public class User extends Model {
 	public User(String name, String pas){
 		set("username", name);
 		set("password", pas);
+		set("range_user", 0);
 	}
 
 	/**
@@ -66,6 +72,13 @@ public class User extends Model {
 	public Fixture getFixture(){
 		return Fixture.findById(this.get("fixture_id"));
 	}
+	
+	/**
+  	* @return the range of the user
+  	*/
+	public Integer getRange(){
+		return this.getInteger("range_user");
+	}
 
 	/**
 	* @return all the information of the user
@@ -76,6 +89,7 @@ public class User extends Model {
 		m.put("username", this.getUserName());
 		m.put("password", this.getPassword());
 		m.put("fixture", this.getFixture());
+		m.put("range", this.getRange());
 		return m;
 	}
 }
