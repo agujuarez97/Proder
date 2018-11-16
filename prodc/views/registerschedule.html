@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Cargar una nueva fecha </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/registrarse.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+	<div class="container">
+
+		<h4> POR FAVOR INGRESE EL NOMBRE DE FIXTURE AL QUE PERTENECERA LA NUEVA FECHA: </h4>
+
+        <div class="card card-container">
+        
+            <form class="form-addschedule" method="post" action="/registerschedule">
+
+                <label> Nombre del fixture: </label><input type="text" id="inputName" class="form-control" name="fixture" placeholder="Name Fixture" required>
+                
+                <a href="/registerschedule"><input type="submit" class="btn btn-primary" value="Save"></a>
+
+                <input type="reset" class="btn btn-primary" value="Reset">
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+    </div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
