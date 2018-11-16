@@ -31,7 +31,7 @@ public class Game extends Model{
 		/**
 		 * Evaluate the validity of the visiting team.
 		 */
-		validateNumericalityOf("team_visitante_id").allowNull(false);
+		validateNumericalityOf("team_visitor_id").allowNull(false);
 
 		/**
 		 * Evaluate the validity of the schedure.
@@ -60,13 +60,29 @@ public class Game extends Model{
 	 * @param id_f
 	 * @param id_r
 	 */
-	public Game(int gl, int gv, int id_tl, int id_tv, int id_f, int id_r){
-		set("golLocal", gl);
-		set("golVisitante", gv);
+	public Game(String date, String hr, int gl, int gv, int id_tl, int id_tv, int id_f, int id_r){
+		set("day_game", date);
+		set("hour_game", hr);
+		set("goalLocal", gl);
+		set("goalVisitor", gv);
 		set("team_local_id", id_tl);
-		set("team_visitante_id", id_tv);
+		set("team_visitor_id", id_tv);
 		set("schedure_id", id_f);
 		set("result_id", id_r);
+	}
+	
+	/**
+	* @return the date of the game
+	*/
+	public String getDate(){
+		return this.getString("day_game");
+	}
+	
+	/**
+	* @return the hour of the game
+	*/
+	public String getHour(){
+		return this.getString("hour_game");
 	}
 
 	/**
@@ -117,6 +133,8 @@ public class Game extends Model{
 	public Map getCompleteGame(){
 		Map m = new HashMap();
 		m.put("id",this.getId());
+		m.put("date", this.getDate());
+		m.put("hour", this.getHour());
 		m.put("golLocal",this.getGoalLocal());
 		m.put("golVisitante",this.getGoalVisitor());
 		m.put("local", this.getTeamLocal());
