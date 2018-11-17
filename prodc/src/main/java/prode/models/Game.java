@@ -123,8 +123,8 @@ public class Game extends Model{
 	/**
 	* @return result of the game
 	*/
-	public Result getResult(){
-		return Result.findById(this.get("result_id"));
+	public Integer getResult(){
+		return this.getInteger("result_id");
 	}
 
 	/**
@@ -137,6 +137,7 @@ public class Game extends Model{
 		m.put("hour", this.getHour());
 		m.put("golLocal",this.getGoalLocal());
 		m.put("golVisitante",this.getGoalVisitor());
+		m.put("schedule", this.getSchedure());
 		m.put("local", this.getTeamLocal());
 		m.put("visitante",this.getTeamVisit());
 		m.put("result", this.getResult());

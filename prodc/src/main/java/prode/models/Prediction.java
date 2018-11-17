@@ -56,8 +56,8 @@ public class Prediction extends Model{
 	/**
 	* @return result of the prediction
 	*/
-	public Result getResult(){
-		return Result.findById(this.get("result"));
+	public Integer getResult(){
+		return this.getInteger("result");
 	}
 	
 	/**
