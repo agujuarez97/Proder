@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Registrar Resultado De Partidos </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/schedule.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+
+	<div class="container">
+	
+		<div class="card card-container">
+
+			<form class="form-prediction" method="post" action="/registerresultgame">
+
+				<label> {{msg}} </label>
+
+				{{#load}}
+
+					{{#games}}
+					<tr>
+						<input id="{{idGame}}" type="text" name="id{{idGame}}" value="{{idGame}}" size="1" readonly><label> {{local}} vs {{visitante}} </label> <br><br>
+						<label> {{local}}: </label><input type="numeric" name="local{{idGame}}" value="0" size="1"><br><br>
+						<label> {{visitante}}: </label><input type="numeric" name="visit{{idGame}}" value="0" size="1"><br><br>
+					</tr>
+					{{/games}}
+
+					<a href="/registerresultgame"><input class="btn btn-primary" type="submit" value="Register"></a>
+				
+				{{/load}}
+
+			</form>
+			
+		</div>
+	
+	</div>
+
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
