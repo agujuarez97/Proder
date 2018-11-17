@@ -95,4 +95,99 @@ public class administratorControllers{
 		}
 	}
 	
+	public static ModelAndView loadresult(Request request, Response response){
+		Map m = new HashMap();
+		
+		List<Game> games = Game.findBySQL("select * from games where result_id = 0;");
+		List<Map> p = new ArrayList<Map>();
+		for(int i=0; i<games.size(); i++){
+			Map a = new HashMap();
+			Game g = games.get(i);
+			Map m_game = g.getCompleteGame();
+			a.put("idGame",m_game.get("id"));
+			a.put("local",((Team)m_game.get("local")).getName());
+			a.put("visitante",((Team)m_game.get("visitante")).getName());
+			p.add(a);
+		}
+		m.put("games", p);
+		
+		return new ModelAndView(m, "./views/registerresult.html");
+	}
+	
+	public static ModelAndView registerresultgame(Request request, Response response){
+		Map m = new HashMap();
+		
+		int amount = request.queryParams().size() - 1;
+		String[] id = new String[amount];
+		String[] goalLocal = new String[amount];
+		String[] goalVisit = new String[amount];
+		
+		List<Game> games = Game.findBySQL("select * from games;");
+		int index = 0;
+		for(int i = 0; i < games.size(); i++){
+		
+			Map game = ((Game)games.get(i)).getCompleteGame();
+			int id_game = (int)game.get("id");
+			if(request.queryParams("id"+id_game) != null){
+				if(id_game == Integer.parseInt(request.queryParams("id"+id_game))){
+					id[index] = request.queryParams("id"+id_game);
+					goalLocal[index] = (String)request.queryParams("local"+id_game);
+					goalVisit[index] = (String)request.queryParams("visit"+id_game);
+					index++;
+				}
+			}
+		}
+		
+		for (int i = 0; i < id.length; i++) {
+			if(id[i] != null){
+				int result = 0;
+				int gl = Integer.parseInt(goalLocal[i]);
+				int gv = Integer.parseInt(goalVisit[i]);
+				if(gl > gv){
+					result = 1;
+				} else if(gl < gv){
+					result = 2;
+				} else {
+					result = 3;
+				}
+				Game.update("result_id = ?, goalLocal = ?, goalVisitor = ?", "id = ?", result, gl, gv, id[i]);
+				administratorControllers.calculateScore(Integer.parseInt(id[i]), result);
+			}
+		}
+		return new ModelAndView(m, "./views/administrator.html");
+	}
+	
+	private static void calculateScore(int id_game, int result){
+		List<Game> games = Game.where("id = ?", id_game);
+		Map game = games.get(0).getCompleteGame();
+		Map schedule = ((Schedure)game.get("schedule")).getCompleteSchedule();
+		int id_schedule = (int)schedule.get("id");
+		List<Prediction> predictions = Prediction.where("game_id = ?", id_game);
+		if(predictions.size() > 0){
+			for(int i = 0; i < predictions.size(); i++){
+				Map pred = predictions.get(i).getCompletePrediction();
+				Map user = ((User)pred.get("user")).getCompleteUser();
+				int id_user = (int)user.get("id");
+				List<Score> scores = Score.where("user_id = ? and schedure_id = ?", id_user, id_schedule);
+				int result_pred = (int)pred.get("result");
+				if(scores.size() > 0){
+					if(result_pred == result){
+						Map score = scores.get(0).getCompletePrediction();
+						int id_score = (int)score.get("id");
+						int user_score = (int)score.get("points");
+						user_score++;
+						Score.update("points = ?", "id = ?", user_score, id_score);
+					}					
+				} else {
+					int score_user = 0;
+					if(result_pred == result){
+						score_user++;
+					}
+					Score newScore = new Score(id_user, score_user, id_schedule);
+					newScore.saveIt();
+				}
+			}
+		}
+	}
+	
 }
