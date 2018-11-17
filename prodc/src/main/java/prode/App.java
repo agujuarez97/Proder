@@ -56,6 +56,10 @@ public class App {
 		get("/removeschedule", administratorControllers::removeschedule, new MustacheTemplateEngine());
 
 		post("/deleteschedule", administratorControllers::deleteschedule, new MustacheTemplateEngine());
+		
+		get("/loadresult", administratorControllers::loadresult, new MustacheTemplateEngine());
+	
+		post("/registerresultgame", administratorControllers::registerresultgame, new MustacheTemplateEngine());
 
 	}
 }
