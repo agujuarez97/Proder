@@ -99,17 +99,23 @@ public class administratorControllers{
 		Map m = new HashMap();
 		
 		List<Game> games = Game.findBySQL("select * from games where result_id = 0;");
-		List<Map> p = new ArrayList<Map>();
-		for(int i=0; i<games.size(); i++){
-			Map a = new HashMap();
-			Game g = games.get(i);
-			Map m_game = g.getCompleteGame();
-			a.put("idGame",m_game.get("id"));
-			a.put("local",((Team)m_game.get("local")).getName());
-			a.put("visitante",((Team)m_game.get("visitante")).getName());
-			p.add(a);
+		if(games.size() > 0){
+			m.put("load", 1);
+			List<Map> p = new ArrayList<Map>();
+			for(int i=0; i<games.size(); i++){
+				Map a = new HashMap();
+				Game g = games.get(i);
+				Map m_game = g.getCompleteGame();
+				a.put("idGame",m_game.get("id"));
+				a.put("local",((Team)m_game.get("local")).getName());
+				a.put("visitante",((Team)m_game.get("visitante")).getName());
+				p.add(a);
+			}
+			m.put("games", p);
+		} else {
+			String msg = "No hay partidos disponibles en este momento...";
+			m.put("msg", msg);
 		}
-		m.put("games", p);
 		
 		return new ModelAndView(m, "./views/registerresult.html");
 	}
