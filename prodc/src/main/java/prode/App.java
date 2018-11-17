@@ -57,5 +57,8 @@ public class App {
 
 		post("/deleteschedule", administratorControllers::deleteschedule, new MustacheTemplateEngine());
 
+		get("/buscarFixture", fixtureControllers::buscarFixture, new MustacheTemplateEngine());
+
+		post("/fixture", fixtureControllers::fixture, new MustacheTemplateEngine());
 	}
 }
