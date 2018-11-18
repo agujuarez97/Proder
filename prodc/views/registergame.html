@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
 	<title> Cargar un nuevo partidp</title>
 	<link rel='stylesheet' href='/css/fondo.css'>
-	<link rel='stylesheet' href='/css/registrarse.css'>
+	<link rel='stylesheet' href='/css/administrator.css'>
 	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	
 </head>
@@ -21,7 +21,7 @@
 
                 <label> Equipo local: </label><br>
                 
-                <select name="local">
+                <select id="soflow-color" name="local">
                 
                 	{{#teams}}
                 	
@@ -33,7 +33,7 @@
 
                 <label> Equipo vicitante: </label><br>
                 
-                <select name="visitor">
+                <select id="soflow-color" name="visitor">
                 
                 	{{#teams}}
                 	
@@ -45,7 +45,7 @@
                 
                 <label> Fixture: </label><br>
                 
-                <select name="fixture">
+                <select id="soflow-color" name="fixture">
                 
                 	{{#fixtures}}
                 	
@@ -57,7 +57,7 @@
                 
                 <label> Fecha: </label><br>
                 
-                <select name="schedule">
+                <select id="soflow-color" name="schedule">
                 
                 	{{#schedules}}
                 	
