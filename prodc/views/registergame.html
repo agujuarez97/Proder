@@ -19,15 +19,57 @@
         
             <form class="form-registergame" method="post" action="/registergame">
 
-                <label> Equipo local: </label><input type="text" id="inputTeam" class="form-control" name="local" placeholder="Team Local" required>
+                <label> Equipo local: </label><br>
+                
+                <select name="local">
+                
+                	{{#teams}}
+                	
+                	<option value="{{idTeam}}">{{nameTeam}}</option>
+                	
+                	{{/teams}}
+                
+                </select><br><br>
 
-                <label> Equipo vicitante: </label><input type="text" id="inputTeam" class="form-control" name="visitor" placeholder="Team Visitor" required>
+                <label> Equipo vicitante: </label><br>
                 
-                <label> Fecha: </label><input type="numeric" id="inputSchedule" class="form-control" name="schedule" placeholder="Schedule" required>
+                <select name="visitor">
                 
-                <label> Fecha del partido: </label><input type="text" id="inputDate" class="form-control" name="date" placeholder="dd/mm/aaaa" required>
+                	{{#teams}}
+                	
+                	<option value="{{idTeam}}">{{nameTeam}}</option>
+                	
+                	{{/teams}}
                 
-                <label> Hora del partido: </label><input type="text" id="inputHour" class="form-control" name="hour" placeholder="hh:mm" required>
+                </select><br><br>
+                
+                <label> Fixture: </label><br>
+                
+                <select name="fixture">
+                
+                	{{#fixtures}}
+                	
+                	<option value="{{idFixture}}">{{nameFixture}}</option>
+                	
+                	{{/fixtures}}
+                
+                </select><br><br>
+                
+                <label> Fecha: </label><br>
+                
+                <select name="schedule">
+                
+                	{{#schedules}}
+                	
+                	<option value="{{idSchedule}}">{{idSchedule}}</option>
+                		
+                	{{/schedules}}
+                	
+                </select><br><br>
+                
+                <label> Fecha del partido: </label><input type="date" id="inputDate" class="form-control" name="date" value="{{currentDate}}" placeholder="Date" min="{{currentDate}}" required"><br>
+                
+                <label> Hora del partido: </label><input type="time" id="inputHour" class="form-control" name="hour" value="00:00" placeholder="00:00" required><br>
                 
                 <a href="/registergame"><input type="submit" class="btn btn-primary" value="Save"></a>
 
