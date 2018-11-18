@@ -49,6 +49,10 @@ public class App {
 		
 		post("/registergame", administratorControllers::registergame, new MustacheTemplateEngine());
 
+		get("/loadteam", administratorControllers::loadteam, new MustacheTemplateEngine());
+
+		post("/registerteam", administratorControllers::registerteam, new MustacheTemplateEngine());
+
 		get("/loadschedule", administratorControllers::loadschedule, new MustacheTemplateEngine());
 		
 		post("/registerschedule", administratorControllers::registerschedule, new MustacheTemplateEngine());

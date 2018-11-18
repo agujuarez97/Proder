@@ -24,6 +24,11 @@ public class administratorControllers{
 		m = dataRegisterSchedule(null);
 		return new ModelAndView(m, "./views/registerschedule.html");
 	}
+
+	public static ModelAndView loadteam(Request request, Response response){
+		Map m = new HashMap();
+		return new ModelAndView(m, "./views/registerteam.html");
+	}
 	
 	public static ModelAndView registergame(Request request, Response response){
 		Map m = new HashMap();		
@@ -152,6 +157,20 @@ public class administratorControllers{
 			}
 		}
 		return new ModelAndView(m, "./views/administrator.html");
+	}
+
+	public static ModelAndView registerteam(Request request, Response response){
+		Map m = new HashMap();
+
+		List<Team> teams = Team.where("name = ?", request.queryParams("nameTeam"));
+		if(teams.size() == 0) {
+			Team team = new Team(request.queryParams("nameTeam"));
+			team.saveIt();
+			return new ModelAndView(m, "./views/administrator.html");
+		} else {
+			m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Team existing.</div>");
+			return new ModelAndView(m, "./views/registerteam.html");
+		}
 	}
 	
 	private static void calculateScore(int id_game, int result){
