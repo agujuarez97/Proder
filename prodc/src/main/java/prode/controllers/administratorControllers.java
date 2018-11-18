@@ -21,6 +21,7 @@ public class administratorControllers{
 
 	public static ModelAndView loadschedule(Request request, Response response){
 		Map m = new HashMap();
+		m = dataRegisterSchedule(null);
 		return new ModelAndView(m, "./views/registerschedule.html");
 	}
 	
@@ -184,6 +185,21 @@ public class administratorControllers{
 				}
 			}
 		}
+	}
+
+	private static Map dataRegisterSchedule(String error){
+		Map m = new HashMap();
+		
+		List<Fixture> fixtures = Fixture.findBySQL("select * from fixtures order by name asc;");
+		List<Map> f = new ArrayList<Map>();
+		for(int i = 0; i < fixtures.size(); i++){
+			Map data_fixture = new HashMap();
+			Map fixture = fixtures.get(i).getCompleteFixture();
+			data_fixture.put("nameFixture", fixture.get("name"));
+			f.add(data_fixture);
+		}
+		m.put("fixtures", f);
+		return m;
 	}
 	
 	private static Map dataRegisterGame(String error){
