@@ -58,6 +58,8 @@ h4{
 .form-signin input[type=password],
 .form-signin input[type=reset],
 .form-signin input[type=submit],
+.form-loadschedule input[type=submit],
+.form-loadschedule input[type=reset],
 .form-registergame input[type=submit],
 .form-registergame input[type=reset]{
     width: 100%;
