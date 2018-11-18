@@ -78,16 +78,17 @@ public class administratorControllers{
 	public static ModelAndView registerschedule(Request request, Response response){
 		Map m = new HashMap();
 		
-		List<Fixture> fixture = Fixture.findBySQL("select * from fixtures where name = ?;", request.queryParams("fixture"));
-
+		List<Fixture> fixture = Fixture.where("id = ?;", request.queryParams("fixture"));
 		if(fixture.size() > 0){
 			Schedure schedule = new Schedure((int)fixture.get(0).get("id"));
 			schedule.saveIt();
 			return new ModelAndView(m, "./views/administrator.html");
 			
 		} else {
-			m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Fixture inexistente.</div>");
-			return new ModelAndView(m, "./views/registerschedule.html");
+			Map register_error = new HashMap();
+			String error = "<div class='alert alert-danger'><strong>Error!</strong> Fixture inexistente.</div>";
+			register_error = dataRegisterSchedule(error);
+			return new ModelAndView(register_error, "./views/registerschedule.html");
 		}
 	}
 	
@@ -215,9 +216,15 @@ public class administratorControllers{
 			Map data_fixture = new HashMap();
 			Map fixture = fixtures.get(i).getCompleteFixture();
 			data_fixture.put("nameFixture", fixture.get("name"));
+			data_fixture.put("idFixture", fixture.get("id"));
 			f.add(data_fixture);
 		}
 		m.put("fixtures", f);
+
+		if(error != null){
+			m.put("error", error);
+		}
+
 		return m;
 	}
 	
