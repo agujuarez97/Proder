@@ -8,10 +8,14 @@ import spark.ModelAndView;
 
 import java.util.*;
 
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;
+
 public class administratorControllers{
 
 	public static ModelAndView loadgame(Request request, Response response){
 		Map m = new HashMap();
+		m = dataRegisterGame(null);
 		return new ModelAndView(m, "./views/registergame.html");
 	}
 
@@ -26,22 +30,48 @@ public class administratorControllers{
 	}
 	
 	public static ModelAndView registergame(Request request, Response response){
-		Map m = new HashMap();
-		
-		List<Team> local = Team.findBySQL("select * from teams where name = ?;", request.queryParams("local"));
-		List<Team> visitor = Team.findBySQL("select * from teams where name = ?;", request.queryParams("visitor"));
+		Map m = new HashMap();		
+		List<Team> local = Team.where("id = ?;", request.queryParams("local"));
+		List<Team> visitor = Team.where("id = ?;", request.queryParams("visitor"));
 		
 		if(local.size() > 0 && visitor.size() > 0){
-		
 			Map team_local = local.get(0).getCompleteTeam();
 			Map team_visitor = visitor.get(0).getCompleteTeam();
 			
-			Game game = new Game(request.queryParams("date"), request.queryParams("hour"), 0, 0, (int)team_local.get("id"), (int)team_visitor.get("id"), Integer.parseInt(request.queryParams("schedule").toString()), 0);
-			game.saveIt();
-			
-		}
+			if((int)team_local.get("id") != (int)team_visitor.get("id")){
+				List<Fixture> fixtures = Fixture.where("id = ?", request.queryParams("fixture"));
 		
-		return new ModelAndView(m, "./views/administrator.html");
+				if(fixtures.size() > 0){
+					List<Schedure> schedule = Schedure.where("id = ? and fixture_id = ?", request.queryParams("schedule"), request.queryParams("fixture"));
+				
+					if(schedule.size() > 0){	
+						Game game = new Game(request.queryParams("date").toString(), request.queryParams("hour").toString(), 0, 0, (int)team_local.get("id"), (int)team_visitor.get("id"), Integer.parseInt(request.queryParams("schedule").toString()), 0);
+						game.saveIt();
+						return new ModelAndView(m, "./views/administrator.html");
+					} else {
+						Map register_error = new HashMap();
+						String error = "<div class='alert alert-danger'><strong>Error!</strong> Schedule not found.</div>";
+						register_error = dataRegisterGame(error);
+						return new ModelAndView(register_error, "./views/registergame.html");
+					}
+				} else {
+					Map register_error = new HashMap();
+					String error = "<div class='alert alert-danger'><strong>Error!</strong> Fixture not found.</div>";
+					register_error = dataRegisterGame(error);
+					return new ModelAndView(register_error, "./views/registergame.html");
+				}
+			} else {
+				Map register_error = new HashMap();
+				String error = "<div class='alert alert-danger'><strong>Error!</strong> The teams can not be the same.</div>";
+				register_error = dataRegisterGame(error);
+				return new ModelAndView(register_error, "./views/registergame.html");
+			}
+		} else {
+			Map register_error = new HashMap();
+			String error = "<div class='alert alert-danger'><strong>Error!</strong> Team not found.</div>";
+			register_error = dataRegisterGame(error);
+			return new ModelAndView(register_error, "./views/registergame.html");
+		}
 	}
 
 	public static ModelAndView registerschedule(Request request, Response response){
@@ -194,6 +224,52 @@ public class administratorControllers{
 				}
 			}
 		}
+	}
+	
+	private static Map dataRegisterGame(String error){
+		Map m = new HashMap();
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime now = LocalDateTime.now();
+		m.put("currentDate", dtf.format(now));
+		
+		List<Team> teams = Team.findBySQL("select * from teams order by name asc;");
+		List<Map> t = new ArrayList<Map>();
+		for(int i = 0; i < teams.size(); i++){
+			Map data_team = new HashMap();
+			Map team = teams.get(i).getCompleteTeam();
+			data_team.put("idTeam", team.get("id"));
+			data_team.put("nameTeam", team.get("nombre"));
+			t.add(data_team);
+		}
+		m.put("teams", t);
+		
+		List<Schedure> schedules = Schedure.findBySQL("select * from schedures;");
+		List<Map> s = new ArrayList<Map>();
+		for(int i = 0; i < schedules.size(); i++){
+			Map data_schedule = new HashMap();
+			Map schedule = schedules.get(i).getCompleteSchedule();
+			data_schedule.put("idSchedule", schedule.get("id"));
+			s.add(data_schedule);
+		}
+		m.put("schedules", s);
+		
+		List<Fixture> fixtures = Fixture.findBySQL("select * from fixtures order by name asc;");
+		List<Map> f = new ArrayList<Map>();
+		for(int i = 0; i < fixtures.size(); i++){
+			Map data_fixture = new HashMap();
+			Map fixture = fixtures.get(i).getCompleteFixture();
+			data_fixture.put("idFixture", fixture.get("id"));
+			data_fixture.put("nameFixture", fixture.get("name"));
+			f.add(data_fixture);
+		}
+		m.put("fixtures", f);
+		
+		if(error != null){
+			m.put("error", error);
+		}
+		
+		return m;
 	}
 	
 }
