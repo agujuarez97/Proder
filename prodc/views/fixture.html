@@ -3,7 +3,7 @@
 <head>
 
 	<link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
-	<title> Bienvenido A La Fecha {{idFecha}} </title>
+	<title> Bienvenido al Fixture {{nameFixture}} </title>
 	<link rel='stylesheet' href='/css/fondo.css'>
 	<link rel='stylesheet' href='/css/schedule.css'>
 	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,10 +18,10 @@
 				<br>
 				<tr> 
 					<h2> <label> FECHA {{idSchedule}} </label> </h2>
-
 						{{#games}}
 						<tr>
-							<h3> <label> {{local}} vs {{visitante}} </label> </h3>	
+							<h3> <label class="fixture"> {{local}} vs {{visitante}} </label> </h3>	
+							<h4> <label> ({{dateGame}} - {{hourGame}})  </label> </h4>
 						</tr>
 						{{/games}}
 				</tr>

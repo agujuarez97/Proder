@@ -11,9 +11,9 @@ import models.*;
 
 public class fixtureControllers {
 
-	public static ModelAndView buscarFixture(Request request, Response response){
+	public static ModelAndView searchFixture(Request request, Response response){
 		Map m = new HashMap();
-		return new ModelAndView(m, "./views/buscarFixture.html");
+		return new ModelAndView(m, "./views/searchFixture.html");
 	}
 
 	public static ModelAndView fixture(Request request, Response response){
@@ -38,8 +38,8 @@ public class fixtureControllers {
 					a.put("idGame",dataGame.get("id"));
 					a.put("local",((Team)dataGame.get("local")).getName());
 					a.put("visitante",((Team)dataGame.get("visitante")).getName());
-					a.put("goalLocal", dataGame.get("golLocal"));
-					a.put("goalVisitante", dataGame.get("golVisitante"));
+					a.put("dateGame", dataGame.get("date"));
+					a.put("hourGame", dataGame.get("hour"));
 					p.add(a);
 				}		
 				gamesScehdule.put("idSchedule", dataSchedule.get("id"));
@@ -51,7 +51,7 @@ public class fixtureControllers {
 			return new ModelAndView(fix, "./views/fixture.html");
 		} else {
 			fix.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Fixture inexistente.</div>");
-			return new ModelAndView(fix, "./views/buscarFixture.html");
+			return new ModelAndView(fix, "./views/searchFixture.html");
 		}
 	}
 }
