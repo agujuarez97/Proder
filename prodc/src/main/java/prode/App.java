@@ -61,5 +61,8 @@ public class App {
 	
 		post("/registerresultgame", administratorControllers::registerresultgame, new MustacheTemplateEngine());
 
+		get("/searchFixture", fixtureControllers::searchFixture, new MustacheTemplateEngine());
+
+		post("/fixture", fixtureControllers::fixture, new MustacheTemplateEngine());
 	}
 }

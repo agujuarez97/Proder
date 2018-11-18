@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Bienvenido al Fixture {{nameFixture}} </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/schedule.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+
+	<div class="container">
+		<h1> Bienvenido al Fixture {{nameFixture}} </h1>
+		<div class="card card-container">
+				{{#schedules}}
+				<br>
+				<tr> 
+					<h2> <label> FECHA {{idSchedule}} </label> </h2>
+						{{#games}}
+						<tr>
+							<h3> <label class="fixture"> {{local}} vs {{visitante}} </label> </h3>	
+							<h4> <label> ({{dateGame}} - {{hourGame}})  </label> </h4>
+						</tr>
+						{{/games}}
+				</tr>
+				{{/schedules}}		
+		</div>	
+	</div>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
