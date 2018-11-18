@@ -64,11 +64,7 @@ h4{
 .form-registergame input[type=reset],
 .form-loadschedule input[type=text],
 .form-loadschedule input[type=submit],
-.form-loadschedule input[type=reset],
-.form-deleteschedule input[type=text],
-.form-deleteschedule input[type=numeric],
-.form-deleteschedule input[type=submit],
-.form-deleteschedule input[type=reset]{
+.form-loadschedule input[type=reset]{
     width: 100%;
     display: block;
     margin-bottom: 10px;

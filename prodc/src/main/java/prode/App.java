@@ -52,10 +52,6 @@ public class App {
 		get("/loadschedule", administratorControllers::loadschedule, new MustacheTemplateEngine());
 		
 		post("/registerschedule", administratorControllers::registerschedule, new MustacheTemplateEngine());
-
-		get("/removeschedule", administratorControllers::removeschedule, new MustacheTemplateEngine());
-
-		post("/deleteschedule", administratorControllers::deleteschedule, new MustacheTemplateEngine());
 		
 		get("/loadresult", administratorControllers::loadresult, new MustacheTemplateEngine());
 	

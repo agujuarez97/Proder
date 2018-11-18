@@ -23,11 +23,6 @@ public class administratorControllers{
 		Map m = new HashMap();
 		return new ModelAndView(m, "./views/registerschedule.html");
 	}
-
-	public static ModelAndView removeschedule(Request request, Response response){
-		Map m = new HashMap();
-		return new ModelAndView(m, "./views/deleteschedule.html");
-	}
 	
 	public static ModelAndView registergame(Request request, Response response){
 		Map m = new HashMap();		
@@ -87,41 +82,6 @@ public class administratorControllers{
 		} else {
 			m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Fixture inexistente.</div>");
 			return new ModelAndView(m, "./views/registerschedule.html");
-		}
-	}
-
-	public static ModelAndView deleteschedule(Request request, Response response){
-		Map m = new HashMap();
-		
-		List<Fixture> fixture = Fixture.findBySQL("select * from fixtures where name = ?;", request.queryParams("fixture"));
-		List<Schedure> schedules = Schedure.findBySQL("select * from schedures where id = ?;", request.queryParams("schedule"));
-
-		if(fixture.size() > 0 && schedules.size() > 0){
-			List<Schedure> schedule = Schedure.findBySQL("select * from schedures where fixture_id = ? and id = ?;", (int)fixture.get(0).get("id"), request.queryParams("schedule"));
-			if(schedule.size() > 0){
-				List<Game> games = Game.findBySQL("select * from games where schedure_id = ?;", (int)schedule.get(0).get("id"));
-				for (Game g: games) {
-					g.delete();
-				}
-				schedule.get(0).delete();
-				return new ModelAndView(m, "./views/administrator.html");
-			} else{
-				m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Schedule inexistente in this fixture.</div>");
-				return new ModelAndView(m, "./views/deleteschedule.html");
-			}
-		} else {
-			if(fixture.size() == 0){
-				m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Fixture inexistente.</div>");
-				return new ModelAndView(m, "./views/deleteschedule.html");
-			} else {
-				if(schedules.size() == 0){
-					m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Schedule inexistente in the Prode.</div>");
-					return new ModelAndView(m, "./views/deleteschedule.html");
-				} else {
-					m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Invalid data.</div>");
-					return new ModelAndView(m, "./views/deleteschedule.html");
-				}
-			}
 		}
 	}
 	
