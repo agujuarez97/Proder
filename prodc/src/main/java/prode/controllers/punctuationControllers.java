@@ -52,30 +52,32 @@ public class punctuationControllers{
 			List<Game> games = Game.where("id = ?;", prediction.get(i).get("game_id"));
 			Map a = new HashMap();
 			Game g = games.get(0);
-			Map m = g.getCompleteGame();
-			a.put("schedure_id", prediction.get(i).get("schedure_id"));
-			a.put("local",((Team)m.get("local")).getName());
-			a.put("golLocal", m.get("golLocal"));
-			a.put("visitante",((Team)m.get("visitante")).getName());
-			a.put("golVisitante", m.get("golVisitante"));
-			if (prediction.get(i).get("result") == m.get("result")){
-				a.put("acerto", "¡SI!");
-				if ((Integer)prediction.get(i).get("result") == 3)
-					a.put("prediction", "¡EMPATE!");
-				if ((Integer)prediction.get(i).get("result") == 1)
-					a.put("prediction", "¡GANA LOCAL!");
-				if ((Integer)prediction.get(i).get("result") == 2)
-					a.put("prediction", "¡GANA VISITANTE!");
-			} else {
-				a.put("acerto", "¡NO!");
-				if ((Integer)prediction.get(i).get("result") == 3)
-					a.put("prediction", "¡EMPATE!");
-				if ((Integer)prediction.get(i).get("result") == 1)
-					a.put("prediction", "¡GANA LOCAL!");
-				if ((Integer)prediction.get(i).get("result") == 2)
-					a.put("prediction", "¡GANA VISITANTE!");
+			if((Integer)g.getResult() != 0) {
+				Map m = g.getCompleteGame();
+				a.put("schedure_id", prediction.get(i).get("schedure_id"));
+				a.put("local",((Team)m.get("local")).getName());
+				a.put("golLocal", m.get("golLocal"));
+				a.put("visitante",((Team)m.get("visitante")).getName());
+				a.put("golVisitante", m.get("golVisitante"));
+				if (prediction.get(i).get("result") == m.get("result")){
+					a.put("acerto", "¡SI!");
+					if ((Integer)prediction.get(i).get("result") == 3)
+						a.put("prediction", "¡EMPATE!");
+					if ((Integer)prediction.get(i).get("result") == 1)
+						a.put("prediction", "¡GANA LOCAL!");
+					if ((Integer)prediction.get(i).get("result") == 2)
+						a.put("prediction", "¡GANA VISITANTE!");
+				} else {
+					a.put("acerto", "¡NO!");
+					if ((Integer)prediction.get(i).get("result") == 3)
+						a.put("prediction", "¡EMPATE!");
+					if ((Integer)prediction.get(i).get("result") == 1)
+						a.put("prediction", "¡GANA LOCAL!");
+					if ((Integer)prediction.get(i).get("result") == 2)
+						a.put("prediction", "¡GANA VISITANTE!");
+				}
+				p.add(a);
 			}
-			p.add(a);
 		}
 
 		rP.put("points", q);
