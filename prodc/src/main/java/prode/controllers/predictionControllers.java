@@ -26,20 +26,27 @@ public class predictionControllers{
 	public static ModelAndView schedule(Request request, Response response){
 		Map pred = new HashMap();
 		int fecha = Integer.parseInt(request.queryParams("id").toString());
-		List<Game> games = Game.findBySQL("select * from games where schedure_id = ?;", fecha);
+		List<Game> games = Game.findBySQL("select * from games where result_id = 0 and schedure_id = ?;", fecha);
 		List<Map> p = new ArrayList<Map>();
-		for(int i=0; i<games.size(); i++){
-			Map a = new HashMap();
-			Game g = games.get(i);
-			Map m = g.getCompleteGame();
-			a.put("idGame",m.get("id"));
-			a.put("local",((Team)m.get("local")).getName());
-			a.put("visitante",((Team)m.get("visitante")).getName());
-			p.add(a);
+		if(games.size()>0){
+			for(int i=0; i<games.size(); i++){
+				Map a = new HashMap();
+				Game g = games.get(i);
+				Map m = g.getCompleteGame();
+				a.put("idGame",m.get("id"));
+				a.put("local",((Team)m.get("local")).getName());
+				a.put("visitante",((Team)m.get("visitante")).getName());
+				p.add(a);
+			}
+			pred.put("idFecha", fecha);
+			pred.put("games", p);
+			return new ModelAndView(pred, "./views/schedule.html");
+		}else{
+			String error = "NO HAY PARTIDOS PARA PREDECIR EN LA FECHA";
+			pred.put("idFecha", fecha);
+			pred.put("error", error);
+			return new ModelAndView(pred, "./views/scheduleWithoutGames.html");
 		}
-		pred.put("idFecha", fecha);
-		pred.put("games", p);
-		return new ModelAndView(pred, "./views/schedule.html");
 	}
 
 	private static void registerPrediction(Request request, Response response){
