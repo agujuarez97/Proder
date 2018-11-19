@@ -55,7 +55,8 @@ h4{
 }
 
 .panel-success.panel {
-    background-color: lightblue;
+    background-color: #3b8ec2;
+    margin-left: 22px;
 }
 
 .profile-img-card {
