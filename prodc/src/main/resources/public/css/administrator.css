@@ -47,6 +47,18 @@ h4{
     border-radius: 50%;
 }
 
+input.transpaLocal {
+    background-color: transparent;
+    margin-left: 24px;
+    text-align: center;
+}
+
+input.transpaVisitante {
+    background-color: transparent;
+    text-align: center;
+}
+
+
 .form-signin #inputName,
 .form-signin #inputPassword {
     direction: ltr;
@@ -61,7 +73,8 @@ h4{
 .form-loadschedule input[type=submit],
 .form-loadschedule input[type=reset],
 .form-registergame input[type=submit],
-.form-registergame input[type=reset]{
+.form-registergame input[type=reset],
+.form-prediction input[type=submit]{
     width: 100%;
     display: block;
     margin-bottom: 10px;

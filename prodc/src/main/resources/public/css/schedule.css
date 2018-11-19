@@ -7,6 +7,11 @@ h1{
 	text-align: center;
 }
 
+input {
+    background-color: transparent;
+    border: none;
+}
+
 .card-container.card {
     max-width: 350px;
     margin-top: 5%;
