@@ -94,70 +94,44 @@ public class administratorControllers{
 	
 	public static ModelAndView loadresult(Request request, Response response){
 		Map m = new HashMap();
-		
-		List<Game> games = Game.findBySQL("select * from games where result_id = 0;");
-		if(games.size() > 0){
-			m.put("load", 1);
-			List<Map> p = new ArrayList<Map>();
-			for(int i=0; i<games.size(); i++){
-				Map a = new HashMap();
-				Game g = games.get(i);
-				Map m_game = g.getCompleteGame();
-				a.put("idGame",m_game.get("id"));
-				a.put("local",((Team)m_game.get("local")).getName());
-				a.put("visitante",((Team)m_game.get("visitante")).getName());
-				p.add(a);
-			}
-			m.put("games", p);
-		} else {
-			String msg = "No hay partidos disponibles en este momento...";
-			m.put("msg", msg);
-		}
-		
+		m = dataRegisterResult(null);
 		return new ModelAndView(m, "./views/registerresult.html");
 	}
 	
 	public static ModelAndView registerresultgame(Request request, Response response){
-		Map m = new HashMap();
+		int id_game = Integer.parseInt(request.queryParams("game"));
+		List<Game> games = Game.where("id = ?", id_game);
 		
-		int amount = request.queryParams().size() - 1;
-		String[] id = new String[amount];
-		String[] goalLocal = new String[amount];
-		String[] goalVisit = new String[amount];
-		
-		List<Game> games = Game.findBySQL("select * from games;");
-		int index = 0;
-		for(int i = 0; i < games.size(); i++){
-		
-			Map game = ((Game)games.get(i)).getCompleteGame();
-			int id_game = (int)game.get("id");
-			if(request.queryParams("id"+id_game) != null){
-				if(id_game == Integer.parseInt(request.queryParams("id"+id_game))){
-					id[index] = request.queryParams("id"+id_game);
-					goalLocal[index] = (String)request.queryParams("local"+id_game);
-					goalVisit[index] = (String)request.queryParams("visit"+id_game);
-					index++;
-				}
-			}
-		}
-		
-		for (int i = 0; i < id.length; i++) {
-			if(id[i] != null){
+		if(games.size() > 0){
+			if(request.queryParams("local") != null && request.queryParams("visit") != null){
+				Map m = new HashMap();
+				int goal_local = Integer.parseInt(request.queryParams("local"));
+				int goal_visitor = Integer.parseInt(request.queryParams("visit"));			
+				
 				int result = 0;
-				int gl = Integer.parseInt(goalLocal[i]);
-				int gv = Integer.parseInt(goalVisit[i]);
-				if(gl > gv){
+				if(goal_local > goal_visitor){
 					result = 1;
-				} else if(gl < gv){
+				} else if(goal_local < goal_visitor){
 					result = 2;
 				} else {
 					result = 3;
 				}
-				Game.update("result_id = ?, goalLocal = ?, goalVisitor = ?", "id = ?", result, gl, gv, id[i]);
-				administratorControllers.calculateScore(Integer.parseInt(id[i]), result);
+				Game.update("result_id = ?, goalLocal = ?, goalVisitor = ?", "id = ?", result, goal_local, goal_visitor, id_game);
+				administratorControllers.calculateScore(id_game, result);
+				
+				return new ModelAndView(m, "./views/administrator.html");
+			} else {
+				Map register_error = new HashMap();
+				String error = "<div class='alert alert-danger'><strong>Error!</strong> Team not found.</div>";
+				register_error = dataRegisterResult(error);
+				return new ModelAndView(register_error, "./views/registerresult.html");
 			}
+		} else {
+			Map register_error = new HashMap();
+			String error = "<div class='alert alert-danger'><strong>Error!</strong> Game not found.</div>";
+			register_error = dataRegisterResult(error);
+			return new ModelAndView(register_error, "./views/registerresult.html");
 		}
-		return new ModelAndView(m, "./views/administrator.html");
 	}
 
 	public static ModelAndView registerteam(Request request, Response response){
@@ -271,6 +245,31 @@ public class administratorControllers{
 			m.put("error", error);
 		}
 		
+		return m;
+	}
+	
+	private static Map dataRegisterResult(String error){
+		Map m = new HashMap();
+		List<Game> games = Game.findBySQL("select * from games where result_id = 0;");
+		if(games.size() > 0){
+			m.put("load", 1);
+			List<Map> p = new ArrayList<Map>();
+			for(int i=0; i<games.size(); i++){
+				Map a = new HashMap();
+				Game g = games.get(i);
+				Map m_game = g.getCompleteGame();
+				a.put("idGame",m_game.get("id"));
+				a.put("local",((Team)m_game.get("local")).getName());
+				a.put("visitante",((Team)m_game.get("visitante")).getName());
+				p.add(a);
+			}
+			m.put("games", p);
+		} else if(error != null){
+			m.put("error", error);
+		} else {
+			String msg = "No hay partidos disponibles en este momento...";
+			m.put("msg", msg);
+		}
 		return m;
 	}
 	
