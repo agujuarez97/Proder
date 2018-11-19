@@ -13,9 +13,9 @@
 
 	<div class="container">
 
-		<h1> BIENVENIDO AL AREA DE PUNTAJE POR FECHA </h1>
+		<h1> BIENVENIDO AL AREA PARA VERIFICAR SUS PREDICCIONES </h1>
 
-		<h4> EN ESTA SECCION SE MUESTRA SU PUNTUACION LOGRADA POR FECHA: </h4>
+		<h4> EN ESTA SECCION SE MUESTRA COMO FUERON SUS PREDICCIONES Y RESPECTIVO PUNTAJE: </h4>
 
 		<div class="card card-container">
 			
@@ -23,19 +23,44 @@
 
 			<table class="idTable">
 				<tr>
-					<th class="columna"> Fecha </th>
-					<th class="columna"> Puntos </th>
-				</tr>
-		
-				{{#punctuation}}
-				<tr>          
-					<td class="fila"> {{schedure_id}} </td>
-					<td class="fila"> {{points}} </td>
-				</tr>
-				{{/punctuation}}
+    				<th class="columna">Fechas</th>
+    				<th class="columna">Partido</th>
+    				<th class="columna">Tu Resultado</th>
+   		 			<th class="columna">Resultado Real</th>
+   		 			<th class="columna">¿Acerte?</th>
+  				</tr>
+
+  				{{#punctuation}}
+
+  				<tr>
+    				<th class="fila">
+    					{{schedure_id}}
+    				</th>
+    				<th class="fila">
+    					{{local}} vs {{visitante}}
+    				</th>
+    				<th class="fila">
+    					{{prediction}}
+    				</th>
+    				<th class="fila">
+    					{{local}} {{golLocal}} vs {{visitante}} {{golVisitante}}
+    				</th>
+    				<th class="fila">
+    					{{acerto}}
+    				</th>
+  				</tr>
+
+  				{{/punctuation}}
 
 			</table>
-		</div>
+			<div class="subCard card-container">
+			{{#points}}
+				<div class="panel panel-success">
+    				<div class="panel-body"> {{schedule}}: {{pointsSchedules}} Puntos </div>
+ 				 </div>        		
+        	{{/points}}
+        	</div>
+    	</div>
 	</div>
 
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

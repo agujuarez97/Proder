@@ -1,20 +1,38 @@
 body {
-  font-style: italic;
-  font-size:20%;
+    font-style: italic;
+    font-size:20%;
 }
 
 h1{
-	text-align: center;
+    text-align: center;
 }
 
 h4{
-	padding-top: 5%;
-	text-align: center;;
+    padding-top: 5%;
+    text-align: center;;
 }
 
 .card-container.card {
-    max-width: 350px;
+    max-width: 700px;
     margin-top: 5%;
+}
+
+.card-container.subCard {
+    max-width: 600px;
+    margin-top: 5%;
+}
+
+.subCard {
+    background-color: lightblue;
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .card {
@@ -30,6 +48,16 @@ h4{
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
+.panel {
+    max-width: 500px;
+    text-align: center;
+    font-size: 150%;
+}
+
+.panel-success.panel {
+    background-color: lightblue;
+}
+
 .profile-img-card {
     width: 96px;
     height: 96px;
@@ -42,13 +70,13 @@ h4{
 
 .columna,
 .fila {
+    text-align: center;
     border: 2px solid black;
 }
 
 .idTable{
-	width: 100%;
-	border: 2px solid black;
-	border-collapse: collapse;
-	border-spacing: 10px; 
+    width: 100%;
+    border: 2px solid black;
+    border-collapse: collapse;
+    border-spacing: 10px; 
 }
-
