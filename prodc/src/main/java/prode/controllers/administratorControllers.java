@@ -29,6 +29,26 @@ public class administratorControllers{
 		Map m = new HashMap();
 		return new ModelAndView(m, "./views/registerteam.html");
 	}
+
+	public static ModelAndView loadfixture(Request request, Response response){
+		Map m = new HashMap();
+		return new ModelAndView(m, "./views/registerfixture.html");
+	}
+
+	public static ModelAndView registerfixture(Request request, Response response){
+		Map m = new HashMap();
+
+		List<Fixture> fixtures = Fixture.where("name = ?;", request.queryParams("nameFixture"));
+
+		if(fixtures.size() == 0) {
+			Fixture fixture = new Fixture(request.queryParams("nameFixture"));
+			fixture.saveIt();
+			return new ModelAndView(m, "./views/administrator.html");
+		} else {
+			m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Fixture existing.</div>");
+			return new ModelAndView(m, "./views/registerfixture.html");
+		}
+	}
 	
 	public static ModelAndView registergame(Request request, Response response){
 		Map m = new HashMap();		

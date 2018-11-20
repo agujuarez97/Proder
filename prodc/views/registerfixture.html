@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Agregar Fixture </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/registrarse.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+
+	<div class="container">
+
+		<h4> POR FAVOR INGRESE EL NOMBRE DEL FIXTURE QUE DESEA AGREGAR: </h4>
+
+        <div class="card card-container">
+        
+            <form class="form-registerfixture" method="post" action="/registerfixture">
+
+                <label> Fixture: </label><input type="text" id="inputFixture" class="form-control" name="nameFixture" placeholder="Nombre Fixture" required>
+
+                <a href="/registerfixture"><input type="submit" class="btn btn-primary" value="Save"></a>
+
+                <input type="reset" class="btn btn-primary" value="Reset">
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+    </div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
