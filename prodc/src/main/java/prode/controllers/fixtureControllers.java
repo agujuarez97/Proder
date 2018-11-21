@@ -54,4 +54,60 @@ public class fixtureControllers {
 			return new ModelAndView(fix, "./views/searchFixture.html");
 		}
 	}
+	
+	public static ModelAndView subscribefixture(Request request, Response response){
+		Map m = new HashMap();
+		m = getDataFixture(null);
+		return new ModelAndView(m, "./views/subscribefixture.html");
+	}
+	
+	public static ModelAndView registersubscribefixture(Request request, Response response){
+		Map m = new HashMap();
+
+		if(request.queryParams("fixture") != null){
+			int id_user = (Integer)request.session().attribute("user");
+			List<User> users = User.where("id = ?", id_user);
+			Map data_user = ((User)users.get(0)).getCompleteUser();
+			
+			if(data_user.get("fixture") != null){
+				List<Prediction> predictions = Prediction.where("user_id = ?", id_user);
+				for(int i = 0; i < predictions.size(); i++){
+					Prediction prediction = predictions.get(i);
+					prediction.delete();
+				}
+				
+				List<Score> scores = Score.where("user_id = ?", id_user);
+				for(int i = 0; i < scores.size(); i++){
+					Score score = scores.get(i);
+					score.delete();
+				}
+			}
+			
+			User.update("fixture_id = ?", "id = ?", Integer.parseInt(request.queryParams("fixture")), id_user);
+			
+			return new ModelAndView(m, "./views/play.html");
+		} else {
+			String error = "<div class='alert alert-danger'><strong>Error!</strong> Fixture not found.</div>";
+			m = getDataFixture(error);
+			return new ModelAndView(m, "./views/subscribefixture.html");
+		}
+	}
+	
+	private static Map getDataFixture(String error){
+		Map m = new HashMap();
+		List<Fixture> fixtures = Fixture.findBySQL("select * from fixtures;");
+		List<Map> f = new ArrayList<Map>();
+		for(int i = 0; i < fixtures.size(); i++){
+			Map fixture = new HashMap();
+			Map data_fixture = ((Fixture)fixtures.get(i)).getCompleteFixture();
+			fixture.put("idFixture", data_fixture.get("id"));
+			fixture.put("nameFixture", data_fixture.get("name"));
+			f.add(fixture);
+		}
+		m.put("fixtures", f);
+		if(error != null){
+			m.put("error", error);
+		}
+		return m;
+	}
 }
