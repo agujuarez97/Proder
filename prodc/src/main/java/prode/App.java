@@ -68,5 +68,9 @@ public class App {
 		get("/loadfixture", administratorControllers::loadfixture, new MustacheTemplateEngine());
 		
 		post("/registerfixture", administratorControllers::registerfixture, new MustacheTemplateEngine());
+		
+		get("/subscribefixture", fixtureControllers::subscribefixture, new MustacheTemplateEngine());
+		
+		post("/registersubscribefixture", fixtureControllers::registersubscribefixture, new MustacheTemplateEngine());
 	}
 }
