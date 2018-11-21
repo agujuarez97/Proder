@@ -20,19 +20,25 @@
 			<form class="form-prediction" method="post" action="/loadPredictions">
 
 				<h1> FECHA <input id="idFecha" type="number" name="f" value="{{idFecha}}" size="1" readonly></h1>
-		
-				{{#games}}
-				<tr>
-					<input id="{{idGame}}" type="text" name="id{{idGame}}" value="{{idGame}}" size="1" readonly><label> {{local}} vs {{visitante}} </label> <br>
-					<input type="radio" name="partido{{idGame}}" value="1"> Gana {{local}} <br>
-					<input type="radio" name="partido{{idGame}}" value="2"> Gana {{visitante}} <br>
-					<input type="radio" name="partido{{idGame}}" value="3" checked> Empate <br><br>
-				</tr>
-				{{/games}}
+	
+				<select id="soflow-color" name="game">
+                
+         		       	{{#games}}
+                	
+             		   	<option value="{{idGame}}">{{local}} vs {{visitante}}</option>
+                	
+              		  	{{/games}}
+                
+				</select><br><br>
+
+				<label> Goles equipo local: </label><input class="transpaLocal" type="numeric" name="local" value="0" size="1"><br><br>
+				<label> Goles equipo visitante: </label><input class="transpaVisitante" type="numeric" name="visit" value="0" size="1"><br><br>
 
 				<a href="/loadPredictions"><input class="btn btn-primary" type="submit" value="Predictions"></a>
 
 			</form>
+
+			{{error}}
 			
 		</div>
 	
