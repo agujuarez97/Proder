@@ -15,19 +15,13 @@
 		
 		<h1> BIENVENIDO AL AREA DE JUGAR </h1>
 
-		<h4> SELECCIONE LA FECHA QUE DESEA PREDECIR: </h4>
-
 		<div class="card card-container">
 			
 			<img class="profile-img-card" src="/imagenes/prode.png">
 
 			<form class="form-play" method="get" >
 				
-				{{#fechas}}
-				
-					<a href="/schedule?id={{id}}"><input class="btn btn-primary" type="button" value="Schedule {{id}}"></a>
-				
-				{{/fechas}}
+				<a href="/prediction"><input class="btn btn-primary" type="button" value="Prediction"></a>
 
 				<a href="/punctuation"><input class="btn btn-primary" type="button" value="Punctuation"></a>
 
@@ -35,7 +29,7 @@
 
 				<a href="/searchFixture"><input class="btn btn-primary" type="button" value="Fixture"></a>
 				
-				<a href="/subscribefixture"><input class="btn btn-primary" type="button" value="Subscribe To A Fixture"></a>
+				<a href="/subscribefixture"><input class="btn btn-primary" type="button" value="Subscribe To A Fixture"></a><br><br>
 
 				<a href="/singoff"><input class="btn btn-primary" type="button" id="idCS" value="Sing Off"></a>
 

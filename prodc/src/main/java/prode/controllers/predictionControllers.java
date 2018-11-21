@@ -15,14 +15,9 @@ public class predictionControllers{
 
 		predictionControllers.registerPrediction(request, response);
 		Map completeschedule = new HashMap();
-		List <Schedure> schedules = Schedure.findBySQL("select * from schedures");
-		List <Map> mapschedule = new ArrayList <Map>();
-		for (Schedure s: schedules) {
-			mapschedule.add(s.getCompleteSchedule());
-		}
-
-		completeschedule.put("fechas", mapschedule);
-		return new ModelAndView(completeschedule, "./views/play.html");
+		completeschedule = mapSchedulesPredicition(request, response);
+		
+		return new ModelAndView(completeschedule, "./views/prediction.html");
 	}
 	
 	public static ModelAndView schedule(Request request, Response response){
@@ -62,6 +57,17 @@ public class predictionControllers{
 			return new ModelAndView(pred, "./views/scheduleWithoutGames.html");
 		}
 	}
+	
+	public static ModelAndView loadschedulesprediction(Request request, Response response){
+		Map m = new HashMap();
+		m = mapSchedulesPredicition(request, response);
+		return new ModelAndView(m, "./views/prediction.html");
+	}
+	
+	public static ModelAndView backToStart(Request request, Response response){
+		Map m = new HashMap();
+		return new ModelAndView(m, "./views/play.html");
+	}
 
 	private static void registerPrediction(Request request, Response response){
 
@@ -84,4 +90,31 @@ public class predictionControllers{
 		Prediction p = new Prediction(result, id_u, id_game, fecha);
 		p.saveIt();
 	}
+	
+	private static Map mapSchedulesPredicition(Request request, Response response){
+		Map m = new HashMap();
+		int id_user = (Integer)request.session().attribute("user");
+		List<User> users = User.where("id = ?", id_user);
+		Map user = ((User)users.get(0)).getCompleteUser();
+		if(user.get("fixture") != null){
+			Fixture user_fixture = (Fixture)user.get("fixture");
+			m.put("nameFixture", user_fixture.get("name"));
+		
+			List<Schedure> schedules = Schedure.where("fixture_id = ?", user_fixture.get("id"));
+			List<Map> mapschedule = new ArrayList <Map>();
+			for (int i = 0; i < schedules.size(); i++) {
+				Schedure s = (Schedure)schedules.get(i);
+				Map map_schedule = s.getCompleteSchedule();
+				Map schedule = new HashMap();
+				schedule.put("id", s.get("id"));
+				mapschedule.add(schedule);
+			}
+			m.put("fechas", mapschedule);
+		} else {
+			String msg = "Aún no realizó la subscripción a ningún fixture. Primero realice una subscripción para poder comenzar a jugar.";
+			m.put("msg", msg);
+		}
+		return m;
+	}
+	
 }

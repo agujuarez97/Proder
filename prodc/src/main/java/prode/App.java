@@ -72,5 +72,9 @@ public class App {
 		get("/subscribefixture", fixtureControllers::subscribefixture, new MustacheTemplateEngine());
 		
 		post("/registersubscribefixture", fixtureControllers::registersubscribefixture, new MustacheTemplateEngine());
+		
+		get("/prediction", predictionControllers::loadschedulesprediction, new MustacheTemplateEngine());
+		
+		get("/backToStart", predictionControllers::backToStart, new MustacheTemplateEngine());
 	}
 }
