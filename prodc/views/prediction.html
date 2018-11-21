@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title>Area Para Jugar</title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/play.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+
+	<div class="container">
+		
+		<h1> Fixture {{nameFixture}} </h1>
+
+		<h4> SELECCIONE LA FECHA QUE DESEA PREDECIR: </h4>
+
+		<div class="card card-container">
+			
+			<img class="profile-img-card" src="/imagenes/prode.png">
+
+			<form class="form-play" method="get">
+				
+				{{#fechas}}
+				
+					<a href="/schedule?id={{id}}"><input class="btn btn-primary" type="button" value="Schedule {{id}}"></a>
+				
+				{{/fechas}}
+				
+				{{^fechas}}
+				
+					<h4>{{msg}}</h4>
+				
+				{{/fechas}}
+				
+				<br><br>
+				
+				<a href="/backToStart"><input class="btn btn-primary" type="button" id="idCS" value="Back"></a>
+
+			</form>
+
+		</div>
+
+	</div>
+
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
