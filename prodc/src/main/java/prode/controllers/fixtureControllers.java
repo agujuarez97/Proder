@@ -13,12 +13,13 @@ public class fixtureControllers {
 
 	public static ModelAndView searchFixture(Request request, Response response){
 		Map m = new HashMap();
+		m = getDataFixture(null);
 		return new ModelAndView(m, "./views/searchFixture.html");
 	}
 
 	public static ModelAndView fixture(Request request, Response response){
 		Map fix = new HashMap();
-		List<Fixture> fixtures = Fixture.findBySQL("select * from fixtures where name = ?;", request.queryParams("fixture"));
+		List<Fixture> fixtures = Fixture.where("id = ?;", request.queryParams("fixture"));
 		if(fixtures.size() > 0){
 			Fixture fixture = fixtures.get(0);
 			List<Schedure> schedules = Schedure.findBySQL("select * from schedures where fixture_id = ?;", fixture.getId());

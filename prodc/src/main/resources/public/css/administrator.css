@@ -74,7 +74,8 @@ input.transpaVisitante {
 .form-loadschedule input[type=reset],
 .form-registergame input[type=submit],
 .form-registergame input[type=reset],
-.form-prediction input[type=submit]{
+.form-prediction input[type=submit],
+.form-seefixture input[type=submit]{
     width: 100%;
     display: block;
     margin-bottom: 10px;
