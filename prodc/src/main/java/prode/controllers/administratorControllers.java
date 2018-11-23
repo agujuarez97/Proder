@@ -315,5 +315,25 @@ public class administratorControllers{
 			return new ModelAndView(user, "./views/searchAddAdministrator.html");
 		}
 	}
+
+	public static ModelAndView searchRemoveAdministrator(Request request, Response response){
+		Map m = new HashMap();
+		return new ModelAndView(m, "./views/searchRemoveAdministrator.html");
+	}
+
+	public static ModelAndView removeAdministrator(Request request, Response response){
+		Map user = new HashMap();
+		List<User> users = User.where("username = ?", request.queryParams("removeAdministrator"));
+		if(users.size() > 0){
+			User userActual = users.get(0);
+			int id = (int)userActual.getId();
+			int range = 0;
+			User.update("range_user = ?", "id = ?", range, id);
+			return new ModelAndView(user, "./views/administrator.html");
+		}else{
+			user.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario inexistente.</div>");
+			return new ModelAndView(user, "./views/searchRemoveAdministrator.html");
+		}
+	}
 	
 }

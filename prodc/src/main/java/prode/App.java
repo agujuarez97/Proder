@@ -83,5 +83,9 @@ public class App {
 
 		post("/addAdministrator", administratorControllers::addAdministrator, new MustacheTemplateEngine());
 
+		get("/searchRemoveAdministrator", administratorControllers::searchRemoveAdministrator, new MustacheTemplateEngine());
+
+		post("/removeAdministrator", administratorControllers::removeAdministrator, new MustacheTemplateEngine());
+
 	}
 }
