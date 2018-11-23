@@ -19,6 +19,35 @@ public class predictionControllers{
 		
 		return new ModelAndView(completeschedule, "./views/prediction.html");
 	}
+
+	public static ModelAndView seePredictions(Request request, Response response){
+		Map re = new HashMap();
+		int id = (Integer)request.session().attribute("user");
+		List<Prediction> predictions = Prediction.where("user_id =?;", id);
+		List<Map> p = new ArrayList<Map>();
+
+		for(int i = 0; i < predictions.size(); i++){
+			List<Game> game = Game.where("id = ?;", predictions.get(i).get("game_id"));
+			Map a = new HashMap();
+			Game g = game.get(0);
+			Map m = g.getCompleteGame();
+			a.put("schedure_id", predictions.get(i).get("schedure_id"));
+			a.put("local",((Team)m.get("local")).getName());
+			a.put("golLocal", m.get("golLocal"));
+			a.put("visitante",((Team)m.get("visitante")).getName());
+			a.put("golVisitante", m.get("golVisitante"));
+			if ((Integer)predictions.get(i).get("result") == 3)
+				a.put("prediction", "¡EMPATE!");
+			if ((Integer)predictions.get(i).get("result") == 1)
+				a.put("prediction", "¡GANA LOCAL!");
+			if ((Integer)predictions.get(i).get("result") == 2)
+				a.put("prediction", "¡GANA VISITANTE!");
+
+			p.add(a);
+		}
+		re.put("predictions", p);
+		return new ModelAndView(re, "./views/seepredictions.html"); 
+	}
 	
 	public static ModelAndView schedule(Request request, Response response){
 		Map pred = new HashMap();

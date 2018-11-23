@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Puntuacion </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/punctuation.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+
+	<div class="container">
+
+		<h1> BIENVENIDO AL AREA PARA VER SUS PREDICCIONES </h1>
+
+		<div class="card card-container">
+
+			<table class="idTable">
+				<tr>
+    				<th class="columna">Fecha</th>
+    				<th class="columna">Partido</th>
+    				<th class="columna">Tu Resultado</th>
+  			</tr>
+
+  				{{#predictions}}
+
+  				<tr>
+    				<th class="fila">
+    					{{schedure_id}}
+    				</th>
+    				<th class="fila">
+    					{{local}} vs {{visitante}}
+    				</th>
+    				<th class="fila">
+    					{{prediction}}
+    				</th>
+  				</tr>
+
+  				{{/predictions}}
+
+			</table>
+	</div>
+
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</body>
+</html>

@@ -65,6 +65,8 @@ public class App {
 
 		post("/fixture", fixtureControllers::fixture, new MustacheTemplateEngine());
 
+		get("/seepredictions", predictionControllers::seePredictions, new MustacheTemplateEngine());
+
 		get("/loadfixture", administratorControllers::loadfixture, new MustacheTemplateEngine());
 		
 		post("/registerfixture", administratorControllers::registerfixture, new MustacheTemplateEngine());
