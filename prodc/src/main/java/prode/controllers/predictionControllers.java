@@ -31,7 +31,7 @@ public class predictionControllers{
 			Map a = new HashMap();
 			Game g = game.get(0);
 			Map m = g.getCompleteGame();
-			List<Schedure> schedules = Schedure.where("id = ?", prediction.get(i).get("schedure_id"));
+			List<Schedure> schedules = Schedure.where("id = ?", predictions.get(i).get("schedure_id"));
 			Map schedule = ((Schedure)schedules.get(0)).getCompleteSchedule();
 			a.put("schedule_num", schedule.get("number"));
 			a.put("local",((Team)m.get("local")).getName());
