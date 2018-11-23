@@ -16,6 +16,11 @@ public class Schedure extends Model{
 		 * Evaluate the validity of the fixture.
 		 */
 		validateNumericalityOf("fixture_id").allowNull(false);
+		
+		/**
+		 * Evaluate the validity of the number.
+		 */
+		validateNumericalityOf("num").allowNull(false);
 	}
 
 	/**
@@ -29,8 +34,16 @@ public class Schedure extends Model{
 	 * Builder.
 	 * @param id
 	 */
-	public Schedure(int id){
+	public Schedure(int id, int num){
 		set("fixture_id", id);
+		set("num", num);
+	}
+	
+	/**
+	* @return the number of the schedule
+	*/
+	public Integer getNumber(){
+		return this.getInteger("num");
 	}
 
 	/**
@@ -46,6 +59,7 @@ public class Schedure extends Model{
 	public Map getCompleteSchedule(){
 		Map m = new HashMap();
 		m.put("id",this.getId());
+		m.put("number",this.getNumber());
 		m.put("fixture", this.getFixture());
 		return m;
 	}

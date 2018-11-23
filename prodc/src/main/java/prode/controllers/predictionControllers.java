@@ -23,6 +23,8 @@ public class predictionControllers{
 	public static ModelAndView schedule(Request request, Response response){
 		Map pred = new HashMap();
 		int fecha = Integer.parseInt(request.queryParams("id").toString());
+		List<Schedure> schedules = Schedure.where("id = ?", fecha);
+		Map schedule = ((Schedure)schedules.get(0)).getCompleteSchedule();
 		List<Game> games = Game.findBySQL("select * from games where result_id = 0 and schedure_id = ?;", fecha);
 		List<Map> p = new ArrayList<Map>();
 		int count = 0;
@@ -41,18 +43,21 @@ public class predictionControllers{
 				}
 			}
 			if(count == 0) {
-				String error = "TODOS LOS PARTIDOS DE ESTA FEHCA YA FUERON PREDECIDOS";
+				String error = "TODOS LOS PARTIDOS DE ESTA FECHA YA FUERON PREDECIDOS";
 				pred.put("idFecha", fecha);
+				pred.put("num", schedule.get("number"));
 				pred.put("error", error);
 				return new ModelAndView(pred, "./views/scheduleWithoutGames.html");
 			} else {
 				pred.put("idFecha", fecha);
+				pred.put("num", schedule.get("number"));
 				pred.put("games", p);
 				return new ModelAndView(pred, "./views/schedule.html");
 			}
 		}else{
 			String error = "NO HAY PARTIDOS PARA PREDECIR EN LA FECHA";
 			pred.put("idFecha", fecha);
+			pred.put("num", schedule.get("number"));
 			pred.put("error", error);
 			return new ModelAndView(pred, "./views/scheduleWithoutGames.html");
 		}
@@ -72,11 +77,12 @@ public class predictionControllers{
 	private static void registerPrediction(Request request, Response response){
 
 		int id_u = (Integer)request.session().attribute("user");
-		int fecha = Integer.parseInt(request.queryParams("f").toString());
 		int id_game = Integer.parseInt(request.queryParams("game").toString());
 		int goal_local = Integer.parseInt(request.queryParams("local").toString());
 		int goal_visitor = Integer.parseInt(request.queryParams("visit").toString());
 		List<Game> games = Game.where("id = ?;", id_game);
+		Map game = ((Game)games.get(0)).getCompleteGame();
+		int fecha = (int)((Schedure)game.get("schedule")).getId();
 
 		int result = 0;
 		if(goal_local > goal_visitor){
@@ -107,6 +113,7 @@ public class predictionControllers{
 				Map map_schedule = s.getCompleteSchedule();
 				Map schedule = new HashMap();
 				schedule.put("id", s.get("id"));
+				schedule.put("num", s.get("num"));
 				mapschedule.add(schedule);
 			}
 			m.put("fechas", mapschedule);

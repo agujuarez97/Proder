@@ -42,7 +42,9 @@ public class punctuationControllers{
 		List<Score> scores = Score.where("user_id = ? order by schedure_id asc;", id_u);
 		for(int j = 0; j < scores.size(); j++){
 			Map b = new HashMap();
-			b.put("schedule", "Puntos Fecha " + (Integer)scores.get(j).get("schedure_id"));
+			List<Schedure> schedules = Schedure.where("id = ?", scores.get(j).get("schedure_id"));
+			Map schedule = ((Schedure)schedules.get(0)).getCompleteSchedule();
+			b.put("schedule", "Puntos Fecha " + schedule.get("number"));
 			b.put("pointsSchedules", (Integer)scores.get(j).get("points"));
 			q.add(b);
 		}
@@ -54,7 +56,9 @@ public class punctuationControllers{
 			Game g = games.get(0);
 			if((Integer)g.getResult() != 0) {
 				Map m = g.getCompleteGame();
-				a.put("schedure_id", prediction.get(i).get("schedure_id"));
+				List<Schedure> schedules = Schedure.where("id = ?", prediction.get(i).get("schedure_id"));
+				Map schedule = ((Schedure)schedules.get(0)).getCompleteSchedule();
+				a.put("schedule_num", schedule.get("number"));
 				a.put("local",((Team)m.get("local")).getName());
 				a.put("golLocal", m.get("golLocal"));
 				a.put("visitante",((Team)m.get("visitante")).getName());
