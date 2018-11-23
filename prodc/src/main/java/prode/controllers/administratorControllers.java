@@ -297,10 +297,10 @@ public class administratorControllers{
 		Map m = new HashMap();
 		return new ModelAndView(m, "./views/searchAddAdministrator.html");
 	}
-
+	
 	public static ModelAndView addAdministrator(Request request, Response response){
 		Map user = new HashMap();
-		List<User> users = User.findBySQL("select * from users where username = ?;", request.queryParams("addAdministrator"));
+		List<User> users = User.where("username = ?", request.queryParams("addAdministrator"));
 		if(users.size() > 0){
 			User userActual = users.get(0);
 			int id = (int)userActual.getId();
