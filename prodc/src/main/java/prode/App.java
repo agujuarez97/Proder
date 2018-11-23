@@ -76,5 +76,10 @@ public class App {
 		get("/prediction", predictionControllers::loadschedulesprediction, new MustacheTemplateEngine());
 		
 		get("/backToStart", predictionControllers::backToStart, new MustacheTemplateEngine());
+
+		get("/searchAddAdministrator", administratorControllers::searchAddAdministrator, new MustacheTemplateEngine());
+
+		post("/addAdministrator", administratorControllers::addAdministrator, new MustacheTemplateEngine());
+
 	}
 }
