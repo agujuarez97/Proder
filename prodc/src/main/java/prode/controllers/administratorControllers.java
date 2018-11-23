@@ -63,10 +63,11 @@ public class administratorControllers{
 				List<Fixture> fixtures = Fixture.where("id = ?", request.queryParams("fixture"));
 		
 				if(fixtures.size() > 0){
-					List<Schedure> schedule = Schedure.where("id = ? and fixture_id = ?", request.queryParams("schedule"), request.queryParams("fixture"));
+					List<Schedure> schedule = Schedure.where("num = ? and fixture_id = ?", request.queryParams("schedule"), request.queryParams("fixture"));
 				
 					if(schedule.size() > 0){	
-						Game game = new Game(request.queryParams("date").toString(), request.queryParams("hour").toString(), 0, 0, (int)team_local.get("id"), (int)team_visitor.get("id"), Integer.parseInt(request.queryParams("schedule").toString()), 0);
+						Map s = ((Schedure)schedule.get(0)).getCompleteSchedule();
+						Game game = new Game(request.queryParams("date").toString(), request.queryParams("hour").toString(), 0, 0, (int)team_local.get("id"), (int)team_visitor.get("id"), (int)s.get("id"), 0);
 						game.saveIt();
 						return new ModelAndView(m, "./views/administrator.html");
 					} else {
@@ -100,7 +101,9 @@ public class administratorControllers{
 		
 		List<Fixture> fixture = Fixture.where("id = ?;", request.queryParams("fixture"));
 		if(fixture.size() > 0){
-			Schedure schedule = new Schedure((int)fixture.get(0).get("id"));
+			int id_fixture = (int)fixture.get(0).get("id");
+			List<Schedure> schedules = Schedure.where("fixture_id = ?", id_fixture);
+			Schedure schedule = new Schedure(id_fixture, schedules.size()+1);
 			schedule.saveIt();
 			return new ModelAndView(m, "./views/administrator.html");
 			
@@ -240,12 +243,12 @@ public class administratorControllers{
 		}
 		m.put("teams", t);
 		
-		List<Schedure> schedules = Schedure.findBySQL("select * from schedures;");
+		List<Schedure> schedules = Schedure.findBySQL("select distinct num from schedures;");
 		List<Map> s = new ArrayList<Map>();
 		for(int i = 0; i < schedules.size(); i++){
 			Map data_schedule = new HashMap();
 			Map schedule = schedules.get(i).getCompleteSchedule();
-			data_schedule.put("idSchedule", schedule.get("id"));
+			data_schedule.put("num", schedule.get("number"));
 			s.add(data_schedule);
 		}
 		m.put("schedules", s);

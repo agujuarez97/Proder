@@ -43,7 +43,7 @@ public class fixtureControllers {
 					a.put("hourGame", dataGame.get("hour"));
 					p.add(a);
 				}		
-				gamesScehdule.put("idSchedule", dataSchedule.get("id"));
+				gamesScehdule.put("num", dataSchedule.get("number"));
 				gamesScehdule.put("games", p);
 				schedule.add(gamesScehdule);
 			}
