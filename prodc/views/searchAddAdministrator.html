@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Buscar Usuario </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/registrarse.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+
+	<div class="container">
+
+		<h4> POR FAVOR INGRESE EL NOMBRE DEL USUARIO: </h4>
+
+        <div class="card card-container">
+        
+            <form class="form-registergame" method="post" action="/addAdministrator">
+
+                <label> Usuario: </label><input type="text" id="inputTeam" class="form-control" name="addAdministrator" placeholder="Name User" required>
+
+                <a href="/addAdministrator"><input type="submit" class="btn btn-primary" value="Accept"></a>
+
+                <input type="reset" class="btn btn-primary" value="Reset">
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+    </div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

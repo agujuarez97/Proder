@@ -64,5 +64,10 @@ public class App {
 		get("/searchFixture", fixtureControllers::searchFixture, new MustacheTemplateEngine());
 
 		post("/fixture", fixtureControllers::fixture, new MustacheTemplateEngine());
+
+		get("/searchAddAdministrator", administratorControllers::searchAddAdministrator, new MustacheTemplateEngine());
+
+		post("/addAdministrator", administratorControllers::addAdministrator, new MustacheTemplateEngine());
+
 	}
 }
