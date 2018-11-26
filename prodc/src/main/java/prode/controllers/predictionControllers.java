@@ -1,3 +1,8 @@
+/**
+ * Title: predictionControllers
+ * Description: This class controls all the actions belonging to an prediction
+ * @author: Agustin Juarez, Gaston Plisga, Matias Suarez  
+*/
 package controllers;
 
 import spark.Request;
@@ -11,8 +16,11 @@ import models.*;
 
 public class predictionControllers{
 
+	/**
+	* Description: This method registers a new prediction and then renders prediction.html
+	* @return: ModelAndView
+	*/
 	public static ModelAndView loadPrediction(Request request, Response response){
-
 		predictionControllers.registerPrediction(request, response);
 		Map completeschedule = new HashMap();
 		completeschedule = mapSchedulesPredicition(request, response);
@@ -20,6 +28,29 @@ public class predictionControllers{
 		return new ModelAndView(completeschedule, "./views/prediction.html");
 	}
 
+	/**
+	* Description: This method redirects the prediction.html view with the corresponding values
+	* @return: ModelAndView
+	*/
+	public static ModelAndView loadschedulesprediction(Request request, Response response){
+		Map m = new HashMap();
+		m = mapSchedulesPredicition(request, response);
+		return new ModelAndView(m, "./views/prediction.html");
+	}
+	
+	/**
+	* Description: This method redirects the play.html view
+	* @return: ModelAndView
+	*/
+	public static ModelAndView backToStart(Request request, Response response){
+		Map m = new HashMap();
+		return new ModelAndView(m, "./views/play.html");
+	}
+
+	/**
+	* Description: This method allows to see all the predictions made by a user
+	* @return: ModelAndView
+	*/
 	public static ModelAndView seePredictions(Request request, Response response){
 		Map re = new HashMap();
 		int id = (Integer)request.session().attribute("user");
@@ -51,6 +82,10 @@ public class predictionControllers{
 		return new ModelAndView(re, "./views/seepredictions.html"); 
 	}
 	
+	/**
+	* Description: This method this method renders the corresponding schedule with its matches
+	* @return: ModelAndView
+	*/
 	public static ModelAndView schedule(Request request, Response response){
 		Map pred = new HashMap();
 		int fecha = Integer.parseInt(request.queryParams("id").toString());
@@ -93,18 +128,11 @@ public class predictionControllers{
 			return new ModelAndView(pred, "./views/scheduleWithoutGames.html");
 		}
 	}
-	
-	public static ModelAndView loadschedulesprediction(Request request, Response response){
-		Map m = new HashMap();
-		m = mapSchedulesPredicition(request, response);
-		return new ModelAndView(m, "./views/prediction.html");
-	}
-	
-	public static ModelAndView backToStart(Request request, Response response){
-		Map m = new HashMap();
-		return new ModelAndView(m, "./views/play.html");
-	}
 
+	/**
+	* Description: This method register a prediction
+	* @return: ModelAndView
+	*/
 	private static void registerPrediction(Request request, Response response){
 
 		int id_u = (Integer)request.session().attribute("user");
@@ -128,6 +156,9 @@ public class predictionControllers{
 		p.saveIt();
 	}
 	
+	/** 
+	* @return: ModelAndView
+	*/
 	private static Map mapSchedulesPredicition(Request request, Response response){
 		Map m = new HashMap();
 		int id_user = (Integer)request.session().attribute("user");

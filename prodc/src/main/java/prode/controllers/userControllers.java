@@ -1,3 +1,8 @@
+/**
+ * Title: userControllers
+ * Description: This class controls all the actions belonging to an user
+ * @author: Agustin Juarez, Gaston Plisga, Matias Suarez  
+*/
 package controllers;
 
 import models.*;
@@ -10,11 +15,19 @@ import java.util.*;
 
 public class userControllers{
 	
+	/**
+	* Description: This method redirects the registrarse.html view
+	* @return: ModelAndView
+	*/
 	public static ModelAndView registrarse(Request request, Response response){
 		Map map2 = new HashMap();
 		return new ModelAndView(map2, "./views/registrarse.html");
 	}		
 
+	/**
+	* Description: This method registers the user and if everything went OK it redirects it to the view start.html and but to the view register.html 
+	* @return: ModelAndView
+	*/
 	public static ModelAndView registrar(Request request, Response response){
 		User newUser = new User();
 		Map result = userControllers.registerUser(request,response);
@@ -25,6 +38,10 @@ public class userControllers{
 		return new ModelAndView(result, "./views/inicio.html");
 	}
 
+	/**
+	* Description: This method checks that the user's data is correct, if everything went OK it redirects it to the play.html view but to the inicio.html view
+	* @return: ModelAndView
+	*/
 	public static ModelAndView login(Request request, Response response){
 		User user = new User();
 		Map loginResult = userControllers.checkUser(request, response);
@@ -53,6 +70,10 @@ public class userControllers{
 		return new ModelAndView(loginResult,"./views/inicio.html");
 	}
 
+	/**
+	* Description: This method closes the user's session 
+	* @return: ModelAndView
+	*/
 	public static ModelAndView singoff(Request request, Response response){
 		Map cs = new HashMap();
 		if(request.session().attribute("user") != null){
@@ -85,16 +106,16 @@ public class userControllers{
 		    String e = (String)u.get("username");
 		    String p = (String)u.get("password");
 		    if(e.equals(result[0]) && !(p.equals(result[1]))){
-		    	questt.put("error","<div class='alert alert-danger'><strong>Error!</strong> Nombre de usuario existente.</div>");
+		    	questt.put("error","<div class='alert alert-danger'><strong>Error!</strong> Existing username.</div>");
 		        return questt;
 		    }
 		    else{
 		    	if(!(e.equals(result[0])) && p.equals(result[1])){
-		      		questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Contraseña existente.</div>");
+		      		questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Existing password.</div>");
 		      		return questt;
 		      	}
 		      	else{
-		      		questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario existente.</div>");
+		      		questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Existing user.</div>");
 		      		return questt;
 		      	}
 		    }
@@ -125,12 +146,12 @@ public class userControllers{
 			else{
 				if(!(e.equals(result[0])) && p.equals(result[1])){
 					questt.put("user", 0);
-					questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario incorrecto.</div>");
+					questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> User not valid.</div>");
 					return questt;
 				}
 				else{
 					questt.put("user", 0);
-					questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Contraseña incorrecta.</div>");
+					questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Incorrect password.</div>");
 					return questt;
 				}
 			}
@@ -138,7 +159,7 @@ public class userControllers{
 		}
 		else{
 			questt.put("user", 0);
-			questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario no existente.</div>");
+			questt.put("error", "<div class='alert alert-danger'><strong>Error!</strong> User not valid.</div>");
 			return questt;
 		}
 	}

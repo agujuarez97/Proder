@@ -1,3 +1,8 @@
+/**
+ * Title: punctuationControllers
+ * Description: This class controls all the actions belonging to the punctuation
+ * @author: Agustin Juarez, Gaston Plisga, Matias Suarez  
+*/
 package controllers;
 
 import spark.Request;
@@ -16,6 +21,10 @@ import models.*;
 
 public class punctuationControllers{
 
+	/**
+	* Description: This method of responsible for obtaining the ranking of the game
+	* @return: ModelAndView
+	*/
 	public static ModelAndView global(Request request, Response response){
 		Map rG = new HashMap();
 		List<Score> top = Score.findBySQL("select user_id, sum(points) as points from scores group by user_id order by points desc;");
@@ -33,6 +42,10 @@ public class punctuationControllers{
 		return new ModelAndView(rG, "./views/global.html");
 	}
 	
+	/**
+	* Description: This method calculates how it went in the predictions to the user and what was his score for each schedule 
+	* @return: ModelAndView
+	*/
 	public static ModelAndView punctuation(Request request, Response response){
 		Map rP = new HashMap();
 		int id_u = (Integer)request.session().attribute("user");

@@ -40,6 +40,9 @@ public class Team extends Model{
     return this.getString("name");
   }
 
+  /**
+  * @return all the information of the team
+  */
   public Map getCompleteTeam(){
     Map m = new HashMap();
     m.put("id", this.getId());

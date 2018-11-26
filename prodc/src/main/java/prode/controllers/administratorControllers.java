@@ -1,3 +1,8 @@
+/**
+ * Title: administratorControllers
+ * Description: This class controls all the actions belonging to an administrator user
+ * @author: Agustin Juarez, Gaston Plisga, Matias Suarez  
+*/
 package controllers;
 
 import models.*;
@@ -13,28 +18,76 @@ import java.time.LocalDateTime;
 
 public class administratorControllers{
 
+	/**
+	* Description: This method redirects the registergame.html view with the corresponding values
+	* @return: ModelAndView
+	*/
 	public static ModelAndView loadgame(Request request, Response response){
 		Map m = new HashMap();
 		m = dataRegisterGame(null);
 		return new ModelAndView(m, "./views/registergame.html");
 	}
 
+	/**
+	* Description: This method redirects the registerschedule.html view with the corresponding values
+	* @return: ModelAndView
+	*/
 	public static ModelAndView loadschedule(Request request, Response response){
 		Map m = new HashMap();
 		m = dataRegisterSchedule(null);
 		return new ModelAndView(m, "./views/registerschedule.html");
 	}
 
+	/**
+	* Description: This method redirects the registerteam.html view
+	* @return: ModelAndView
+	*/
 	public static ModelAndView loadteam(Request request, Response response){
 		Map m = new HashMap();
 		return new ModelAndView(m, "./views/registerteam.html");
 	}
 
+	/**
+	* Description: This method redirects the registerfixture.html view
+	* @return: ModelAndView
+	*/
 	public static ModelAndView loadfixture(Request request, Response response){
 		Map m = new HashMap();
 		return new ModelAndView(m, "./views/registerfixture.html");
 	}
 
+	/**
+	* Description: This method redirects the searchAddAdministrator.html
+	* @return: ModelAndView
+	*/
+	public static ModelAndView searchAddAdministrator(Request request, Response response){
+		Map m = new HashMap();
+		return new ModelAndView(m, "./views/searchAddAdministrator.html");
+	}
+
+	/**
+	* Description: This method redirects the searchRemoveAdministrator.html
+	* @return: ModelAndView
+	*/
+	public static ModelAndView searchRemoveAdministrator(Request request, Response response){
+		Map m = new HashMap();
+		return new ModelAndView(m, "./views/searchRemoveAdministrator.html");
+	}
+
+	/**
+	* Description: This method redirects the registerresult.html view with the corresponding values
+	* @return: ModelAndView
+	*/
+	public static ModelAndView loadresult(Request request, Response response){
+		Map m = new HashMap();
+		m = dataRegisterResult(null);
+		return new ModelAndView(m, "./views/registerresult.html");
+	}
+
+	/**
+	* Description: This method performs all the corresponding actions to register a new fixture
+	* @return: ModelAndView
+	*/
 	public static ModelAndView registerfixture(Request request, Response response){
 		Map m = new HashMap();
 
@@ -45,11 +98,15 @@ public class administratorControllers{
 			fixture.saveIt();
 			return new ModelAndView(m, "./views/administrator.html");
 		} else {
-			m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Fixture existing.</div>");
+			m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Existing fixture.</div>");
 			return new ModelAndView(m, "./views/registerfixture.html");
 		}
 	}
 	
+	/**
+	* Description: This method performs all the corresponding actions to register a new game
+	* @return: ModelAndView
+	*/
 	public static ModelAndView registergame(Request request, Response response){
 		Map m = new HashMap();		
 		List<Team> local = Team.where("id = ?;", request.queryParams("local"));
@@ -72,7 +129,7 @@ public class administratorControllers{
 						return new ModelAndView(m, "./views/administrator.html");
 					} else {
 						Map register_error = new HashMap();
-						String error = "<div class='alert alert-danger'><strong>Error!</strong> Schedule not found.</div>";
+						String error = "<div class='alert alert-danger'><strong>Error!</strong> Scehdule not found.</div>";
 						register_error = dataRegisterGame(error);
 						return new ModelAndView(register_error, "./views/registergame.html");
 					}
@@ -84,7 +141,7 @@ public class administratorControllers{
 				}
 			} else {
 				Map register_error = new HashMap();
-				String error = "<div class='alert alert-danger'><strong>Error!</strong> The teams can not be the same.</div>";
+				String error = "<div class='alert alert-danger'><strong>Error!</strong> Teams can not be the same.</div>";
 				register_error = dataRegisterGame(error);
 				return new ModelAndView(register_error, "./views/registergame.html");
 			}
@@ -96,6 +153,10 @@ public class administratorControllers{
 		}
 	}
 
+	/**
+	* Description: This method performs all the corresponding actions to register a new schedule
+	* @return: ModelAndView
+	*/
 	public static ModelAndView registerschedule(Request request, Response response){
 		Map m = new HashMap();
 		
@@ -109,18 +170,16 @@ public class administratorControllers{
 			
 		} else {
 			Map register_error = new HashMap();
-			String error = "<div class='alert alert-danger'><strong>Error!</strong> Fixture inexistente.</div>";
+			String error = "<div class='alert alert-danger'><strong>Error!</strong> Fixture not found.</div>";
 			register_error = dataRegisterSchedule(error);
 			return new ModelAndView(register_error, "./views/registerschedule.html");
 		}
 	}
 	
-	public static ModelAndView loadresult(Request request, Response response){
-		Map m = new HashMap();
-		m = dataRegisterResult(null);
-		return new ModelAndView(m, "./views/registerresult.html");
-	}
-	
+	/**
+	* Description: This method performs all the corresponding actions to register a new result
+	* @return: ModelAndView
+	*/
 	public static ModelAndView registerresultgame(Request request, Response response){
 		int id_game = Integer.parseInt(request.queryParams("game"));
 		List<Game> games = Game.where("id = ?", id_game);
@@ -157,6 +216,10 @@ public class administratorControllers{
 		}
 	}
 
+	/**
+	* Description: This method performs all the corresponding actions to register a new team
+	* @return: ModelAndView
+	*/
 	public static ModelAndView registerteam(Request request, Response response){
 		Map m = new HashMap();
 
@@ -166,11 +229,15 @@ public class administratorControllers{
 			team.saveIt();
 			return new ModelAndView(m, "./views/administrator.html");
 		} else {
-			m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Team existing.</div>");
+			m.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Existing team.</div>");
 			return new ModelAndView(m, "./views/registerteam.html");
 		}
 	}
 	
+	/**
+	* Description: This method performs all the corresponding actions to calculate score 
+	* @return: ModelAndView
+	*/
 	private static void calculateScore(int id_game, int result){
 		List<Game> games = Game.where("id = ?", id_game);
 		Map game = games.get(0).getCompleteGame();
@@ -204,6 +271,10 @@ public class administratorControllers{
 		}
 	}
 
+	/**
+	* Description: This method returns all the values to register a new schedule
+	* @return: ModelAndView
+	*/
 	private static Map dataRegisterSchedule(String error){
 		Map m = new HashMap();
 		
@@ -225,6 +296,10 @@ public class administratorControllers{
 		return m;
 	}
 	
+	/**
+	* Description: This method returns all the values to register a new game
+	* @return: ModelAndView
+	*/
 	private static Map dataRegisterGame(String error){
 		Map m = new HashMap();
 		
@@ -271,6 +346,10 @@ public class administratorControllers{
 		return m;
 	}
 	
+	/**
+	* Description: This method returns all the values to register a new result
+	* @return: ModelAndView
+	*/
 	private static Map dataRegisterResult(String error){
 		Map m = new HashMap();
 		List<Game> games = Game.findBySQL("select * from games where result_id = 0;");
@@ -295,12 +374,11 @@ public class administratorControllers{
 		}
 		return m;
 	}
-
-	public static ModelAndView searchAddAdministrator(Request request, Response response){
-		Map m = new HashMap();
-		return new ModelAndView(m, "./views/searchAddAdministrator.html");
-	}
 	
+	/**
+	* Description: This method allows you to add a new administrator user to the system
+	* @return: ModelAndView
+	*/
 	public static ModelAndView addAdministrator(Request request, Response response){
 		Map user = new HashMap();
 		List<User> users = User.where("username = ?", request.queryParams("addAdministrator"));
@@ -311,16 +389,15 @@ public class administratorControllers{
 			User.update("range_user = ?", "id = ?", range, id);
 			return new ModelAndView(user, "./views/administrator.html");
 		}else{
-			user.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario inexistente.</div>");
+			user.put("error", "<div class='alert alert-danger'><strong>Error!</strong> User not found.</div>");
 			return new ModelAndView(user, "./views/searchAddAdministrator.html");
 		}
 	}
 
-	public static ModelAndView searchRemoveAdministrator(Request request, Response response){
-		Map m = new HashMap();
-		return new ModelAndView(m, "./views/searchRemoveAdministrator.html");
-	}
-
+	/**
+	* Description: This method allows to eliminate a user administrator of the system
+	* @return: ModelAndView
+	*/
 	public static ModelAndView removeAdministrator(Request request, Response response){
 		Map user = new HashMap();
 		List<User> users = User.where("username = ?", request.queryParams("removeAdministrator"));
@@ -331,7 +408,7 @@ public class administratorControllers{
 			User.update("range_user = ?", "id = ?", range, id);
 			return new ModelAndView(user, "./views/administrator.html");
 		}else{
-			user.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario inexistente.</div>");
+			user.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Usuario not found.</div>");
 			return new ModelAndView(user, "./views/searchRemoveAdministrator.html");
 		}
 	}

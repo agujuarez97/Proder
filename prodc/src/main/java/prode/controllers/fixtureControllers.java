@@ -1,3 +1,8 @@
+/**
+ * Title: fixtureControllers
+ * Description: This class controls all the actions belonging to an fixture
+ * @author: Agustin Juarez, Gaston Plisga, Matias Suarez  
+*/
 package controllers;
 
 import spark.Request;
@@ -11,12 +16,30 @@ import models.*;
 
 public class fixtureControllers {
 
+	/**
+	* Description: This method redirects the searchFixture.html view
+	* @return: ModelAndView
+	*/
 	public static ModelAndView searchFixture(Request request, Response response){
 		Map m = new HashMap();
 		m = getDataFixture(null);
 		return new ModelAndView(m, "./views/searchFixture.html");
 	}
 
+	/**
+	* Description: This method redirects the subscribefixture.html view with the corresponding values
+	* @return: ModelAndView
+	*/
+	public static ModelAndView subscribefixture(Request request, Response response){
+		Map m = new HashMap();
+		m = getDataFixture(null);
+		return new ModelAndView(m, "./views/subscribefixture.html");
+	}
+
+	/**
+	* Description: This method is in charge of searching all the schedules of a fixture and the complete data of each date
+	* @return: ModelAndView
+	*/
 	public static ModelAndView fixture(Request request, Response response){
 		Map fix = new HashMap();
 		List<Fixture> fixtures = Fixture.where("id = ?;", request.queryParams("fixture"));
@@ -51,17 +74,15 @@ public class fixtureControllers {
 			fix.put("schedules", schedule);
 			return new ModelAndView(fix, "./views/fixture.html");
 		} else {
-			fix.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Fixture inexistente.</div>");
+			fix.put("error", "<div class='alert alert-danger'><strong>Error!</strong> Fixture not found.</div>");
 			return new ModelAndView(fix, "./views/searchFixture.html");
 		}
 	}
 	
-	public static ModelAndView subscribefixture(Request request, Response response){
-		Map m = new HashMap();
-		m = getDataFixture(null);
-		return new ModelAndView(m, "./views/subscribefixture.html");
-	}
-	
+	/**
+	* Description: This method is responsible for registering the user to a fixture
+	* @return: ModelAndView
+	*/
 	public static ModelAndView registersubscribefixture(Request request, Response response){
 		Map m = new HashMap();
 
@@ -94,6 +115,10 @@ public class fixtureControllers {
 		}
 	}
 	
+	/**
+	* Description: This method obtains the data of a fixture
+	* @return: ModelAndView
+	*/
 	private static Map getDataFixture(String error){
 		Map m = new HashMap();
 		List<Fixture> fixtures = Fixture.findBySQL("select * from fixtures;");
