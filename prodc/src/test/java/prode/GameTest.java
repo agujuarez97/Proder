@@ -1,6 +1,6 @@
 package prode;
 
-import prode.Game;
+import models.Game;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;

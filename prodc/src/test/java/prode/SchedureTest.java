@@ -1,6 +1,6 @@
 package prode;
 
-import prode.Schedure;
+import models.Schedure;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;

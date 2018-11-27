@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Bienvenido A La Fecha {{num}} </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/schedule.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+
+	<div class="container">
+
+		<h1> BIENVENIDO A LA FECHA {{num}} </h1>
+
+		<div class="card card-container">
+
+			<form class="form-prediction" method="post" action="/loadPredictions">
+	
+				<select id="soflow-color" name="game">
+                
+         		       	{{#games}}
+                	
+             		   	<option value="{{idGame}}">{{local}} vs {{visitante}}</option>
+                	
+              		  	{{/games}}
+                
+				</select><br><br>
+
+				<label> Goles equipo local: </label><input class="transpaLocal" type="numeric" name="local" value="0" size="1"><br><br>
+				<label> Goles equipo visitante: </label><input class="transpaVisitante" type="numeric" name="visit" value="0" size="1"><br><br>
+
+				<a href="/loadPredictions"><input class="btn btn-primary" type="submit" value="Predictions"></a>
+
+			</form>
+
+			{{error}}
+			
+		</div>
+	
+	</div>
+
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -13,24 +13,20 @@
 
 	<div class="container">
 
-		<h1> BIENVENIDO AL AREA PARA VERIFICAR SUS PREDICCIONES </h1>
+		<h1> BIENVENIDO AL AREA PARA VER SUS PREDICCIONES </h1>
 
-		<h4> EN ESTA SECCION SE MUESTRA COMO FUERON SUS PREDICCIONES Y RESPECTIVO PUNTAJE: </h4>
+    <h4> EN ESTA SECCION SE MUESTRAN TODAS LA PREDICCIONES QUE A REALIZADO: </h4>
 
 		<div class="card card-container">
-			
-			<img class="profile-img-card" src="imagenes/puntos.png">
 
 			<table class="idTable">
 				<tr>
     				<th class="columna">Fecha</th>
     				<th class="columna">Partido</th>
     				<th class="columna">Tu Resultado</th>
-   		 			<th class="columna">Resultado Real</th>
-   		 			<th class="columna">¿Acerte?</th>
-  				</tr>
+  			</tr>
 
-  				{{#punctuation}}
+  				{{#predictions}}
 
   				<tr>
     				<th class="fila">
@@ -42,25 +38,11 @@
     				<th class="fila">
     					{{prediction}}
     				</th>
-    				<th class="fila">
-    					{{local}} {{golLocal}} vs {{visitante}} {{golVisitante}}
-    				</th>
-    				<th class="fila">
-    					{{acerto}}
-    				</th>
   				</tr>
 
-  				{{/punctuation}}
+  				{{/predictions}}
 
 			</table>
-			<div class="subCard card-container">
-			{{#points}}
-				<div class="panel panel-success">
-    				<div class="panel-body"> {{schedule}}: {{pointsSchedules}} Puntos </div>
- 				 </div>        		
-        	{{/points}}
-        	</div>
-    	</div>
 	</div>
 
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

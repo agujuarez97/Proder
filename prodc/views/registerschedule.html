@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Cargar una nueva fecha </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/administrator.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+	<div class="container">
+
+        <h1> BIENVENIDO AL AREA PARA REGISTRAR UNA NUEVA FECHA </h1>
+
+		<h4> POR FAVOR INGRESE EL NOMBRE DE FIXTURE AL QUE PERTENECERA LA NUEVA FECHA: </h4>
+
+        <div class="card card-container">
+        
+            <form class="form-loadschedule" method="post" action="/registerschedule">
+
+                <label> Fixture: </label><br>
+                
+                <select id="soflow-color" name="fixture">
+                
+                    {{#fixtures}}
+                    
+                    <option value="{{idFixture}}">{{nameFixture}}</option>
+                    
+                    {{/fixtures}}
+                
+                </select><br><br>
+                
+                <a href="/registerschedule"><input type="submit" class="btn btn-primary" value="Save"></a>
+
+                <input type="reset" class="btn btn-primary" value="Reset">
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+    </div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

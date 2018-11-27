@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Buscar Fixture </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/administrator.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+
+	<div class="container">
+
+        <h1> BIENVENIDO AL AREA PARA BUSCAR UN FIXTURE </h1>
+
+		<h4> POR FAVOR INGRESE EL NOMBRE DEL FIXTURE QUE DESEA VER: </h4>
+
+        <div class="card card-container">
+        
+            <form class="form-seefixture" method="post" action="/fixture">
+
+                <label> Fixture: </label><br>
+                
+                <select id="soflow-color" name="fixture">
+                
+                    {{#fixtures}}
+                    
+                    <option value="{{idFixture}}">{{nameFixture}}</option>
+                    
+                    {{/fixtures}}
+                
+                </select><br><br>
+
+                <a href="/fixture"><input type="submit" class="btn btn-primary" value="Accept"></a>
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+    </div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

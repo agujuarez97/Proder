@@ -13,7 +13,7 @@ h4{
 }
 
 .card-container.card {
-    max-width: 350px;
+    max-width: 700px;
     margin-top: 5%;
 }
 
@@ -42,12 +42,13 @@ h4{
 
 .columna,
 .fila {
+    text-align: center;
     border: 2px solid black;
 }
 
 .idTable{
-	width: 100%;
-	border: 2px solid black;
-	border-collapse: collapse;
-	border-spacing: 10px; 
+    width: 100%;
+    border: 2px solid black;
+    border-collapse: collapse;
+    border-spacing: 10px; 
 }

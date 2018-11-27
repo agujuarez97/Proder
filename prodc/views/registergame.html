@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Cargar un nuevo partidp</title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/administrator.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+
+	<div class="container">
+
+        <h1> BIENVENIDO AL AREA PARA REGISTRAR UN NUEVO PARTIDO </h1>
+
+		<h4> POR FAVOR INGRESE LOS DATOS DEL PARTIDO: </h4>
+
+        <div class="card card-container">
+        
+            <form class="form-registergame" method="post" action="/registergame">
+
+                <label> Equipo local: </label><br>
+                
+                <select id="soflow-color" name="local">
+                
+                	{{#teams}}
+                	
+                	<option value="{{idTeam}}">{{nameTeam}}</option>
+                	
+                	{{/teams}}
+                
+                </select><br><br>
+
+                <label> Equipo visitante: </label><br>
+                
+                <select id="soflow-color" name="visitor">
+                
+                	{{#teams}}
+                	
+                	<option value="{{idTeam}}">{{nameTeam}}</option>
+                	
+                	{{/teams}}
+                
+                </select><br><br>
+                
+                <label> Fixture: </label><br>
+                
+                <select id="soflow-color" name="fixture">
+                
+                	{{#fixtures}}
+                	
+                	<option value="{{idFixture}}">{{nameFixture}}</option>
+                	
+                	{{/fixtures}}
+                
+                </select><br><br>
+                
+                <label> Fecha: </label><br>
+                
+                <select id="soflow-color" name="schedule">
+                
+                	{{#schedules}}
+                	
+                	<option value="{{num}}">{{num}}</option>
+                		
+                	{{/schedules}}
+                	
+                </select><br><br>
+                
+                <label> Fecha del partido: </label><input type="date" id="inputDate" class="form-control" name="date" value="{{currentDate}}" placeholder="Date" min="{{currentDate}}" required"><br>
+                
+                <label> Hora del partido: </label><input type="time" id="inputHour" class="form-control" name="hour" value="00:00" placeholder="00:00" required><br>
+                
+                <a href="/registergame"><input type="submit" class="btn btn-primary" value="Save"></a>
+
+                <input type="reset" class="btn btn-primary" value="Reset">
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+    </div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

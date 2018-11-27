@@ -1,0 +1,3 @@
+En esta carpeta se deben colocar todos los controladores
+que se van a utilizar en la App.java, cada controlador
+va a ser una clase con sus respectivos metodos.

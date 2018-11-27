@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" type="image/png" sizes="50x50" href="/imagenes/pelota.png">
+	<title> Subscribirse a un fixture </title>
+	<link rel='stylesheet' href='/css/fondo.css'>
+	<link rel='stylesheet' href='/css/administrator.css'>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+</head>
+<body>
+	<div class="container">
+
+		<h4> SELECCIONE EL FIXTURE AL QUE SE DESEA SUBSCRIBIR: </h4>
+		
+		<label> Solo puede realizar la subscripción a un fixture, si ya tiene una subscripción, perderá la subscripción actual, las predicciones realizadas y los puntos obtenidos. </label><br><br>
+
+        <div class="card card-container">
+        
+            <form class="form-loadschedule" method="post" action="/registersubscribefixture">
+
+                <label> Fixture: </label><br>
+                
+                <select id="soflow-color" name="fixture">
+                
+                    {{#fixtures}}
+                    
+                    <option value="{{idFixture}}">{{nameFixture}}</option>
+                    
+                    {{/fixtures}}
+                
+                </select><br><br>
+                
+                <a href="/registersubscribefixture"><input type="submit" class="btn btn-primary" value="Subscribe"></a>
+
+            </form>
+
+            {{{error}}}
+
+        </div>
+    </div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
